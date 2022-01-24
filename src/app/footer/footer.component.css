@@ -1,0 +1,12 @@
+body {
+    background: #ff5f6d;
+    background: -webkit-linear-gradient(to right, #00001a, #00004d);
+    background: linear-gradient(to right, #00001a, #00004d);
+    min-height: 100vh;
+    font-family: 'Sanchez', serif;
+}
+
+h6,a,p {
+    color: white;
+    text-decoration: none;
+}
