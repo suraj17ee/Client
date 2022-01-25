@@ -1,25 +1,31 @@
-<div class="container">
-    <br>
-        <h3 style="text-align: center;">SignIn</h3>
-        <form [formGroup]="signinForm">
-            <div class="form-group row">
-                <label>Email</label>
-                    <input type="text" class="form-control" formControlName="email" placeholder="Email">
-                    <div *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched" style="color: red;">
-                        Email is required
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block"/>
+        </div> 
+        <div class="col-md-6"> 
+            <form [formGroup]="signinForm" class="mt-5">
+                <h2 class="mb-3 text-primary">Login</h2>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label>Email</label>
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                            <div *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched" style="color: red;">
+                                Email is required
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group col-md-12">
+                            <label>Password : </label>
+                            <input type="password" class="form-control" formControlName="password" placeholder="password">
+                            <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched" style="color: red;">
+                                password is required
+                            </div>
+                        </div>
                     </div>
-            </div>
             <br>
             <div class="form-group row">
-                <label>Password : </label>
-                    <input type="password" class="form-control" formControlName="password" placeholder="password">
-                    <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched" style="color: red;">
-                        password is required
-                    </div>
-            </div>
-            <br>
-            <div class="form-group row">
-                <div class="col">
+                <div class="form-group col-md-6">
                     <button type="submit" style="margin-left: 90%;" (click)="submitForm()" [disabled]="!signinForm.valid" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col">
@@ -29,3 +35,5 @@
             <br>
         </form>
     </div>
+    </div>
+</div>
