@@ -56,7 +56,7 @@
             <br>
             <div class="form-group row">
                 <div class="col">
-                    <button type="submit" style="margin-left: 90%;" (click)="submitForm()" [disabled]="!signupForm.valid" class="btn btn-success">Submit</button>
+                    <button type="submit" style="margin-left: 90%;" (click)="submitForm()" [disabled]="signupForm.valid" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col">
                     <button type="submit" style="margin-right: 45%;" (click)="cancelForm()" class="btn btn-primary">Cancel</button>
@@ -64,4 +64,17 @@
             </div>
             <br>
         </form>
+
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>name</td>
+                <td>salary</td>
+            </tr>
+            <tr *ngFor="let i of user;">
+                <td>{{i.employeeId}}</td>
+                <td>{{i.employeeName}}</td>
+                <td>{{i.salary}}</td>
+            </tr>
+        </table>
     </div>

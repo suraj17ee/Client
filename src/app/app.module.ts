@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { SignupComponent } from './signup/signup.component';
-import { SigninComponent } from './signin/signin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './mainModule/header/header.component';
+import { FooterComponent } from './mainModule/footer/footer.component';
+import { SignupComponent } from './loginModule/signup/signup.component';
+import { SigninComponent } from './loginModule/signin/signin.component';
+import { DashboardComponent } from './dashboardModule/dashboard/dashboard.component';
+import { SideNavigationComponent } from './dashboardModule/side-navigation/side-navigation.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
+
 
 @NgModule({
   declarations: [
@@ -19,12 +21,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    ProfileComponent
+    SideNavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
