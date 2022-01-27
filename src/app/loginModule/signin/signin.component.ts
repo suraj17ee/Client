@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginModuleService } from '../login-module.service';
 
 @Component({
   selector: 'app-signin',
@@ -17,22 +18,27 @@ export class SigninComponent implements OnInit {
     return this.signinForm.controls
   }
   
-  constructor() { }
+  constructor(private loginModuleService: LoginModuleService) { }
 
   ngOnInit(): void {
   }
 
   submitForm(){
-    const data = {
+    const userLoginData = {
       email : this.signinForm.get('email')?.value,
       password : this.signinForm.get('password')?.value,
     };
-    alert(data);
+    
+    this.loginModuleService.loginUser(userLoginData).subscribe((response) => {
+      console.log(response)
+    },
+    (error: any) => {
+      console.log(error)
+    }
+  );
   }
 
   cancelForm(){
     this.signinForm.reset
   }
-
-
 }

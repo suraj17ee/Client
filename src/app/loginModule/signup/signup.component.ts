@@ -8,8 +8,6 @@ import { LoginModuleService } from '../login-module.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  
-  user: any = {};
 
   signupForm : FormGroup =new FormGroup({
     firstname : new FormControl('',[Validators.required]),
@@ -30,26 +28,20 @@ export class SignupComponent implements OnInit {
   }
 
   submitForm(){
-    // const data = {
-    //   firstname: this.signupForm.get('firstname')?.value,
-    //   lastname : this.signupForm.get('lastname')?.value,
-    //   phoneno : this.signupForm.get('phoneno')?.value,
-    //   email : this.signupForm.get('email')?.value,
-    //   dateofbirth : this.signupForm.get('dateofbirth')?.value,
-    //   password : this.signupForm.get('password')?.value,
-    // };
-    const data ={
-      employeeId: 11,
-      employeeName: "Suraj",
-      salary: 1212942
-    }
+    const userSaveData = {
+      firstname: this.signupForm.get('firstname')?.value,
+      lastname : this.signupForm.get('lastname')?.value,
+      phoneno : this.signupForm.get('phoneno')?.value,
+      email : this.signupForm.get('email')?.value,
+      dateofbirth : this.signupForm.get('dateofbirth')?.value,
+      password : this.signupForm.get('password')?.value,
+    };
 
-    this.loginModuleService.getUser().subscribe((response) => {
-        this.user=response
-        console.log(this.user)
+    this.loginModuleService.saveUser(userSaveData).subscribe((response) => {
+        console.log(response)
       },
       (error: any) => {
-        console.log(error);
+        console.log(error)
       }
     );
   }

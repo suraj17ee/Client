@@ -5,7 +5,7 @@
         </div> 
         <div class="col-md-6"> 
             <form [formGroup]="signinForm" class="mt-5">
-                <h2 class="mb-3 text-primary">Login</h2>
+                <h2 class="mb-3 text-primary"><p class="text-center">Login</p></h2>
                     <div class="form-group row">
                         <div class="form-group col-md-12">
                             <label>Email</label>
@@ -19,17 +19,17 @@
                             <label>Password : </label>
                             <input type="password" class="form-control" formControlName="password" placeholder="password">
                             <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched" style="color: red;">
-                                password is required
+                                Password is required
                             </div>
                         </div>
                     </div>
             <br>
             <div class="form-group row">
                 <div class="form-group col-md-6">
-                    <button type="submit" style="margin-left: 90%;" (click)="submitForm()" [disabled]="!signinForm.valid" class="btn btn-success">Submit</button>
+                    <button type="submit" (click)="submitForm()" [disabled]="!signinForm.valid" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col">
-                    <button type="submit" style="margin-right: 45%;" (click)="cancelForm()" class="btn btn-primary">Cancel</button>
+                    <button type="submit" (click)="cancelForm()" class="btn btn-primary">Cancel</button>
                 </div>
             </div>
             <br>
