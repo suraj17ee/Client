@@ -13,15 +13,24 @@ export class SignupComponent implements OnInit {
     firstname : new FormControl('',[Validators.required]),
     lastname : new FormControl('',[Validators.required]),
     phoneno : new FormControl('',[Validators.required]),
-    email : new FormControl('',[Validators.required]),
+    email : new FormControl('',[Validators.required,Validators.email]),
     dateofbirth : new FormControl('',[Validators.required]),
-    password : new FormControl('',[Validators.required]),
+    password : new FormControl('',[Validators.required,Validators.minLength(8)]),
   });
 
   get getSignupFormControls(){
     return this.signupForm.controls
   }
   
+  formatLabel(value: number) {
+    if (value >=1) {
+      return (value) + 'yrs';
+    }
+
+    return value;
+  }
+
+
   constructor(private loginModuleService: LoginModuleService) { }
 
   ngOnInit(): void {
@@ -47,7 +56,7 @@ export class SignupComponent implements OnInit {
   }
 
   cancelForm(){
-    this.signupForm.reset
+    this.signupForm.reset()
   }
 
 }

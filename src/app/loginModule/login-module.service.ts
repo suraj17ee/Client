@@ -9,11 +9,12 @@ export class LoginModuleService {
 
   constructor(private http : HttpClient) { }
   
-  saveUser(userSaveData: any): Observable<any>{
-    return this.http.post('url',userSaveData);
+  saveUser(user: any): Observable<any>{
+    return this.http.post('http://localhost:8080/employees',user);
   }
 
-  loginUser(userloginData: any): Observable<any>{
-    return this.http.post('url',userloginData);
+  loginUser(user: any): Observable<any>{
+    return this.http.get('http://localhost:8080/employees');
   }
+
 }
