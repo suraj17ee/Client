@@ -4,6 +4,8 @@
             <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block"/>
         </div> 
         <div class="col-md-6"> 
+            <div class="card" style="width:600px;margin-top:40px;margin-bottom:20px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
+                <article class="card-body"> 
             <form [formGroup]="signupForm" class="mt-5">
                 <h2 class="mb-3 text-primary" ><p class="text-center">Sign Up</p></h2>
                 <div class="form-group row">
@@ -24,25 +26,38 @@
                 </div>
                 <br>
                 <div class="form-group row">
+                  
+                   <br>
                     <div class="col">
-                        <label>Email</label>
-                        <small style="margin-left: 5px;">(Note : Please provide your valid email) :</small>
-                        <input type="text" class="form-control" formControlName="email" placeholder="Personal Email">
-                        <div *ngIf="getSignupFormControls.email.invalid && getSignupFormControls.email.touched" style="color: red;">
-                            Email is required
-                        </div>
-                    
-                    </div>
-                    <div class="col">
-                        <label>Phone Number : </label>
-                        <input type="text" class="form-control" formControlName="phoneno" placeholder="Phone Number">
-                        <div *ngIf="getSignupFormControls.phoneno.invalid && getSignupFormControls.phoneno.touched" style="color: red;">
-                            Phone number is required
-                        </div>
+                        <div class="back">
+                        <label style="margin-bottom: 5px;">Select  Gender</label>
+                        <br>
+                        <input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="female"> Female
+
                     </div>
                 </div>
+
+
+                <div class="col" style="margin-left: 10px;">
+                    <div class="back">
+                     <label>Age:</label>
+                    <mat-slider
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            tickInterval="1000"
+                            step="1"
+                            min="0"
+                            max="100"
+                            aria-label="units">
+                    </mat-slider>
+                </div> 
+                 </div>
+
+                   
+                </div>
                 <br>
-                <div class="form-group row">
+                <div class="form-group row" style="margin-bottom: 10px;">
                     <div class="col">
                         <label>Date Of Birth :</label>
                         <input type="date" class="form-control" formControlName="dateofbirth">
@@ -50,6 +65,25 @@
                             Date Of Birth is required
                         </div>
                     </div>
+                    
+                    <div class="col">
+                        <label>Phone Number : </label>
+                        <input type="number" class="form-control" formControlName="phoneno" placeholder="Phone Number">
+                        <div *ngIf="getSignupFormControls.phoneno.invalid && getSignupFormControls.phoneno.touched" style="color: red;">
+                            Phone number is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Email</label>
+                        
+                        <input type="email" class="form-control" formControlName="email" placeholder="Personal Email">
+                        <div *ngIf="getSignupFormControls.email.invalid && getSignupFormControls.email.touched" style="color: red;">
+                            Email is required
+                        </div>
+                    </div> 
                     <div class="col">
                         <label>Password : </label>
                         <input type="password" class="form-control" formControlName="password" placeholder="password">
@@ -57,19 +91,27 @@
                             Password is required & must be at least 8 characters
                         </div>
                     </div>
+                    
                 </div>
+
+
+
+
                 <br>
                 <div class="form-group row">
-                    <div class="form-group col-md-6">
-                        <button type="submit" (click)="submitForm()" [disabled]="!signupForm.valid" class="btn btn-success">Submit</button>
+                    <div class="form-group col-md-6" id="buttons">
+                        <button type="submit" (click)="submitForm()" [disabled]="!signupForm.valid" class="btn btn-success" style=" margin-right: 5px;">Submit</button>
+                    <!-- </div> -->
+                    <!-- <div class="col"> -->
+                        
+                        <button type="submit" (click)="cancelForm()" class="btn btn-primary" >Reset</button>
                     </div>
-                   
-                    <div class="form-group col-md-6">
-                        <button type="submit" (click)="cancelForm()" class="btn btn-primary">Cancel</button>
-                    </div> 
                 </div>
                 <br>
+                <a style="color:white;margin-top: 10px" routerLink="/login"><h4 style="color:blue;margin-left: 160px;" >Already Registered? Click to Login</h4></a>
             </form>
+                </article>
+            </div>
         </div>
       
     </div>

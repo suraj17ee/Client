@@ -10,8 +10,10 @@ import { SigninComponent } from './loginModule/signin/signin.component';
 import { DashboardComponent } from './dashboardModule/dashboard/dashboard.component';
 import { SideNavigationComponent } from './dashboardModule/side-navigation/side-navigation.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule, 
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
