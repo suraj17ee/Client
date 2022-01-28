@@ -12,22 +12,27 @@
                         <h2 class="text-primary text-center" style="font-size: 30px;">Login</h2>
                         <div class="form-group row">
                             <div class="form-group col-md-10">
-                                <input type="text" class="form-control" formControlName="email" placeholder="Email">
-                                <div *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"
+                                <input type="text" class="form-control" formControlName="email"
+                                [class.is-invalid]="getSigninFormControls.email.invalid && getSigninFormControls.email.touched" placeholder="Email">
+                                <small *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"
                                     style="color: red;">
                                     <p>Email is required</p>
-                                </div>
+                                </small>
                             </div>
                             <br>
                             <div class="form-group col-md-10">
                                 <input type="password" class="form-control" formControlName="password"
-                                    placeholder="Password" style="margin-bottom: 20px;padding: 10px;">
-                                <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched"
+                                [class.is-invalid]="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"  placeholder="Password">
+                                <small *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched"
                                     style="color: red;">
                                     <p>Password is required</p>
-                                </div>
+                                </small>
                             </div>
                         </div>
+                        <br>
+                        <a style="color:blue; " routerLink="/forget-password">
+                            <h4 style="margin-left:200px; text-decoration: none;">Forget Password?</h4>
+                        </a>
                         <br>
                         <div class="form-group row">
                             <div class="form-group col-md-6" id="buttons">
@@ -39,7 +44,7 @@
                         </div>
                         <br>
                         <a style="color:blue; " routerLink="/signup">
-                            <h4 style="margin-left:80px; text-decoration: none;">New User? Click to Signup</h4>
+                            <h4 style="margin-left:80px; text-decoration: n;">New User? Click to Signup</h4>
                         </a>
                     </form>
                 </article>

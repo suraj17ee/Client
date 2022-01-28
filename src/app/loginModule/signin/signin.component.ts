@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginModuleService } from '../login-module.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
 
-  constructor(fb: FormBuilder,private loginModuleService:LoginModuleService) {
+  constructor(fb: FormBuilder,private loginModuleService:LoginModuleService,private router : Router) {
     this.signinForm = fb.group({
       email : new FormControl('',[Validators.required]),
       password : new FormControl('',[Validators.required]),
@@ -33,6 +34,7 @@ export class SigninComponent implements OnInit {
     
     this.loginModuleService.loginUser(userLoginData).subscribe((response) => {
       console.log(response)
+      this.router.navigate(['/dashboard'])
     },
     (error: any) => {
       console.log(error)
