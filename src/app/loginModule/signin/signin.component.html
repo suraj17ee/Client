@@ -19,18 +19,18 @@
                                 </small>
                             </div>
                             <br>
-                            <div class="form-group col-md-10">
+                            <div class="form-group col-md-10" style="margin-top: 10px;">
                                 <input type="password" class="form-control" formControlName="password"
-                                [class.is-invalid]="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"  placeholder="Password">
+                                [class.is-invalid]="getSigninFormControls.password.invalid && getSigninFormControls.password.touched"  placeholder="Password">
                                 <small class="text-danger" style="margin-left: 10%;" *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched">
                                     Password is required
                                 </small>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group row">
+                        <div class="form-group row col-md-10">
                             <a style="color:blue; " routerLink="/forget-password">
-                                <h4 style="margin-left:200px; text-decoration: n;">Forget Password?</h4>
+                                <h4 style="text-align: right; text-decoration: n;">Forget Password?</h4>
                             </a>
                         </div>
                         <br>
