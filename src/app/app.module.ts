@@ -16,6 +16,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSliderModule } from '@angular/material/slider';
 import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
 import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
+import { AccountDetailsComponent } from './dashboardModule/account-details/account-details.component';
+import { CreateAccountComponent } from './dashboardModule/create-account/create-account.component';
+import { FundTransferComponent } from './dashboardModule/fund-transfer/fund-transfer.component';
+import { ProfileComponent } from './dashboardModule/profile/profile.component';
+import { PopupComponent } from './sharedModule/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,11 @@ import { SetPasswordComponent } from './loginModule/set-password/set-password.co
     SideNavigationComponent,
     ForgetPasswordComponent,
     SetPasswordComponent,
+    AccountDetailsComponent,
+    CreateAccountComponent,
+    FundTransferComponent,
+    ProfileComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
