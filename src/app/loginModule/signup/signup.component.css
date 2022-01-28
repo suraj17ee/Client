@@ -10,5 +10,8 @@ mat-slider {
     margin-left:200px;
 }
 
-
+.input-row {
+    display: flex;
+    align-items: center;
+}
     

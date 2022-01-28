@@ -21,6 +21,11 @@ import { CreateAccountComponent } from './dashboardModule/create-account/create-
 import { FundTransferComponent } from './dashboardModule/fund-transfer/fund-transfer.component';
 import { ProfileComponent } from './dashboardModule/profile/profile.component';
 import { PopupComponent } from './sharedModule/popup/popup.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,13 @@ import { PopupComponent } from './sharedModule/popup/popup.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    MatSliderModule
+    MatSliderModule,
+    BrowserModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
