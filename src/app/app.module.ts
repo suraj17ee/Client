@@ -16,6 +16,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSliderModule } from '@angular/material/slider';
 import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
 import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
+import { AccountDetailsComponent } from './dashboardModule/account-details/account-details.component';
+import { CreateAccountComponent } from './dashboardModule/create-account/create-account.component';
+import { FundTransferComponent } from './dashboardModule/fund-transfer/fund-transfer.component';
+import { ProfileComponent } from './dashboardModule/profile/profile.component';
+import { PopupComponent } from './sharedModule/popup/popup.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -27,7 +37,12 @@ import { SetPasswordComponent } from './loginModule/set-password/set-password.co
     DashboardComponent,
     SideNavigationComponent,
     ForgetPasswordComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
+    AccountDetailsComponent,
+    CreateAccountComponent,
+    FundTransferComponent,
+    ProfileComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +50,13 @@ import { SetPasswordComponent } from './loginModule/set-password/set-password.co
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    MatSliderModule
+    MatSliderModule,
+    BrowserModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,22 +9,26 @@
                 <article class="card-body">
                     <form [formGroup]="signupForm" class="mt-5">
                         <h2 class="mb-3 text-primary">
-                            <p class="text-center" style="font-size: 30px;">Sign Up</p>
+                            <p class="text-center" style="font-size: 30px; margin-bottom: 5%;">Sign Up</p>
                         </h2>
                         <div class="form-group row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Firstname :</label>
                                 <input type="text" class="form-control" formControlName="firstname"
-                                [class.is-invalid]="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched"   placeholder="Firstname">
-                                <small class="text-danger" *ngIf="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched">
+                                    [class.is-invalid]="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched"
+                                    placeholder="Firstname">
+                                <small class="text-danger"
+                                    *ngIf="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched">
                                     Firstname is required
                                 </small>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Lastname :</label>
                                 <input type="text" class="form-control" formControlName="lastname"
-                                [class.is-invalid]="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched"  placeholder="Lastname">
-                                <small class="text-danger" *ngIf="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched">
+                                    [class.is-invalid]="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched"
+                                    placeholder="Lastname">
+                                <small class="text-danger"
+                                    *ngIf="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched">
                                     Lastname is required
                                 </small>
                             </div>
@@ -40,7 +44,8 @@
                                     <input type="radio" name="gender" value="male" formControlName="gender"> Male
                                     <input type="radio" name="gender" value="female" formControlName="gender"> Female
                                 </div>
-                                <small class="text-danger" *ngIf="getSignupFormControls.gender.invalid && getSignupFormControls.gender.touched">
+                                <small class="text-danger"
+                                    *ngIf="getSignupFormControls.gender.invalid && getSignupFormControls.gender.touched">
                                     Gender is required
                                 </small>
                             </div>
@@ -61,8 +66,11 @@
                         <div class="form-group row" style="margin-bottom: 10px;">
                             <div class="col">
                                 <label>Date Of Birth :</label>
-                                <input type="date" class="form-control" [class.is-invalid]="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched" formControlName="dateofbirth">
-                                <small class="text-danger" *ngIf="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched">
+                                <input type="date" class="form-control"
+                                    [class.is-invalid]="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched"
+                                    formControlName="dateofbirth">
+                                <small class="text-danger"
+                                    *ngIf="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched">
                                     Date Of Birth is required
                                 </small>
                             </div>
@@ -76,11 +84,33 @@
                                     *ngIf="(getSignupFormControls.phoneno.invalid && getSignupFormControls.phoneno.touched) || getSignupFormControls.phoneno.dirty">
                                     <small class="text-danger"
                                         *ngIf="getSignupFormControls.phoneno.errors?.required">Phoneno is required</small>
-                                    <small class="text-danger" *ngIf="getSignupFormControls.phoneno.errors?.pattern">Phoneno must be 10 digit</small>
+                                    <small class="text-danger"
+                                        *ngIf="getSignupFormControls.phoneno.errors?.pattern">Phoneno must be 10 digit</small>
                                 </div>
                             </div>
                         </div>
-
+                        
+                        <br>
+                        <div class="form-group row" style="margin-bottom: 10px;">
+                            <div class="col-md-6">
+                                <label>Addresses :</label>
+                                <div class="input-row"
+                                    *ngFor="let index of getSignupFormControls.addresses.value index as idx; last as isLast">
+                                    <mat-form-field>
+                                        <input matInput [formControl]="index">
+                                        <mat-error *ngIf="index.errors?.required">Address</mat-error>
+                                    </mat-form-field>
+                                    <button mat-icon-button color="warn" *ngIf="getSignupFormControls.addresses.value.length > 1"
+                                        (click)="removeInputControl(index)">
+                                        <mat-icon>remove_circle</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" *ngIf="isLast" (click)="addInputControl()">
+                                        <mat-icon>add_circle</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <div class="form-group row">
                             <div class="col">
                                 <label>Email :</label>
@@ -91,7 +121,7 @@
                                     *ngIf="(getSignupFormControls.email.invalid && getSignupFormControls.email.touched) || getSignupFormControls.email.dirty">
                                     <small class="text-danger"
                                         *ngIf="getSignupFormControls.email.errors?.required">Email is required</small>
-                                    <small class="text-danger" *ngIf="getSignupFormControls.email.errors?.email">Email is invalid</small>
+                                    <small class="text-danger" *ngIf="getSignupFormControls.email.errors?.pattern">Email is invalid</small>
                                 </div>
                             </div>
                             <div class="col">
@@ -99,11 +129,12 @@
                                 <input type="password" class="form-control" formControlName="password"
                                     [class.is-invalid]="getSignupFormControls.password.invalid && getSignupFormControls.password.touched"
                                     placeholder="Password">
-                                    <div
+                                <div
                                     *ngIf="(getSignupFormControls.password.invalid && getSignupFormControls.password.touched) || getSignupFormControls.password.dirty">
                                     <small class="text-danger"
                                         *ngIf="getSignupFormControls.password.errors?.required">Password is required</small>
-                                    <small class="text-danger" *ngIf="getSignupFormControls.password.errors?.minlength">Password must be at least 8 characters</small>
+                                    <small class="text-danger"
+                                        *ngIf="getSignupFormControls.password.errors?.minlength">Password must be at least 8 characters</small>
                                 </div>
                             </div>
 
@@ -118,8 +149,8 @@
                             </div>
                         </div>
                         <br>
-                        <a style="color:white;margin-top: 10px" routerLink="/login">
-                            <h4 style="color:blue;margin-left: 160px;">Already Registered? Click to Login</h4>
+                        <a style="color:white; margin-top: 10px" routerLink="/login">
+                            <h4 style="color:blue; margin-left: 160px;">Already Registered? Click to Login</h4>
                         </a>
                     </form>
                 </article>
