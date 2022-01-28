@@ -9,30 +9,30 @@
                 style="width:400px;margin-top:50px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
                 <article class="card-body">
                     <form [formGroup]="signinForm" class="mt-5">
-                        <h2 class="text-primary text-center" style="font-size: 30px;">Login</h2>
+                        <h2 class="text-primary text-center" style="font-size: 30px; margin-bottom: 10%;">Login</h2>
                         <div class="form-group row">
                             <div class="form-group col-md-10">
                                 <input type="text" class="form-control" formControlName="email"
                                 [class.is-invalid]="getSigninFormControls.email.invalid && getSigninFormControls.email.touched" placeholder="Email">
-                                <small *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"
-                                    style="color: red;">
-                                    <p>Email is required</p>
+                                <small class="text-danger" style="margin-left: 10%;" *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched">
+                                    Email is required
                                 </small>
                             </div>
                             <br>
                             <div class="form-group col-md-10">
                                 <input type="password" class="form-control" formControlName="password"
                                 [class.is-invalid]="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"  placeholder="Password">
-                                <small *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched"
-                                    style="color: red;">
-                                    <p>Password is required</p>
+                                <small class="text-danger" style="margin-left: 10%;" *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched">
+                                    Password is required
                                 </small>
                             </div>
                         </div>
                         <br>
-                        <a style="color:blue; " routerLink="/forget-password">
-                            <h4 style="margin-left:200px; text-decoration: none;">Forget Password?</h4>
-                        </a>
+                        <div class="form-group row">
+                            <a style="color:blue; " routerLink="/forget-password">
+                                <h4 style="margin-left:200px; text-decoration: n;">Forget Password?</h4>
+                            </a>
+                        </div>
                         <br>
                         <div class="form-group row">
                             <div class="form-group col-md-6" id="buttons">

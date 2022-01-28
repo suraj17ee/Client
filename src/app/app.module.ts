@@ -27,7 +27,7 @@ import { SetPasswordComponent } from './loginModule/set-password/set-password.co
     DashboardComponent,
     SideNavigationComponent,
     ForgetPasswordComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
   ],
   imports: [
     BrowserModule,
