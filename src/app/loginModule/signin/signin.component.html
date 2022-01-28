@@ -1,45 +1,50 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block"/>
-        </div> 
-       
-        <div class="col-md-6"> 
-            <div class="card" style="width:400px;margin-top:50px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
-            <article class="card-body"> 
-            <form [formGroup]="signinForm" class="mt-5">
-                <h2 class="text-primary text-center">Login</h2>
-                    <div class="form-group row">
-                        <div class="form-group col-md-10">
-                            <input type="text" class="form-control" formControlName="email" placeholder="Email" >
-                            <div *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched" style="color: red;">
-                                <p>Email is required</p>
+            <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+        </div>
+
+        <div class="col-md-6">
+            <div class="card"
+                style="width:400px;margin-top:50px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
+                <article class="card-body">
+                    <form [formGroup]="signinForm" class="mt-5">
+                        <h2 class="text-primary text-center" style="font-size: 30px;">Login</h2>
+                        <div class="form-group row">
+                            <div class="form-group col-md-10">
+                                <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                                <div *ngIf="getSigninFormControls.email.invalid && getSigninFormControls.email.touched"
+                                    style="color: red;">
+                                    <p>Email is required</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group col-md-10">
+                                <input type="password" class="form-control" formControlName="password"
+                                    placeholder="Password" style="margin-bottom: 20px;padding: 10px;">
+                                <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched"
+                                    style="color: red;">
+                                    <p>Password is required</p>
+                                </div>
                             </div>
                         </div>
                         <br>
-                        <div class="form-group col-md-10">
-                            <input type="password" class="form-control" formControlName="password" placeholder="password" style="margin-bottom: 20px;padding: 10px;">
-                            <div *ngIf="getSigninFormControls.password.invalid && getSigninFormControls.password.touched" style="color: red;">
-                            <p>Password is required</p>
+                        <div class="form-group row">
+                            <div class="form-group col-md-6" id="buttons">
+                                <button type="submit" (click)="submitForm()" [disabled]="!signinForm.valid"
+                                    class="btn btn-success" style=" margin-right: 5px;">Submit</button>
+
+                                <button type="submit" (click)="cancelForm()" class="btn btn-primary">Reset</button>
                             </div>
                         </div>
-                    </div>
-            <br>
-            <div class="form-group row">
-                <div class="form-group col-md-6" id="buttons">
-                    <button type="submit" (click)="submitForm()" [disabled]="!signinForm.valid" class="btn btn-success" style=" margin-right: 5px;">Submit</button>
-                <!-- </div> -->
-                <!-- <div class="col"> -->
-                    
-                    <button type="submit" (click)="cancelForm()" class="btn btn-primary" >Reset</button>
-                </div>
+                        <br>
+                        <a style="color:blue; " routerLink="/signup">
+                            <h4 style="margin-left:80px; text-decoration: none;">New User? Click to Signup</h4>
+                        </a>
+                    </form>
+                </article>
             </div>
-            <br>
-            <a style="color:blue; " routerLink="/signup"><h4 style="margin-left:70px;">New User? Click to Signup</h4></a>
-        </form>
-    </article>
-    </div>
-    
+
         </div>
     </div>
 </div>

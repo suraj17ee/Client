@@ -1,118 +1,121 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block"/>
-        </div> 
-        <div class="col-md-6"> 
-            <div class="card" style="width:600px;margin-top:40px;margin-bottom:20px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
-                <article class="card-body"> 
-            <form [formGroup]="signupForm" class="mt-5">
-                <h2 class="mb-3 text-primary" ><p class="text-center">Sign Up</p></h2>
-                <div class="form-group row">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Firstname:</label>
-                        <input type="text" class="form-control" formControlName="firstname" placeholder="First name">
-                        <div *ngIf="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched"  style="color: red;">
-                            Firstname is required
-                        </div> 
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Lastname:</label>
-                        <input type="text" class="form-control" formControlName="lastname" placeholder="Last name">
-                        <div *ngIf="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched" style="color: red;">
-                            Last name is required
+            <img src="/assets/img/auth.jpg" class="w-75 mx-auto d-block" />
+        </div>
+        <div class="col-md-6">
+            <div class="card"
+                style="width:600px;margin-top:40px;margin-bottom:20px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
+                <article class="card-body">
+                    <form [formGroup]="signupForm" class="mt-5">
+                        <h2 class="mb-3 text-primary">
+                            <p class="text-center" style="font-size: 30px;">Sign Up</p>
+                        </h2>
+                        <div class="form-group row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Firstname :</label>
+                                <input type="text" class="form-control" formControlName="firstname"
+                                    placeholder="Firstname">
+                                <div *ngIf="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched"
+                                    style="color: red;">
+                                    Firstname is required
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Lastname :</label>
+                                <input type="text" class="form-control" formControlName="lastname"
+                                    placeholder="Lastname">
+                                <div *ngIf="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched"
+                                    style="color: red;">
+                                    Lastname is required
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group row">
-                  
-                   <br>
-                    <div class="col">
-                        <div class="back">
-                        <label style="margin-bottom: 5px;">Select  Gender</label>
                         <br>
-                        <input type="radio" name="gender" value="male"> Male
-                        <input type="radio" name="gender" value="female"> Female
+                        <div class="form-group row">
 
-                    </div>
-                </div>
+                            <br>
+                            <div class="col">
+                                <div class="back">
+                                    <label style="margin-bottom: 5px;">Gender :</label>
+                                    <br>
+                                    <input type="radio" name="gender" value="male" formControlName="gender"> Male
+                                    <input type="radio" name="gender" value="female" formControlName="gender"> Female
+                                </div>
+                            </div>
 
 
-                <div class="col" style="margin-left: 10px;">
-                    <div class="back">
-                     <label>Age:</label>
-                    <mat-slider
-                            thumbLabel
-                            [displayWith]="formatLabel"
-                            tickInterval="1000"
-                            step="1"
-                            min="0"
-                            max="100"
-                            aria-label="units">
-                    </mat-slider>
-                </div> 
-                 </div>
+                            <div class="col" style="margin-left: 10px;">
+                                <div class="back">
+                                    <label>Age:</label>
+                                    <mat-slider thumbLabel [displayWith]="formatLabel" formControlName="age" tickInterval="1000" step="1"
+                                        min="0" max="100" aria-label="units">
+                                    </mat-slider>
+                                </div>
+                            </div>
 
-                   
-                </div>
-                <br>
-                <div class="form-group row" style="margin-bottom: 10px;">
-                    <div class="col">
-                        <label>Date Of Birth :</label>
-                        <input type="date" class="form-control" formControlName="dateofbirth">
-                        <div *ngIf="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched" style="color: red;">
-                            Date Of Birth is required
+
                         </div>
-                    </div>
-                    
-                    <div class="col">
-                        <label>Phone Number : </label>
-                        <input type="number" class="form-control" formControlName="phoneno" placeholder="Phone Number">
-                        <div *ngIf="getSignupFormControls.phoneno.invalid && getSignupFormControls.phoneno.touched" style="color: red;">
-                            Phone number is required
+                        <br>
+                        <div class="form-group row" style="margin-bottom: 10px;">
+                            <div class="col">
+                                <label>Date Of Birth :</label>
+                                <input type="date" class="form-control" formControlName="dateofbirth">
+                                <div *ngIf="getSignupFormControls.dateofbirth.invalid && getSignupFormControls.dateofbirth.touched"
+                                    style="color: red;">
+                                    Date Of Birth is required
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <label>Phone Number : </label>
+                                <input type="number" class="form-control" formControlName="phoneno"
+                                    placeholder="Phone Number">
+                                <div *ngIf="getSignupFormControls.phoneno.invalid && getSignupFormControls.phoneno.touched"
+                                    style="color: red;">
+                                    Phone number is required
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <div class="col">
-                        <label>Email</label>
-                        
-                        <input type="email" class="form-control" formControlName="email" placeholder="Personal Email">
-                        <div *ngIf="getSignupFormControls.email.invalid && getSignupFormControls.email.touched" style="color: red;">
-                            Email is required
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Email :</label>
+
+                                <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                                <div *ngIf="getSignupFormControls.email.invalid && getSignupFormControls.email.touched"
+                                    style="color: red;">
+                                    Email is required
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>Password : </label>
+                                <input type="password" class="form-control" formControlName="password"
+                                    placeholder="Password">
+                                <div *ngIf="getSignupFormControls.password.invalid && getSignupFormControls.password.touched"
+                                    style="color: red;">
+                                    Password is required & must be at least 8 characters
+                                </div>
+                            </div>
+
                         </div>
-                    </div> 
-                    <div class="col">
-                        <label>Password : </label>
-                        <input type="password" class="form-control" formControlName="password" placeholder="password">
-                        <div *ngIf="getSignupFormControls.password.invalid && getSignupFormControls.password.touched" style="color: red;" >
-                            Password is required & must be at least 8 characters
+                        <br>
+                        <div class="form-group row">
+                            <div class="form-group col-md-6" id="buttons">
+                                <button type="submit" (click)="submitForm()" [disabled]="!signupForm.valid"
+                                    class="btn btn-success" style=" margin-right: 5px;">Submit</button>
+
+                                <button type="submit" (click)="cancelForm()" class="btn btn-primary">Reset</button>
+                            </div>
                         </div>
-                    </div>
-                    
-                </div>
-
-
-
-
-                <br>
-                <div class="form-group row">
-                    <div class="form-group col-md-6" id="buttons">
-                        <button type="submit" (click)="submitForm()" [disabled]="!signupForm.valid" class="btn btn-success" style=" margin-right: 5px;">Submit</button>
-                    <!-- </div> -->
-                    <!-- <div class="col"> -->
-                        
-                        <button type="submit" (click)="cancelForm()" class="btn btn-primary" >Reset</button>
-                    </div>
-                </div>
-                <br>
-                <a style="color:white;margin-top: 10px" routerLink="/login"><h4 style="color:blue;margin-left: 160px;" >Already Registered? Click to Login</h4></a>
-            </form>
+                        <br>
+                        <a style="color:white;margin-top: 10px" routerLink="/login">
+                            <h4 style="color:blue;margin-left: 160px;">Already Registered? Click to Login</h4>
+                        </a>
+                    </form>
                 </article>
             </div>
         </div>
-      
+
     </div>
 </div>

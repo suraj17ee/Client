@@ -8,5 +8,6 @@ body {
 
 h6,a,p {
     color: white;
+    font-size: 15px;
     text-decoration: none;
 }

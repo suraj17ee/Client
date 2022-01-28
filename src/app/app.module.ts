@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MatSliderModule } from '@angular/material/slider';
+import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
+import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { MatSliderModule } from '@angular/material/slider';
     SignupComponent,
     SigninComponent,
     DashboardComponent,
-    SideNavigationComponent
+    SideNavigationComponent,
+    ForgetPasswordComponent,
+    SetPasswordComponent
   ],
   imports: [
     BrowserModule,
