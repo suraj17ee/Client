@@ -26,6 +26,12 @@
                                     Password is required
                                 </small>
                             </div>
+                            <br>
+                            <div class="form-group col-md-10" style="margin-top: 10px;">
+                                <small class="text-danger" style="margin-left: 10%;" *ngIf="!message">
+                                    Email or Password is invalid
+                                </small>
+                            </div>
                         </div>
                         <br>
                         <div class="form-group row col-md-10">

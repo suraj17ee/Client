@@ -37,16 +37,11 @@ export class ForgetPasswordComponent implements OnInit {
     this.displayStyle = "block";
   }
 
-  submitEmailForm(){
+  submitForm(){
     const email = this.forgetpassForm.get('email')?.value;
-    //get otp from server
   }
 
-  cancelEmailForm(){
+  cancelForm(){
     this.forgetpassForm.reset()
-  }
-
-  submitOTPForm(){
-    //if otp is valid then navigate to set password form
   }
 }

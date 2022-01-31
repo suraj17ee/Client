@@ -7,13 +7,13 @@
             <div class="card"
                 style="width:600px;margin-top:40px;margin-bottom:20px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
                 <article class="card-body">
-                    <form [formGroup]="signupForm" class="mt-5">
+                    <form [formGroup]="signupForm"  class="mt-5">
                         <h2 class="mb-3 text-primary">
                             <p class="text-center" style="font-size: 30px; margin-bottom: 5%;">Sign Up</p>
                         </h2>
                         <div class="form-group row">
                             <div class="form-group col-md-6">
-                                <label for="inputEmail4">Firstname :</label>
+                                <label>Firstname :</label>
                                 <input type="text" class="form-control" formControlName="firstname"
                                     [class.is-invalid]="getSignupFormControls.firstname.invalid && getSignupFormControls.firstname.touched"
                                     placeholder="Firstname">
@@ -23,7 +23,7 @@
                                 </small>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputEmail4">Lastname :</label>
+                                <label>Lastname :</label>
                                 <input type="text" class="form-control" formControlName="lastname"
                                     [class.is-invalid]="getSignupFormControls.lastname.invalid && getSignupFormControls.lastname.touched"
                                     placeholder="Lastname">
@@ -90,22 +90,18 @@
                             </div>
                         </div>
                         
-                        <br>
+                        <!-- <br>
                         <div class="form-group row" style="margin-bottom: 10px;">
                             <div class="col-md-6">
                                 <label>Addresses :</label>
                                 <div class="input-row"
-                                    *ngFor="let index of getSignupFormControls.addresses.value index as idx;  last as isLast">
-                                    <!-- <mat-form-field>
+                                    *ngFor="let index of getSignupFormControls.addresses.value;  last as isLast">
+                                    <mat-form-field appearance="outline">
                                         <input matInput [formControl]="index">
-                                        <mat-error *ngIf="index.errors?.required">Address</mat-error>
-                                    </mat-form-field> -->
-                                    <input type="text" class="form-control" [formControl]="index" formControlName="addresses"
-                                    [class.is-invalid]="getSignupFormControls.addresses.invalid && getSignupFormControls.addresses.touched"
-                                    placeholder="address">
+                                    </mat-form-field>
 
-                                    <button mat-icon-button color="warn" *ngIf="getSignupFormControls.addresses.value.length > 1"
-                                        (click)="removeInputControl(idx)">
+                                    <button mat-icon-button color="warn" *ngIf="getSignupFormControls?.addresses?.value.length > 1"
+                                        (click)="removeInputControl(index)">
                                         <mat-icon>remove_circle</mat-icon>
                                     </button>
                                     <button mat-icon-button color="primary" *ngIf="isLast" (click)="addInputControl()">
@@ -113,7 +109,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <br>
                         <div class="form-group row">
                             <div class="col">
@@ -146,8 +142,7 @@
                         <br>
                         <div class="form-group row">
                             <div class="form-group col-md-6" id="buttons">
-                                <button type="submit" (click)="submitForm()" 
-                                    class="btn btn-success" style=" margin-right: 5px;">Submit</button>
+                                <button type="submit" (click)="submitForm()" [disabled]="!signupForm.valid" class="btn btn-success" style=" margin-right: 5px;">Submit</button>
 
                                 <button type="submit" (click)="cancelForm()" class="btn btn-primary">Reset</button>
                             </div>

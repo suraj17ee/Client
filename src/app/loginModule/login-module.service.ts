@@ -10,11 +10,11 @@ export class LoginModuleService {
   constructor(private http : HttpClient) { }
   
   saveUser(user: any): Observable<any>{
-    return this.http.post('http://localhost:8080/server/save',user);
+    return this.http.post('http://localhost:8080/server/save',user,{responseType: 'text'});
   }
 
-  loginUser(email: any,password:any): Observable<any>{
-    return this.http.get(`http://localhost:8080/server/${email}/${password}`);
+  loginUser(user: any): Observable<any>{
+    return this.http.post('http://localhost:8080/server/login/',user,{responseType: 'text'});
   }
 
 }

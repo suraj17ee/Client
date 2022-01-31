@@ -11,6 +11,7 @@ import { LoginModuleService } from '../login-module.service';
 export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
+  message : boolean = true;
 
   constructor(fb: FormBuilder,private loginModuleService:LoginModuleService,private router : Router) {
     this.signinForm = fb.group({
@@ -27,12 +28,18 @@ export class SigninComponent implements OnInit {
   }
 
   submitForm(){
-    const email = this.signinForm.get('email')?.value;
-    const password =this.signinForm.get('password')?.value;
+    const userLoginData={
+      email : this.signinForm.get('email')?.value,
+      password : this.signinForm.get('password')?.value
+    }
     
-    this.loginModuleService.loginUser(email,password).subscribe((response) => {
-      console.log(response)
-      this.router.navigate(['/dashboard'])
+    this.loginModuleService.loginUser(userLoginData).subscribe((response) => {
+      if(response=="Login Succesfull..!"){
+        this.router.navigate(['/dashboard'])
+      }
+      else{
+        this.message=false;
+      }
     },
     (error: any) => {
       console.log(error)
