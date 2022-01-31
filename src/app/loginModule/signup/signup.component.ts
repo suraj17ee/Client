@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
       lastname: this.signupForm.get('lastname')?.value,
       phoneno: this.signupForm.get('phoneno')?.value,
       gender: this.signupForm.get('gender')?.value,
-      addresses: this.signupForm.get('addresses')?.value,
+      //addresses: this.signupForm.get('addresses')?.value,
       age: this.signupForm.get('age')?.value,
       email: this.signupForm.get('email')?.value,
       dateofbirth: this.signupForm.get('dateofbirth')?.value,

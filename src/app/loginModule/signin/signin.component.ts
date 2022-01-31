@@ -27,12 +27,10 @@ export class SigninComponent implements OnInit {
   }
 
   submitForm(){
-    const userLoginData = {
-      email : this.signinForm.get('email')?.value,
-      password : this.signinForm.get('password')?.value,
-    };
+    const email = this.signinForm.get('email')?.value;
+    const password =this.signinForm.get('password')?.value;
     
-    this.loginModuleService.loginUser(userLoginData).subscribe((response) => {
+    this.loginModuleService.loginUser(email,password).subscribe((response) => {
       console.log(response)
       this.router.navigate(['/dashboard'])
     },
