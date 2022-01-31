@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { HomeComponent } from './dashboardModule/home/home.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
     FundTransferComponent,
     ProfileComponent,
     PopupComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

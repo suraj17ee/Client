@@ -1,0 +1,34 @@
+.sidenav {
+    /* height: 100%; */
+    width: 20%;
+    /* position: fixed; */
+    /* z-index: 1; */
+    /* top: 0; */
+    /* left: 0; */
+    /* background-color: rgb(6, 212, 248); */
+    /* overflow-x: hidden; */
+    padding-top: 20px;
+    /* background-image: url('https://wallpapercave.com/wp/mb5f7nA.jpg'); */
+    background-size: cover;
+  }
+  
+  .sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #663030;
+  }
+  
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+  }
+  
+  /* @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  } */
