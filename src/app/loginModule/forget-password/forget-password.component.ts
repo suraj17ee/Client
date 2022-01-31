@@ -9,12 +9,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ForgetPasswordComponent implements OnInit {
   forgetpassForm: FormGroup;
-  
-
+  confirmOTPForm: FormGroup;
+  displayStyle = "none";
 
   constructor(fb: FormBuilder) {
     this.forgetpassForm = fb.group({
       email : new FormControl('',[Validators.required]),
+    });
+
+    this.confirmOTPForm = fb.group({
+      otp : new FormControl('',[Validators.required]),
     });
   }
 
@@ -22,18 +26,27 @@ export class ForgetPasswordComponent implements OnInit {
     return this.forgetpassForm.controls
   }
 
+  get getOTPformControl(){
+    return this.confirmOTPForm.controls
+  }
+
   ngOnInit(): void {
   }
-  displayStyle = "none";
-  submitForm(){
-    const userLoginData = {
-      email : this.forgetpassForm.get('email')?.value,
-      
-    };
+
+  openModal() {
+    this.displayStyle = "block";
   }
-  cancelForm(){
+
+  submitEmailForm(){
+    const email = this.forgetpassForm.get('email')?.value;
+    //get otp from server
+  }
+
+  cancelEmailForm(){
     this.forgetpassForm.reset()
   }
 
- 
+  submitOTPForm(){
+    //if otp is valid then navigate to set password form
+  }
 }
