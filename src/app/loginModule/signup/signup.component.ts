@@ -51,6 +51,8 @@ export class SignupComponent implements OnInit {
   //   (this.signupForm.controls['addresses'] as FormArray).removeAt(idx);
   // }
 
+
+
   submitForm() {
     const userSaveData = {
       firstname: this.signupForm.get('firstname')?.value,
@@ -67,7 +69,7 @@ export class SignupComponent implements OnInit {
     console.log(userSaveData)
 
     this.loginModuleService.saveUser(userSaveData).subscribe((response) => {
-      if(response=="Congratulations SignUp successful"){
+      if(response==201){
         this.message=response;
         this.router.navigate(['/dashboard'])
       }
@@ -90,3 +92,5 @@ export class SignupComponent implements OnInit {
 function push(arg0: FormControl) {
   throw new Error('Function not implemented.');
 }
+
+
