@@ -11,7 +11,6 @@ import { LoginModuleService } from '../login-module.service';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  message : String = "";
 
   constructor(private fb: FormBuilder, private loginModuleService: LoginModuleService, private router: Router) {
     this.signupForm = this.fb.group({
@@ -67,12 +66,12 @@ export class SignupComponent implements OnInit {
     console.log(userSaveData)
 
     this.loginModuleService.saveUser(userSaveData).subscribe((response) => {
-      if(response=="Congratulations SignUp successful"){
-        this.message=response;
+      console.log(response)
+      if(response==201){
         this.router.navigate(['/dashboard'])
       }
       else{
-        this.message=response;
+        this.router.navigate(['/signup'])
       }
     },
       (error: any) => {

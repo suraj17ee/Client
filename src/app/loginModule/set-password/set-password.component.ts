@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginModuleService } from '../login-module.service';
 import { CustomValidator } from '../../custom.validator';
 
@@ -12,8 +12,9 @@ import { CustomValidator } from '../../custom.validator';
 export class SetPasswordComponent implements OnInit {
 
   setPasswordForm: FormGroup;
+  token: String="";
 
-  constructor(fb: FormBuilder,private loginModuleService:LoginModuleService,private router : Router) {
+  constructor(fb: FormBuilder,private loginModuleService:LoginModuleService,private router : Router,private route: ActivatedRoute) {
     this.setPasswordForm = fb.group({
       newPassword : new FormControl('',[Validators.required]),
       confirmPassword : new FormControl('',[Validators.required]),
@@ -26,14 +27,25 @@ export class SetPasswordComponent implements OnInit {
     return this.setPasswordForm.controls
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
   }
 
   submitForm(){
     const setPasswordData = {
-      //email : this.setPasswordForm.get('email')?.value,
+      token : this.token,
       newPassword : this.setPasswordForm.get('newPassword')?.value,
     };
+
+    this.loginModuleService.resetPassword(setPasswordData).subscribe((response) => {
+      console.log(response)
+    },
+    (error: any) => {
+      console.log(error)
+    }
+  );
   }
 
   cancelForm(){

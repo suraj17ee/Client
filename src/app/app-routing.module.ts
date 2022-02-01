@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'forget-password', component: ForgetPasswordComponent },
   { path: 'set-password/:token', component: SetPasswordComponent },
   // { path: 'dashboard', component: DashboardComponent,children: [...dashboardRoutes]  },
-
   { path: '**', component: SigninComponent },
  
 ];
