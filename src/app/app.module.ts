@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardRouting } from './dashboardModule/dashboard/dashboard.routing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './mainModule/header/header.component';
 import { FooterComponent } from './mainModule/footer/footer.component';
@@ -49,6 +50,7 @@ import { HomeComponent } from './dashboardModule/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    DashboardRouting,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
