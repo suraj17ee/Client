@@ -1,53 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginModuleService } from '../login-module.service';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { LoginModuleService } from "../login-module.service";
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  selector: "app-signin",
+  templateUrl: "./signin.component.html",
+  styleUrls: ["./signin.component.css"],
 })
 export class SigninComponent implements OnInit {
-
   signinForm: FormGroup;
-  message : boolean = true;
+  message: boolean = true;
 
-  constructor(fb: FormBuilder,private loginModuleService:LoginModuleService,private router : Router) {
+  constructor(
+    fb: FormBuilder,
+    private loginModuleService: LoginModuleService,
+    private router: Router
+  ) {
     this.signinForm = fb.group({
-      email : new FormControl('',[Validators.required]),
-      password : new FormControl('',[Validators.required]),
+      email: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
   }
 
-  get getSigninFormControls(){
-    return this.signinForm.controls
+  get getSigninFormControls() {
+    return this.signinForm.controls;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  submitForm(){
-    const userLoginData={
-      email : this.signinForm.get('email')?.value,
-      password : this.signinForm.get('password')?.value
-    }
-    
-    this.loginModuleService.loginUser(userLoginData).subscribe((response) => {
-      if(response=="Login Succesfull..!"){
-        this.router.navigate(['/dashboard'])
+  submitForm() {
+    const userLoginData = {
+      email: this.signinForm.get("email")?.value,
+      password: this.signinForm.get("password")?.value,
+    };
+
+    this.loginModuleService.loginUser(userLoginData).subscribe(
+      (response) => {
+        if (response == 201) {
+          this.router.navigate(["/dashboard/home"]);
+        } else {
+          this.message = false;
+        }
+      },
+      (error: any) => {
+        console.log(error);
       }
-      else{
-        this.message=false;
-      }
-    },
-    (error: any) => {
-      console.log(error)
-    }
-  );
+    );
   }
 
-  cancelForm(){
-    this.signinForm.reset()
+  cancelForm() {
+    this.signinForm.reset();
   }
 }
