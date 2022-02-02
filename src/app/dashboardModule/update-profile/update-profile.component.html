@@ -1,0 +1,238 @@
+<div class="container-fluid" style="margin-left: 20%">
+  <div class="row">
+    <div class="col-md-6">
+      <div
+        class="card"
+        style="
+          width: 600px;
+          margin-top: 40px;
+          margin-bottom: 20px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
+        <article class="card-body">
+          <form [formGroup]="updateProfileForm" class="mt-5">
+            <h2 class="mb-3 text-primary">
+              <p class="text-center" style="font-size: 30px; margin-bottom: 5%">
+                Update Profile
+              </p>
+            </h2>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <label>Firstname :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="firstname"
+                  [class.is-invalid]="
+                    getUpdateProfileFormControls.firstname.invalid &&
+                    getUpdateProfileFormControls.firstname.touched
+                  "
+                  placeholder="Firstname"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getUpdateProfileFormControls.firstname.invalid &&
+                    getUpdateProfileFormControls.firstname.touched
+                  "
+                >
+                  Firstname is required
+                </small>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Lastname :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="lastname"
+                  [class.is-invalid]="
+                    getUpdateProfileFormControls.lastname.invalid &&
+                    getUpdateProfileFormControls.lastname.touched
+                  "
+                  placeholder="Lastname"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getUpdateProfileFormControls.lastname.invalid &&
+                    getUpdateProfileFormControls.lastname.touched
+                  "
+                >
+                  Lastname is required
+                </small>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row">
+              <br />
+              <div class="col">
+                <div class="back">
+                  <label style="margin-bottom: 5px">Gender :</label>
+                  <br />
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    formControlName="gender"
+                  />
+                  Male
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    formControlName="gender"
+                  />
+                  Female
+                </div>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getUpdateProfileFormControls.gender.invalid &&
+                    getUpdateProfileFormControls.gender.touched
+                  "
+                >
+                  Gender is required
+                </small>
+              </div>
+
+              <div class="col" style="margin-left: 10px">
+                <div class="back">
+                  <label>Age:</label>
+                  <mat-slider
+                    thumbLabel
+                    [displayWith]="formatLabel"
+                    formControlName="age"
+                    tickInterval="1000"
+                    step="1"
+                    min="0"
+                    max="100"
+                    aria-label="units"
+                  >
+                  </mat-slider>
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-bottom: 10px">
+              <div class="col">
+                <label>Date Of Birth :</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  [class.is-invalid]="
+                    getUpdateProfileFormControls.dateofbirth.invalid &&
+                    getUpdateProfileFormControls.dateofbirth.touched
+                  "
+                  formControlName="dateofbirth"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getUpdateProfileFormControls.dateofbirth.invalid &&
+                    getUpdateProfileFormControls.dateofbirth.touched
+                  "
+                >
+                  Date Of Birth is required
+                </small>
+              </div>
+
+              <div class="col">
+                <label>Phone Number : </label>
+                <input
+                  type="number"
+                  [class.is-invalid]="
+                    getUpdateProfileFormControls.phoneno.invalid &&
+                    getUpdateProfileFormControls.phoneno.touched
+                  "
+                  class="form-control"
+                  formControlName="mobile"
+                  placeholder="Phone numer"
+                />
+                <div
+                  *ngIf="
+                    (getUpdateProfileFormControls.phoneno.invalid &&
+                      getUpdateProfileFormControls.phoneno.touched) ||
+                    getUpdateProfileFormControls.phoneno.dirty
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      getUpdateProfileFormControls.phoneno.errors?.required
+                    "
+                    >Phoneno is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getUpdateProfileFormControls.phoneno.errors?.pattern"
+                    >Phoneno must be 10 digit</small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <br />
+            <div class="form-group row">
+              <div class="col">
+                <label>Email :</label>
+                <input
+                  type="email"
+                  [class.is-invalid]="
+                    getUpdateProfileFormControls.email.invalid &&
+                    getUpdateProfileFormControls.email.touched
+                  "
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Email"
+                />
+                <div
+                  *ngIf="
+                    (getUpdateProfileFormControls.email.invalid &&
+                      getUpdateProfileFormControls.email.touched) ||
+                    getUpdateProfileFormControls.email.dirty
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getUpdateProfileFormControls.email.errors?.required"
+                    >Email is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getUpdateProfileFormControls.email.errors?.pattern"
+                    >Email is invalid</small
+                  >
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left: 35%">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!updateProfileForm.valid"
+                  class="btn btn-success"
+                >
+                  Submit
+                </button>
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                  style="margin-left: 10%"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { ProfileComponent } from "./profile/profile.component";
 import { HomeComponent } from "./home/home.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountStatementComponent } from "./account-statement/account-statement.component";
+import { UpdateProfileComponent } from "./update-profile/update-profile.component";
+import { MatSliderModule } from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -17,8 +19,14 @@ import { AccountStatementComponent } from "./account-statement/account-statement
     FundTransferComponent,
     ProfileComponent,
     HomeComponent,
+    UpdateProfileComponent,
   ],
-  imports: [FormsModule, ReactiveFormsModule, DashboardRouting],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    DashboardRouting,
+    MatSliderModule,
+  ],
   providers: [],
 })
 export class DashboardModule {}
