@@ -7,10 +7,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class CreateAccountComponent implements OnInit {
 
-  createaccountForm: FormGroup;
+  createAccountForm: FormGroup;
 
   constructor(fb: FormBuilder) {
-    this.createaccountForm = fb.group({
+    this.createAccountForm = fb.group({
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       accountType : new FormControl('',[Validators.required]),
       balance:new FormControl('',[Validators.required]),
@@ -19,7 +19,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   get getaccountFormControls(){
-    return this.createaccountForm.controls
+    return this.createAccountForm.controls
   }
 
   ngOnInit(): void {
@@ -27,14 +27,14 @@ export class CreateAccountComponent implements OnInit {
 
   submitForm(){
     const userLoginData = {
-      email : this.createaccountForm.get('email')?.value,
-      accountType : this.createaccountForm.get('accountType')?.value,
-      balance:this.createaccountForm.get('balance')?.value,
+      email : this.createAccountForm.get('email')?.value,
+      accountType : this.createAccountForm.get('accountType')?.value,
+      balance:this.createAccountForm.get('balance')?.value,
     };
     
   }
 
   cancelForm(){
-    this.createaccountForm.reset()
+    this.createAccountForm.reset()
   }
 }
