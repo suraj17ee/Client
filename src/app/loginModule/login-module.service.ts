@@ -17,4 +17,11 @@ export class LoginModuleService {
     return this.http.post('http://localhost:8080/server/login/',user,{responseType: 'text'});
   }
 
+  forgetPassword(data: any): Observable<any>{
+    return this.http.post('http://localhost:8080/forgot-password',data);
+  }
+
+  resetPassword(data: any): Observable<any>{
+    return this.http.post('http://localhost:8080/reset-password',data);
+  }
 }
