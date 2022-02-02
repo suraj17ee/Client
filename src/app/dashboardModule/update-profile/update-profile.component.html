@@ -98,7 +98,7 @@
                 </small>
               </div>
 
-              <div class="col" style="margin-left: 10px">
+              <div class="col">
                 <div class="back">
                   <label>Age:</label>
                   <mat-slider
@@ -144,8 +144,8 @@
                 <input
                   type="number"
                   [class.is-invalid]="
-                    getUpdateProfileFormControls.phoneno.invalid &&
-                    getUpdateProfileFormControls.phoneno.touched
+                    getUpdateProfileFormControls.mobile.invalid &&
+                    getUpdateProfileFormControls.mobile.touched
                   "
                   class="form-control"
                   formControlName="mobile"
@@ -153,21 +153,19 @@
                 />
                 <div
                   *ngIf="
-                    (getUpdateProfileFormControls.phoneno.invalid &&
-                      getUpdateProfileFormControls.phoneno.touched) ||
-                    getUpdateProfileFormControls.phoneno.dirty
+                    (getUpdateProfileFormControls.mobile.invalid &&
+                      getUpdateProfileFormControls.mobile.touched) ||
+                    getUpdateProfileFormControls.mobile.dirty
                   "
                 >
                   <small
                     class="text-danger"
-                    *ngIf="
-                      getUpdateProfileFormControls.phoneno.errors?.required
-                    "
+                    *ngIf="getUpdateProfileFormControls.mobile.errors?.required"
                     >Phoneno is required</small
                   >
                   <small
                     class="text-danger"
-                    *ngIf="getUpdateProfileFormControls.phoneno.errors?.pattern"
+                    *ngIf="getUpdateProfileFormControls.mobile.errors?.pattern"
                     >Phoneno must be 10 digit</small
                   >
                 </div>
@@ -187,6 +185,7 @@
                   class="form-control"
                   formControlName="email"
                   placeholder="Email"
+                  readonly
                 />
                 <div
                   *ngIf="

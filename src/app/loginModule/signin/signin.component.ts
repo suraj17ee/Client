@@ -42,11 +42,11 @@ export class SigninComponent implements OnInit {
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        localStorage.setItem("userId",response)
+        localStorage.setItem("userId", response);
         this.router.navigate(["/dashboard/home"]);
       },
       (error: any) => {
-        this.message=false
+        this.message = false;
         console.log(error);
       }
     );

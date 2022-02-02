@@ -25,7 +25,7 @@ export class UpdateProfileComponent implements OnInit {
     this.updateProfileForm = this.fb.group({
       firstname: new FormControl("", [Validators.required]),
       lastname: new FormControl("", [Validators.required]),
-      phoneno: new FormControl("", [
+      mobile: new FormControl("", [
         Validators.required,
         Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
       ]),
@@ -64,7 +64,7 @@ export class UpdateProfileComponent implements OnInit {
     this.updateProfileForm.controls["firstname"].setValue(user.firstname);
     this.updateProfileForm.controls["lastname"].setValue(user.lastname);
     this.updateProfileForm.controls["gender"].setValue(user.gender);
-    this.updateProfileForm.controls["age"].setValue(user.age);
+    //this.updateProfileForm.controls["age"].setValue(user.age);
     this.updateProfileForm.controls["mobile"].setValue(user.mobile);
     this.updateProfileForm.controls["email"].setValue(user.email);
     this.updateProfileForm.controls["dateofbirth"].setValue(user.dateofbirth);
@@ -78,10 +78,13 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   submitForm() {
+    var userID: number = Number(localStorage.getItem("userId"));
+
     const userProfileData = {
+      userId: userID,
       firstname: this.updateProfileForm.get("firstname")?.value,
       lastname: this.updateProfileForm.get("lastname")?.value,
-      mobile: this.updateProfileForm.get("phoneno")?.value,
+      mobile: this.updateProfileForm.get("mobile")?.value,
       gender: this.updateProfileForm.get("gender")?.value,
       age: this.updateProfileForm.get("age")?.value,
       email: this.updateProfileForm.get("email")?.value,
