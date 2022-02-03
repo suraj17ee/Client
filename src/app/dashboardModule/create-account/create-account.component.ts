@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from 'src/app/services/account.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -8,10 +12,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class CreateAccountComponent implements OnInit {
 
   createAccountForm: FormGroup;
+  iscreated:Boolean=false;
+  message : String = "";
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder,private accountService: AccountService,private router: Router) {
     this.createAccountForm = fb.group({
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+     
       accountType : new FormControl('',[Validators.required]),
       balance:new FormControl('',[Validators.required]),
       
@@ -26,11 +32,25 @@ export class CreateAccountComponent implements OnInit {
   }
 
   submitForm(){
-    const userLoginData = {
-      email : this.createAccountForm.get('email')?.value,
+    const accountData = {
+     
       accountType : this.createAccountForm.get('accountType')?.value,
       balance:this.createAccountForm.get('balance')?.value,
+      userId:8,
     };
+    this.accountService.saveAccount(accountData).subscribe((response:any) => {
+      if(response==201){
+        this.message=response;
+        this.router.navigate(['/dashboard'])
+      }
+      else{
+        this.message=response;
+      }
+    },
+      (error: any) => {
+        console.log(error)
+      }
+    );
     
   }
 

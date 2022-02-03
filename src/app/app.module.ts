@@ -10,6 +10,8 @@ import { SigninComponent } from "./loginModule/signin/signin.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {AgGridModule} from "ag-grid-angular";
+import {MatTableModule} from '@angular/material/table';
 
 import { MatSliderModule } from "@angular/material/slider";
 import { ForgetPasswordComponent } from "./loginModule/forget-password/forget-password.component";
@@ -49,6 +51,8 @@ import { SideNavigationComponent } from "./mainModule/side-navigation/side-navig
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    AgGridModule.withComponents([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
