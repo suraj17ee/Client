@@ -1,41 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account.service';
+import { Component, OnInit } from "@angular/core";
+import { AccountService } from "src/app/services/account.service";
 
 @Component({
-  selector: 'app-account-details',
-  templateUrl: './account-details.component.html',
-  styleUrls: ['./account-details.component.css']
+  selector: "app-account-details",
+  templateUrl: "./account-details.component.html",
+  styleUrls: ["./account-details.component.css"],
 })
 export class AccountDetailsComponent implements OnInit {
-  
-    userid:number=8;
-   rowData:any=[];
-  constructor(private accountService: AccountService) {
-  }
-  columnDefs:any = [
-		{headerName: 'Account Number', field: 'account_Id' },
-		{headerName: 'Account Type', field: 'accountType'},
-    {headerName: 'Date Created', field: 'dateCreated'},
-    {headerName: 'Account Balance', field: 'balance'},
-    {headerName: 'Account Status', field: 'accountStatus'}
-	];
-  
+  userid: number | undefined;
+  accounts: any = [];
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    
+    this.getData();
   }
-  getData(){
-    const data={
-      userId:this.userid
-    }
-    this.accountService.getAccounts(data).subscribe((res)=>{
-      //this.rowData = res;
-     console.log(this.rowData);
-      console.log(res[0]);
-    }  );
 
-    console.log("caling");
+  getData() {
+    var userID: number = Number(localStorage.getItem("userId"));
+
+    this.accountService.getAccounts(userID).subscribe((res) => {
+      this.accounts = res;
+      console.log(this.accounts);
+    });
   }
- 
- 
 }

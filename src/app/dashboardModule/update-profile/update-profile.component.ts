@@ -15,7 +15,7 @@ import { ProfileService } from "src/app/services/profile.service";
 })
 export class UpdateProfileComponent implements OnInit {
   updateProfileForm: FormGroup;
-  user: any = [];
+  user: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -31,14 +31,8 @@ export class UpdateProfileComponent implements OnInit {
       ]),
       age: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
-      email: [
-        "",
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-        ],
-      ],
+      email: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
       dateofbirth: new FormControl("", [Validators.required]),
     });
   }
@@ -64,9 +58,10 @@ export class UpdateProfileComponent implements OnInit {
     this.updateProfileForm.controls["firstname"].setValue(user.firstname);
     this.updateProfileForm.controls["lastname"].setValue(user.lastname);
     this.updateProfileForm.controls["gender"].setValue(user.gender);
-    //this.updateProfileForm.controls["age"].setValue(user.age);
+    this.updateProfileForm.controls["age"].setValue(user.age);
     this.updateProfileForm.controls["mobile"].setValue(user.mobile);
     this.updateProfileForm.controls["email"].setValue(user.email);
+    this.updateProfileForm.controls["password"].setValue(user.password);
     this.updateProfileForm.controls["dateofbirth"].setValue(user.dateofbirth);
   }
 
@@ -81,13 +76,14 @@ export class UpdateProfileComponent implements OnInit {
     var userID: number = Number(localStorage.getItem("userId"));
 
     const userProfileData = {
-      userId: userID,
+      userid: userID,
       firstname: this.updateProfileForm.get("firstname")?.value,
       lastname: this.updateProfileForm.get("lastname")?.value,
       mobile: this.updateProfileForm.get("mobile")?.value,
       gender: this.updateProfileForm.get("gender")?.value,
       age: this.updateProfileForm.get("age")?.value,
       email: this.updateProfileForm.get("email")?.value,
+      password: this.updateProfileForm.get("password")?.value,
       dateofbirth: this.updateProfileForm.get("dateofbirth")?.value,
     };
 
@@ -96,7 +92,7 @@ export class UpdateProfileComponent implements OnInit {
     this.profileService.updateUserProfile(userProfileData).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(["../profile"]);
+        this.router.navigate(["/dashboard/home"]);
       },
       (error: any) => {
         console.log(error);

@@ -177,34 +177,21 @@
                 <label>Email :</label>
                 <input
                   type="email"
-                  [class.is-invalid]="
-                    getUpdateProfileFormControls.email.invalid &&
-                    getUpdateProfileFormControls.email.touched
-                  "
                   class="form-control"
                   formControlName="email"
                   placeholder="Email"
                   readonly
                 />
-                <div
-                  *ngIf="
-                    (getUpdateProfileFormControls.email.invalid &&
-                      getUpdateProfileFormControls.email.touched) ||
-                    getUpdateProfileFormControls.email.dirty
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getUpdateProfileFormControls.email.errors?.required"
-                    >Email is required</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="getUpdateProfileFormControls.email.errors?.pattern"
-                    >Email is invalid</small
-                  >
-                </div>
               </div>
+            </div>
+            <div class="col">
+              <input
+                hidden
+                type="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+              />
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
