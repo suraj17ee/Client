@@ -32,11 +32,12 @@ export class CreateAccountComponent implements OnInit {
   }
 
   submitForm(){
+    const userId = localStorage.getItem("userId");
     const accountData = {
      
       accountType : this.createAccountForm.get('accountType')?.value,
       balance:this.createAccountForm.get('balance')?.value,
-      userId:8,
+      userId:userId,
     };
     this.accountService.saveAccount(accountData).subscribe((response:any) => {
       if(response==201){

@@ -14,7 +14,7 @@ export class AccountService {
   }
 
   getAccounts(data:any):Observable<any>{
-    return this.http.post('http://localhost:8080/server/all-accounts/',data)
+    return this.http.get('http://localhost:8080/server/all-accounts/',data)
    
   }
 }
