@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LoginModuleService {
   constructor(private http: HttpClient) {}
+  authListner = new Subject<boolean>();
 
   saveUser(user: any): Observable<any> {
     return this.http.post("http://localhost:8080/server/save", user);
@@ -22,5 +23,13 @@ export class LoginModuleService {
 
   resetPassword(data: any): Observable<any> {
     return this.http.post("http://localhost:8080/reset-password", data);
+  }
+
+  getAuthListner() {
+    return this.authListner;
+  }
+
+  getAuthListnerStatus() {
+    return this.authListner.asObservable();
   }
 }

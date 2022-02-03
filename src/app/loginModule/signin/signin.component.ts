@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Subject, Subscription } from "rxjs";
 import { LoginModuleService } from "../login-module.service";
 
 @Component({
@@ -16,6 +17,7 @@ import { LoginModuleService } from "../login-module.service";
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   message: boolean = true;
+  authListner: Subject<boolean> = new Subject();
 
   constructor(
     fb: FormBuilder,
@@ -32,7 +34,9 @@ export class SigninComponent implements OnInit {
     return this.signinForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authListner = this.loginModuleService.getAuthListner();
+  }
 
   submitForm() {
     const userLoginData = {
@@ -44,6 +48,7 @@ export class SigninComponent implements OnInit {
       (response) => {
         localStorage.setItem("userId", response);
         this.router.navigate(["/dashboard/home"]);
+        this.authListner.next(true);
       },
       (error: any) => {
         this.message = false;
