@@ -7,6 +7,7 @@ import { DashboardComponent } from "./dashboard.component";
 import { FundTransferComponent } from "./fund-transfer/fund-transfer.component";
 import { HomeComponent } from "./home/home.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { UpdateProfileComponent } from "./update-profile/update-profile.component";
 
 const dashboardRoutes: Routes = [
   {
@@ -15,6 +16,7 @@ const dashboardRoutes: Routes = [
     children: [
       { path: "home", component: HomeComponent },
       { path: "profile", component: ProfileComponent },
+      { path: "update-profile", component: UpdateProfileComponent },
       { path: "account-details", component: AccountDetailsComponent },
       { path: "create-account", component: CreateAccountComponent },
       { path: "fund-transfer", component: FundTransferComponent },

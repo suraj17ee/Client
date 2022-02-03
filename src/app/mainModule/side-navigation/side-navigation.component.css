@@ -1,17 +1,18 @@
 .sidenav {
     width: 100%;
-    padding-top: 20px;
+    padding-top: 5px;
     background-size: cover;  
   }
   .dashboardContent{
-    border-radius: 5px;
+    border-radius: 0px 10px 10px 0px;
     height:100%;
-    background-color: rgb(69, 69, 201);
+    /* background-color: rgb(108, 108, 224); */
+    background-color:rgb(42, 125, 202);
   }
   .sidenav a {
-    padding: 6px 6px 6px 6px;
+    padding: 8px 6px 8px 6px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #fff6f6;
     display: block;
   }
@@ -23,3 +24,6 @@
   .main {
     margin-left: 200px; 
   }
+.sidenav svg{
+  margin: 5px 0px 5px 5px;
+}

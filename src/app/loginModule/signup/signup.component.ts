@@ -88,7 +88,7 @@ export class SignupComponent implements OnInit {
       (response) => {
         console.log(response);
         if (response == 201) {
-          this.router.navigate(["/dashboard/home"]);
+          this.router.navigate(["/login"]);
         } else {
           this.router.navigate(["/signup"]);
         }
