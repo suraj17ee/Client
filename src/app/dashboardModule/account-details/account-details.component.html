@@ -1,3 +1,24 @@
 <button class="btn btn-primary" routerLink="../create-account">
   Add Account
 </button>
+
+<!-- <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [columnDefs]="columnDefs"  [rowData]="rowData">
+</ag-grid-angular> -->
+
+<div class="container">
+  <div class="row">
+      <ng-container *ngFor="let item of rowData">
+          <div class="card col-md-3">
+              <!-- <img src="{{item.image}}" alt=""> -->
+              <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.accountId}}</h5>
+              <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.accountType}}</h5>
+              <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.dateCreated}}</p>
+              <!-- <p><strong>Price:</strong> ${{item.price}}</p> -->
+              <!-- <button class="btn btn-primary" (click)=addtocart(item)>Add to cart</button> -->
+          </div>
+      </ng-container>
+  </div>
+</div>
+
+<p>HII</p>
+<button class="btn btn-primary" (click)=getData()>data</button>
