@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 import { Subject, Subscription } from "rxjs";
 import { LoginModuleService } from "src/app/loginModule/login-module.service";
 
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loginModuleService: LoginModuleService
+    private loginModuleService: LoginModuleService,
+    private notification: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +41,14 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem("userId");
     this.authListner.next(false);
     this.router.navigate(["/login"]);
+    this.createNotification("success", "Success", "Logout SuccessFul");
+  }
+
+  createNotification(type: string, title: string, message: string): void {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "50px",
+      },
+    });
   }
 }
