@@ -10,8 +10,8 @@ import { SigninComponent } from "./loginModule/signin/signin.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {AgGridModule} from "ag-grid-angular";
-import {MatTableModule} from '@angular/material/table';
+import { AgGridModule } from "ag-grid-angular";
+import { MatTableModule } from "@angular/material/table";
 
 import { MatSliderModule } from "@angular/material/slider";
 import { ForgetPasswordComponent } from "./loginModule/forget-password/forget-password.component";
@@ -24,6 +24,9 @@ import { MatInputModule } from "@angular/material/input";
 import { DashboardComponent } from "./dashboardModule/dashboard.component";
 import { PopupMessageComponent } from "./sharedModule/popup-message/popup-message.component";
 import { SideNavigationComponent } from "./mainModule/side-navigation/side-navigation.component";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NzNotificationModule } from "ng-zorro-antd/notification";
+import { NzIconModule } from "ng-zorro-antd/icon";
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { SideNavigationComponent } from "./mainModule/side-navigation/side-navig
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    NzToolTipModule,
+    NzNotificationModule,
+    NzIconModule,
     AgGridModule.withComponents([]),
   ],
   providers: [],

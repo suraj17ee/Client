@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountStatementComponent } from "./account-statement/account-statement.component";
 import { UpdateProfileComponent } from "./update-profile/update-profile.component";
 import { MatSliderModule } from "@angular/material/slider";
+import { CommonModule } from "@angular/common";
+import { AgGridModule } from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { MatSliderModule } from "@angular/material/slider";
     ReactiveFormsModule,
     DashboardRouting,
     MatSliderModule,
+    CommonModule,
+    AgGridModule.withComponents([]),
   ],
   providers: [],
 })
