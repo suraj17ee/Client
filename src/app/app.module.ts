@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from "@angular/material/table";
 
 import { MatSliderModule } from "@angular/material/slider";
 import { ForgetPasswordComponent } from "./loginModule/forget-password/forget-password.component";
@@ -22,8 +22,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { DashboardComponent } from "./dashboardModule/dashboard.component";
-import { PopupMessageComponent } from "./sharedModule/popup-message/popup-message.component";
 import { SideNavigationComponent } from "./mainModule/side-navigation/side-navigation.component";
+import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NzNotificationModule } from "ng-zorro-antd/notification";
+import { NzIconModule } from "ng-zorro-antd/icon";
+
 import { CommonModule } from "@angular/common";
 @NgModule({
   declarations: [
@@ -35,7 +38,6 @@ import { CommonModule } from "@angular/common";
     SigninComponent,
     ForgetPasswordComponent,
     SetPasswordComponent,
-    PopupMessageComponent,
     SideNavigationComponent,
   ],
   imports: [
@@ -52,8 +54,10 @@ import { CommonModule } from "@angular/common";
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    NzToolTipModule,
+    NzNotificationModule,
+    NzIconModule,
     CommonModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent],

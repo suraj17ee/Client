@@ -11,7 +11,8 @@ import { AccountStatementComponent } from "./account-statement/account-statement
 import { UpdateProfileComponent } from "./update-profile/update-profile.component";
 import { MatSliderModule } from "@angular/material/slider";
 import { CommonModule } from "@angular/common";
-import {AgGridModule} from "ag-grid-angular";
+import { AgGridModule } from "ag-grid-angular";
+
 @NgModule({
   declarations: [
     AccountDetailsComponent,

@@ -6,8 +6,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Subject, Subscription } from "rxjs";
+import { Subject } from "rxjs";
 import { LoginModuleService } from "../login-module.service";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 
 @Component({
   selector: "app-signin",
@@ -16,13 +17,14 @@ import { LoginModuleService } from "../login-module.service";
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
-  message: boolean = true;
+  message: String = "";
   authListner: Subject<boolean> = new Subject();
 
   constructor(
     fb: FormBuilder,
     private loginModuleService: LoginModuleService,
-    private router: Router
+    private router: Router,
+    private notification: NzNotificationService
   ) {
     this.signinForm = fb.group({
       email: new FormControl("", [Validators.required]),
@@ -49,9 +51,15 @@ export class SigninComponent implements OnInit {
         localStorage.setItem("userId", response);
         this.router.navigate(["/dashboard/home"]);
         this.authListner.next(true);
+        this.createNotification(
+          "success",
+          "Success",
+          "Logged-in Successfully",
+          "topRight"
+        );
       },
       (error: any) => {
-        this.message = false;
+        this.createNotification("error", "Error", "Error in login", "topRight");
         console.log(error);
       }
     );
@@ -59,5 +67,14 @@ export class SigninComponent implements OnInit {
 
   cancelForm() {
     this.signinForm.reset();
+  }
+
+  createNotification(
+    type: string,
+    title: string,
+    message: string,
+    position: any
+  ) {
+    this.notification.create(type, title, message, { nzPlacement: "topRight" });
   }
 }

@@ -9,6 +9,14 @@ import { AccountService } from "src/app/services/account.service";
 export class AccountDetailsComponent implements OnInit {
   userid: number | undefined;
   accounts: any = [];
+
+  columnDefs = [
+    { headerName: "Account ID", field: "accountId" },
+    { headerName: "Account Status", field: "accountStatus" },
+    { headerName: "Account Type", field: "accountType" },
+    { headerName: "Balance", field: "balance" },
+    { headerName: "Account Creation Date", field: "dateCreated" },
+  ];
   constructor(private accountService: AccountService) {}
 
   columnDefs = [

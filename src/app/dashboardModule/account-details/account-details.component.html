@@ -3,7 +3,6 @@
 </button>
 <br />
 <br />
-
 <table class="table">
   <tr>
     <th>Account ID</th>
@@ -11,10 +10,9 @@
     <th>Account Type</th>
     <th>Balance</th>
     <th>Account Creation Date</th>
-   
   </tr>
-  <tr *ngFor="let item of accounts;let i = index">
-    <td> {{ item.accountId }}</td>
+  <tr *ngFor="let item of accounts; let i = index">
+    <td>{{ item.accountId }}</td>
     <td>{{ item.accountStatus }}</td>
     <td>{{ item.accountType }}</td>
     <td>{{ item.balance }}</td>

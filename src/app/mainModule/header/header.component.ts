@@ -13,9 +13,9 @@ export class HeaderComponent implements OnInit {
   loggedIn: boolean = false;
   authStatusSub: Subscription = new Subscription();
   authListner: Subject<boolean> = new Subject();
+
   // @Input()
   // name: String = "";
-
   // @Output() buttonClicked: EventEmitter<any> = new EventEmitter();
 
   constructor(
