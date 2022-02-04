@@ -1,1 +1,102 @@
-<p>account-statement works!</p>
+<div class="container-fluid">
+  <div class="row" style="margin-left: 35%; margin-bottom: 20px">
+    <div class="col-md-6">
+      <div
+        class="card"
+        style="
+          width: 400px;
+          margin-top: 50px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
+        <article class="card-body">
+          <form [formGroup]="statementForm" class="mt-5">
+            <h2
+              class="text-primary text-center"
+              style="font-size: 30px; margin-bottom: 10%"
+            >
+              Statements
+            </h2>
+            <div class="form-group row">
+              <div class="form-group col-md-10">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="fromAccount"
+                >
+                  <!-- <option selected>Select Account Type</option> -->
+                  <option selected>Select Account to View Statements</option>
+                  <option
+                    *ngFor="let item of accounts; let i = index"
+                    [value]="item.accountId"
+                  >
+                    {{ item.accountId }}
+                  </option>
+                  <!-- <option value="saving">{{ accounts[0].accountId }}</option> -->
+                </select>
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.fromAccount.invalid &&
+                    getaccountFormControls.fromAccount.touched
+                  "
+                >
+                  Account number is required
+                </small>
+              </div>
+            </div>
+            <br />
+
+            <br />
+            <div class="form-group row">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!statementForm.valid"
+                  class="btn btn-success"
+                  style="margin-right: 5px"
+                >
+                  Send
+                </button>
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <br />
+          </form>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Transaction Id</th>
+    <th>Sender Account</th>
+    <th>Receiver Account</th>
+    <th>Amount</th>
+    <th>Transaction Status</th>
+    <th>Transaction Date</th>
+    <th>Transaction Description</th>
+  </tr>
+  <tr *ngFor="let item of statements; let i = index">
+    <td>{{ item.transactionId }}</td>
+    <td>{{ item.fromAccount }}</td>
+    <td>{{ item.toAccount }}</td>
+    <td>{{ item.amount }}</td>
+    <td>{{ item.transactionStatus }}</td>
+    <td>{{ item.transactionDate }}</td>
+    <td>{{ item.description }}</td>
+  </tr>
+</table>

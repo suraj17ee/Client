@@ -48,23 +48,13 @@ export class SigninComponent implements OnInit {
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        if (response.statusCode == 201) {
+        if (response.message == "Login Successful!") {
           localStorage.setItem("userId", response.statusCode);
           this.router.navigate(["/dashboard/home"]);
           this.authListner.next(true);
-          this.createNotification(
-            "success",
-            "Success",
-            response.message,
-            "topRight"
-          );
+          this.createNotification("success", "Success", response.message);
         } else {
-          this.createNotification(
-            "error",
-            "Error",
-            response.message,
-            "topRight"
-          );
+          this.createNotification("error", "Error", response.message);
           this.router.navigate(["/login"]);
         }
       },
@@ -78,12 +68,11 @@ export class SigninComponent implements OnInit {
     this.signinForm.reset();
   }
 
-  createNotification(
-    type: string,
-    title: string,
-    message: string,
-    position: any
-  ) {
-    this.notification.create(type, title, message, { nzPlacement: "topRight" });
+  createNotification(type: string, title: string, message: string): void {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "100px",
+      },
+    });
   }
 }
