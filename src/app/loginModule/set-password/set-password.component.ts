@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LoginModuleService } from "../login-module.service";
 import { CustomValidator } from "../../custom.validator";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 
 @Component({
   selector: "app-set-password",
@@ -21,7 +22,8 @@ export class SetPasswordComponent implements OnInit {
     fb: FormBuilder,
     private loginModuleService: LoginModuleService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notification: NzNotificationService
   ) {
     this.setPasswordForm = fb.group(
       {
@@ -49,8 +51,23 @@ export class SetPasswordComponent implements OnInit {
 
     this.loginModuleService.resetPassword(setPasswordData).subscribe(
       (response) => {
-        console.log(response);
-        this.router.navigate(["/login"]);
+        if (response.statusCode == 201) {
+          this.createNotification(
+            "success",
+            "Success",
+            response.message,
+            "topRight"
+          );
+          this.router.navigate(["/login"]);
+        } else if (response.statusCode == 400) {
+          this.createNotification(
+            "error",
+            "Error",
+            response.message,
+            "topRight"
+          );
+          this.router.navigate(["/reset-password"]);
+        }
       },
       (error: any) => {
         console.log(error);
@@ -60,5 +77,18 @@ export class SetPasswordComponent implements OnInit {
 
   cancelForm() {
     this.setPasswordForm.reset();
+  }
+
+  createNotification(
+    type: string,
+    title: string,
+    message: string,
+    position: any
+  ) {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "50px",
+      },
+    });
   }
 }

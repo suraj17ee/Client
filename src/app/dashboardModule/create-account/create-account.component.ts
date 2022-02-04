@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { AccountService } from "src/app/services/account.service";
 import { Router } from "@angular/router";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 
 @Component({
   selector: "app-create-account",
@@ -21,7 +22,9 @@ export class CreateAccountComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private accountService: AccountService,
-    private router: Router) {
+    private router: Router,
+    private notification: NzNotificationService
+  ) {
     this.createAccountForm = fb.group({
       accountType: new FormControl("", [Validators.required]),
       balance: new FormControl("", [Validators.required]),
@@ -44,11 +47,12 @@ export class CreateAccountComponent implements OnInit {
     };
     this.accountService.saveAccount(accountData).subscribe(
       (response: any) => {
-        if (response != null) {
-          this.message = response;
-          this.router.navigate(["/dashboard/home"]);
+        if (response.message == "Login Successful!") {
+          this.createNotification("success", "Success", response.message);
+          this.router.navigate(["/dashboard/account-details"]);
         } else {
-          this.message = response;
+          this.createNotification("error", "Error", response.message);
+          this.router.navigate(["/create-account"]);
         }
       },
       (error: any) => {
@@ -59,5 +63,13 @@ export class CreateAccountComponent implements OnInit {
 
   cancelForm() {
     this.createAccountForm.reset();
+  }
+
+  createNotification(type: string, title: string, message: string): void {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "50px",
+      },
+    });
   }
 }

@@ -71,7 +71,7 @@ export class SigninComponent implements OnInit {
   createNotification(type: string, title: string, message: string): void {
     this.notification.create(type, title, message, {
       nzStyle: {
-        marginTop: "100px",
+        marginTop: "50px",
       },
     });
   }

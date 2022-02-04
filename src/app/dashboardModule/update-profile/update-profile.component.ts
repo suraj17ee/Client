@@ -97,16 +97,14 @@ export class UpdateProfileComponent implements OnInit {
           this.createNotification(
             "success",
             "Success",
-            "Profile Updated Successfully",
-            "topRight"
+            "Profile Updated Successfully"
           );
           this.router.navigate(["/dashboard/profile"]);
         } else if (response == null) {
           this.createNotification(
             "error",
             "Error",
-            "Profile Update Unsuccessful",
-            "topRight"
+            "Profile Update Unsuccessful"
           );
           this.router.navigate(["/dashboard/update-profile"]);
         }
@@ -121,12 +119,11 @@ export class UpdateProfileComponent implements OnInit {
     this.updateProfileForm.reset();
   }
 
-  createNotification(
-    type: string,
-    title: string,
-    message: string,
-    position: any
-  ) {
-    this.notification.create(type, title, message, { nzPlacement: "topRight" });
+  createNotification(type: string, title: string, message: string): void {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "50px",
+      },
+    });
   }
 }

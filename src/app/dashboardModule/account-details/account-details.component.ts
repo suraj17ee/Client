@@ -28,7 +28,6 @@ export class AccountDetailsComponent implements OnInit {
 
     this.accountService.getAccounts(userID).subscribe((res) => {
       this.accounts = res;
-      console.log(this.accounts);
     });
   }
 }

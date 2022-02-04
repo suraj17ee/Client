@@ -54,20 +54,10 @@ export class FundTransferComponent implements OnInit {
     this.fundtransferService.transfer(accountData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
-          this.createNotification(
-            "success",
-            "Success",
-            response.message,
-            "topRight"
-          );
+          this.createNotification("success", "Success", response.message);
           this.router.navigate(["/dashboard/account-details"]);
         } else if (response.statusCode == 400) {
-          this.createNotification(
-            "error",
-            "Error",
-            response.message,
-            "topRight"
-          );
+          this.createNotification("error", "Error", response.message);
           this.router.navigate(["/dashboard/fund-transfer"]);
         }
       },
@@ -90,12 +80,11 @@ export class FundTransferComponent implements OnInit {
     });
   }
 
-  createNotification(
-    type: string,
-    title: string,
-    message: string,
-    position: any
-  ) {
-    this.notification.create(type, title, message, { nzPlacement: "topRight" });
+  createNotification(type: string, title: string, message: string): void {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "50px",
+      },
+    });
   }
 }

@@ -124,7 +124,7 @@ export class SignupComponent implements OnInit {
   ) {
     this.notification.create(type, title, message, {
       nzStyle: {
-        marginTop: "100px",
+        marginTop: "50px",
       },
     });
   }
