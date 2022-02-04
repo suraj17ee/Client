@@ -10,7 +10,7 @@ import { SigninComponent } from "./loginModule/signin/signin.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import {AgGridModule} from "ag-grid-angular";
+
 import {MatTableModule} from '@angular/material/table';
 
 import { MatSliderModule } from "@angular/material/slider";
@@ -24,7 +24,7 @@ import { MatInputModule } from "@angular/material/input";
 import { DashboardComponent } from "./dashboardModule/dashboard.component";
 import { PopupMessageComponent } from "./sharedModule/popup-message/popup-message.component";
 import { SideNavigationComponent } from "./mainModule/side-navigation/side-navigation.component";
-
+import { CommonModule } from "@angular/common";
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -52,7 +52,8 @@ import { SideNavigationComponent } from "./mainModule/side-navigation/side-navig
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    AgGridModule.withComponents([]),
+    CommonModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
