@@ -19,7 +19,6 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   message: String = "";
   authListner: Subject<boolean> = new Subject();
-  popupListner: Subject<boolean> = new Subject();
 
   constructor(
     fb: FormBuilder,

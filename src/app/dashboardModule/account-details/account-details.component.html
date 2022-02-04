@@ -5,23 +5,24 @@
 <br />
 <table class="table">
   <tr>
-    <td>Account ID</td>
-    <td>Account Type</td>
-    <td>Account Creation Date</td>
-    <td>Balance</td>
+    <th>Account ID</th>
+    <th>Account Status</th>
+    <th>Account Type</th>
+    <th>Balance</th>
+    <th>Account Creation Date</th>
   </tr>
-  <tr *ngFor="let item of accounts">
+  <tr *ngFor="let item of accounts; let i = index">
     <td>{{ item.accountId }}</td>
+    <td>{{ item.accountStatus }}</td>
     <td>{{ item.accountType }}</td>
-    <td>{{ item.dateCreated }}</td>
     <td>{{ item.balance }}</td>
+    <td>{{ item.dateCreated }}</td>
   </tr>
 </table>
 
-<ag-grid-angular
-  style="width: 100%; height: 100%"
-  class="ag-theme-balham"
-  [columnDefs]="columnDefs"
-  [rowData]="accounts"
->
-</ag-grid-angular>
+<!-- <ag-grid-angular 
+    style="width:100%; height: 100%;" 
+    class="ag-theme-balham"
+    [columnDefs]="columnDefs"
+    [rowData]="accounts">
+</ag-grid-angular> -->

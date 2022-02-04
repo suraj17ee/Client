@@ -19,6 +19,15 @@ export class AccountDetailsComponent implements OnInit {
   ];
   constructor(private accountService: AccountService) {}
 
+  columnDefs = [
+    {headerName: 'Account ID', field: 'accountId'},
+    {headerName: 'Account Status', field: 'accountStatus'},
+    {headerName: 'Account Type', field: 'accountType'},
+    {headerName: 'Balance', field: 'balance'},
+    {headerName: 'Account Creation Date', field: 'dateCreated'},
+   
+];
+
   ngOnInit(): void {
     this.getData();
   }
@@ -31,4 +40,11 @@ export class AccountDetailsComponent implements OnInit {
       console.log(this.accounts);
     });
   }
+
+ 
+
+
+
+
+
 }
