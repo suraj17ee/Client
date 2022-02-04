@@ -47,7 +47,7 @@ export class CreateAccountComponent implements OnInit {
     };
     this.accountService.saveAccount(accountData).subscribe(
       (response: any) => {
-        if (response.message == "Login Successful!") {
+        if (response.statusCode == 201) {
           this.createNotification("success", "Success", response.message);
           this.router.navigate(["/dashboard/account-details"]);
         } else {
