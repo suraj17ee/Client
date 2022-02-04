@@ -20,12 +20,14 @@ export class FundTransferComponent implements OnInit {
   accounts: any = [];
  
   constructor(fb: FormBuilder, private fundtransferService: FundtransferService,
-    private router: Router,private accountService: AccountService,) {
+    private router: Router,private accountService: AccountService) {
     this.fundTransferForm = fb.group({
       toAccount:new FormControl("",Validators.required),
       description: new FormControl("", [Validators.required]),
       balance: new FormControl("", [Validators.required]),
       password:new FormControl("",[Validators.required]),
+      fromAccount:new FormControl("",[Validators.required]),
+      
     });
   }
   get getaccountFormControls() {
@@ -44,7 +46,8 @@ export class FundTransferComponent implements OnInit {
       toAccount: this.fundTransferForm.get("toAccount")?.value,
       amount: this.fundTransferForm.get("balance")?.value,
       description:this.fundTransferForm.get("description")?.value,
-      fromAccount:16,
+      fromAccount:this.fundTransferForm.get("fromAccount")?.value,
+      
     };
     this.fundtransferService.transfer(accountData).subscribe(
       (response: any) => {

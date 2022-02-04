@@ -11,14 +11,14 @@
                         <h2 class="text-primary text-center" style="font-size: 30px; margin-bottom: 10%;">Fund Transfer</h2>
                         <div class="form-group row">
                             <div class="form-group col-md-10">
-                                <select class="form-select"  aria-label="Default select example" formControlName="accountType"  >
+                                <select class="form-select"  aria-label="Default select example" formControlName="fromAccount"  >
                                     <!-- <option selected>Select Account Type</option> -->
                                     <option selected >Select Account to Transfer Money</option>
-                                    <option *ngFor="let item of accounts;let i = index"  >{{ accounts[0].accountId }}</option>
+                                    <option *ngFor="let item of accounts;let i = index" [value]="item.accountId" >{{ item.accountId }}</option>
                                     <!-- <option value="saving">{{ accounts[0].accountId }}</option> -->
                                   
                                   </select>
-                                  <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.accountType.invalid && getaccountFormControls.accountType.touched">
+                                  <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.fromAccount.invalid && getaccountFormControls.fromAccount.touched">
                                     Account Type  is required
                                 </small>
                                 </div>

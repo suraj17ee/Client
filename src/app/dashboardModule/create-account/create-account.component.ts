@@ -21,8 +21,7 @@ export class CreateAccountComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private accountService: AccountService,
-    private router: Router
-  ) {
+    private router: Router) {
     this.createAccountForm = fb.group({
       accountType: new FormControl("", [Validators.required]),
       balance: new FormControl("", [Validators.required]),
