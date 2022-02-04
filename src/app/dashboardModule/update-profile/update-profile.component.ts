@@ -6,6 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 import { ProfileService } from "src/app/services/profile.service";
 
 @Component({
@@ -20,7 +21,8 @@ export class UpdateProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private profileService: ProfileService,
-    private router: Router
+    private router: Router,
+    private notification: NzNotificationService
   ) {
     this.updateProfileForm = this.fb.group({
       firstname: new FormControl("", [Validators.required]),
@@ -91,8 +93,23 @@ export class UpdateProfileComponent implements OnInit {
 
     this.profileService.updateUserProfile(userProfileData).subscribe(
       (response) => {
-        console.log(response);
-        this.router.navigate(["/dashboard/home"]);
+        if (response != null) {
+          this.createNotification(
+            "success",
+            "Success",
+            "Profile Updated Successfully",
+            "topRight"
+          );
+          this.router.navigate(["/dashboard/profile"]);
+        } else if (response == null) {
+          this.createNotification(
+            "error",
+            "Error",
+            "Profile Update Unsuccessful",
+            "topRight"
+          );
+          this.router.navigate(["/dashboard/update-profile"]);
+        }
       },
       (error: any) => {
         console.log(error);
@@ -102,5 +119,14 @@ export class UpdateProfileComponent implements OnInit {
 
   cancelForm() {
     this.updateProfileForm.reset();
+  }
+
+  createNotification(
+    type: string,
+    title: string,
+    message: string,
+    position: any
+  ) {
+    this.notification.create(type, title, message, { nzPlacement: "topRight" });
   }
 }

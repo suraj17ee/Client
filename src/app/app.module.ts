@@ -12,7 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatTableModule } from "@angular/material/table";
-
+import { CommonModule, registerLocaleData } from "@angular/common";
 import { MatSliderModule } from "@angular/material/slider";
 import { ForgetPasswordComponent } from "./loginModule/forget-password/forget-password.component";
 import { SetPasswordComponent } from "./loginModule/set-password/set-password.component";
@@ -23,11 +23,14 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { DashboardComponent } from "./dashboardModule/dashboard.component";
 import { SideNavigationComponent } from "./mainModule/side-navigation/side-navigation.component";
-import { NzToolTipModule } from "ng-zorro-antd/tooltip";
+import { NZ_I18N } from "ng-zorro-antd/i18n";
+import { en_US } from "ng-zorro-antd/i18n";
+import { NzAlertModule } from "ng-zorro-antd/alert";
 import { NzNotificationModule } from "ng-zorro-antd/notification";
-import { NzIconModule } from "ng-zorro-antd/icon";
+import en from "@angular/common/locales/en";
 
-import { CommonModule } from "@angular/common";
+registerLocaleData(en);
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -54,12 +57,12 @@ import { CommonModule } from "@angular/common";
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    NzToolTipModule,
     NzNotificationModule,
-    NzIconModule,
+    NzAlertModule,
+    NzNotificationModule,
     CommonModule,
   ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

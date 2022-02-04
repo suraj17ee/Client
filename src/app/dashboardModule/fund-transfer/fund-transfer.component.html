@@ -1,82 +1,169 @@
-
 <div class="container-fluid">
-    <div class="row" style="margin-left: 35%;margin-bottom: 20px;">
-        
+  <div class="row" style="margin-left: 35%; margin-bottom: 20px">
+    <div class="col-md-6">
+      <div
+        class="card"
+        style="
+          width: 400px;
+          margin-top: 50px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
+        <article class="card-body">
+          <form [formGroup]="fundTransferForm" class="mt-5">
+            <h2
+              class="text-primary text-center"
+              style="font-size: 30px; margin-bottom: 10%"
+            >
+              Fund Transfer
+            </h2>
+            <div class="form-group row">
+              <div class="form-group col-md-10">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="fromAccount"
+                >
+                  <option selected>Select Account to Transfer Money</option>
+                  <option *ngFor="let item of accounts; let i = index">
+                    {{ item.accountId }}
+                  </option>
+                </select>
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.fromAccount.invalid &&
+                    getaccountFormControls.fromAccount.touched
+                  "
+                >
+                  Account Number is required
+                </small>
+              </div>
+              <div class="form-group col-md-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="toAccount"
+                  [class.is-invalid]="
+                    getaccountFormControls.toAccount.invalid &&
+                    getaccountFormControls.toAccount.touched
+                  "
+                  placeholder="Receiver Account Number"
+                />
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.toAccount.invalid &&
+                    getaccountFormControls.toAccount.touched
+                  "
+                >
+                  Receiver account number is required
+                </small>
+              </div>
 
-        <div class="col-md-6">
-            <div class="card"
-                style="width:400px;margin-top:50px;border-color:cadetblue;border-width:3px;background-color:ghostwhite;">
-                <article class="card-body">
-                    <form [formGroup]="fundTransferForm" class="mt-5">
-                        <h2 class="text-primary text-center" style="font-size: 30px; margin-bottom: 10%;">Fund Transfer</h2>
-                        <div class="form-group row">
-                            <div class="form-group col-md-10">
-                                <select class="form-select"  aria-label="Default select example" formControlName="accountType"  >
-                                    <!-- <option selected>Select Account Type</option> -->
-                                    <option selected >Select Account to Transfer Money</option>
-                                    <option *ngFor="let item of accounts;let i = index"  >{{ accounts[0].accountId }}</option>
-                                    <!-- <option value="saving">{{ accounts[0].accountId }}</option> -->
-                                  
-                                  </select>
-                                  <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.accountType.invalid && getaccountFormControls.accountType.touched">
-                                    Account Type  is required
-                                </small>
-                                </div>
-                            <div class="form-group col-md-10">
-                                <input type="number" class="form-control" formControlName="toAccount"
-                                [class.is-invalid]="getaccountFormControls.toAccount.invalid && getaccountFormControls.toAccount.touched" placeholder="Receiver Account Number">
-                                <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.toAccount.invalid && getaccountFormControls.toAccount.touched">
-                                    Receiver account number is required
-                                </small>
-                            </div>
+              <br />
+              <div class="form-group col-md-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="balance"
+                  [class.is-invalid]="
+                    getaccountFormControls.balance.invalid &&
+                    getaccountFormControls.balance.touched
+                  "
+                  placeholder="₹   Balance"
+                />
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.balance.invalid &&
+                    getaccountFormControls.balance.touched
+                  "
+                >
+                  Balance is required
+                </small>
+              </div>
+              <br />
+              <div class="form-group col-md-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="description"
+                  [class.is-invalid]="
+                    getaccountFormControls.description.invalid &&
+                    getaccountFormControls.description.touched
+                  "
+                  placeholder="Message"
+                />
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.description.invalid &&
+                    getaccountFormControls.description.touched
+                  "
+                >
+                  Message is required
+                </small>
+              </div>
 
-                           <br>
-                           <div class="form-group col-md-10">
-                            <input type="number" class="form-control" formControlName="balance"
-                            [class.is-invalid]="getaccountFormControls.balance.invalid && getaccountFormControls.balance.touched" placeholder="₹   Balance">
-                            <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.balance.invalid && getaccountFormControls.balance.touched">
-                                Balance is required
-                            </small>
-                        </div>
-                        <br>
-                        <div class="form-group col-md-10">
-                         <input type="text" class="form-control" formControlName="description"
-                         [class.is-invalid]="getaccountFormControls.description.invalid && getaccountFormControls.description.touched" placeholder="Message">
-                         <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.description.invalid && getaccountFormControls.description.touched">
-                             Message is required
-                         </small>
-                     </div>
-
-                     <br>
-                     <div class="form-group col-md-10">
-                      <input type="password" class="form-control" formControlName="password"
-                      [class.is-invalid]="getaccountFormControls.password.invalid && getaccountFormControls.password.touched" placeholder="password">
-                      <small class="text-danger" style="margin-left: 10%;" *ngIf="getaccountFormControls.password.invalid && getaccountFormControls.password.touched">
-                          Pin is required
-                      </small>
-                  </div>
-
-
-                        </div>
-                        <br>
-                       
-                        <br>
-                        <div class="form-group row">
-                            <div class="form-group col-md-6" id="buttons">
-                                <button type="submit" (click)="submitForm()" [disabled]="!fundTransferForm.valid"
-                                    class="btn btn-success" style=" margin-right: 5px;">Send</button>
-
-                                <button type="submit" (click)="cancelForm()" class="btn btn-primary">Reset</button>
-                            </div>
-                        </div>
-                        <br>
-                        
-                    </form>
-                </article>
+              <br />
+              <div class="form-group col-md-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  [class.is-invalid]="
+                    getaccountFormControls.password.invalid &&
+                    getaccountFormControls.password.touched
+                  "
+                  placeholder="password"
+                />
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.password.invalid &&
+                    getaccountFormControls.password.touched
+                  "
+                >
+                  Pin is required
+                </small>
+              </div>
             </div>
+            <br />
 
-        </div>
+            <br />
+            <div class="form-group row">
+              <div class="form-group col-md-6" id="buttons">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!fundTransferForm.valid"
+                  class="btn btn-success"
+                  style="margin-right: 5px"
+                >
+                  Send
+                </button>
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <br />
+          </form>
+        </article>
+      </div>
     </div>
+  </div>
 </div>
-
-

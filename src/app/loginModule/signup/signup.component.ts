@@ -7,6 +7,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { NzNotificationService } from "ng-zorro-antd/notification";
 import { LoginModuleService } from "../login-module.service";
 
 @Component({
@@ -20,7 +21,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginModuleService: LoginModuleService,
-    private router: Router
+    private router: Router,
+    private notification: NzNotificationService
   ) {
     this.signupForm = this.fb.group({
       firstname: new FormControl("", [Validators.required]),
@@ -86,10 +88,21 @@ export class SignupComponent implements OnInit {
 
     this.loginModuleService.saveUser(userSaveData).subscribe(
       (response) => {
-        console.log(response);
-        if (response == 201) {
+        if (response.statusCode == 201) {
+          this.createNotification(
+            "success",
+            "Success",
+            response.message,
+            "topRight"
+          );
           this.router.navigate(["/login"]);
-        } else {
+        } else if (response.statusCode == 400) {
+          this.createNotification(
+            "error",
+            "Error",
+            response.message,
+            "topRight"
+          );
           this.router.navigate(["/signup"]);
         }
       },
@@ -102,8 +115,17 @@ export class SignupComponent implements OnInit {
   cancelForm() {
     this.signupForm.reset();
   }
-}
 
-function push(arg0: FormControl) {
-  throw new Error("Function not implemented.");
+  createNotification(
+    type: string,
+    title: string,
+    message: string,
+    position: any
+  ) {
+    this.notification.create(type, title, message, {
+      nzStyle: {
+        marginTop: "100px",
+      },
+    });
+  }
 }

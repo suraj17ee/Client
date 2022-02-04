@@ -48,18 +48,27 @@ export class SigninComponent implements OnInit {
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        localStorage.setItem("userId", response);
-        this.router.navigate(["/dashboard/home"]);
-        this.authListner.next(true);
-        this.createNotification(
-          "success",
-          "Success",
-          "Logged-in Successfully",
-          "topRight"
-        );
+        if (response.statusCode == 201) {
+          localStorage.setItem("userId", response.statusCode);
+          this.router.navigate(["/dashboard/home"]);
+          this.authListner.next(true);
+          this.createNotification(
+            "success",
+            "Success",
+            response.message,
+            "topRight"
+          );
+        } else {
+          this.createNotification(
+            "error",
+            "Error",
+            response.message,
+            "topRight"
+          );
+          this.router.navigate(["/login"]);
+        }
       },
       (error: any) => {
-        this.createNotification("error", "Error", "Error in login", "topRight");
         console.log(error);
       }
     );
