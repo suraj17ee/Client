@@ -26,7 +26,7 @@ export class LoginModuleService {
   }
 
   verifyEmail(token: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/verify/${token}`);
+    return this.http.get(`http://localhost:8080/server/verify/${token}`);
   }
 
   getAuthListner() {

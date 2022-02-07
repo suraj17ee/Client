@@ -33,14 +33,12 @@ export class VerifyEmailComponent implements OnInit {
             'Success',
             response.message
           );
-          this.router.navigate(['/login']);
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
             response.message
           );
-          this.router.navigate(['/verify/' + token]);
         }
       },
       (error: any) => {
