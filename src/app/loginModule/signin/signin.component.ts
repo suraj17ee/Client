@@ -48,7 +48,7 @@ export class SigninComponent implements OnInit {
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        if (response.message == 'Login Successful!') {
+        if (response.message == 'Login Successful') {
           localStorage.setItem('userId', response.statusCode);
           this.router.navigate(['/dashboard/home']);
           this.authListner.next(true);

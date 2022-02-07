@@ -28,6 +28,7 @@ import { en_US } from "ng-zorro-antd/i18n";
 import { NzAlertModule } from "ng-zorro-antd/alert";
 import { NzNotificationModule } from "ng-zorro-antd/notification";
 import en from "@angular/common/locales/en";
+import { VerifyEmailComponent } from './loginModule/verify-email/verify-email.component';
 
 registerLocaleData(en);
 
@@ -42,6 +43,7 @@ registerLocaleData(en);
     ForgetPasswordComponent,
     SetPasswordComponent,
     SideNavigationComponent,
+    VerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
