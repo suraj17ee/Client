@@ -1,5 +1,6 @@
 .back{
     background-color:ghostwhite;
+    display: flex;
 }
 mat-slider {
     width: 200px;
@@ -7,11 +8,32 @@ mat-slider {
   }
   
 #buttons{
-    margin-left:200px;
+    width: 100%;
+    text-align: center;
 }
 
-.input-row {
-    display: flex;
-    align-items: center;
+
+ #formHeading{
+     text-align: center;
+     font-family: sans-serif;
+     font-size: 25px;
+     font-weight: bold;
+ }
+ #redirectToSingin{
+     text-align: center;
 }
-    
+#redirectToSingin a{
+     text-decoration: none;
+}
+.opt{
+    margin: 2px;
+}
+
+.card{
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    border: 3px solid cadetblue;
+    margin-bottom: 20px;
+    background-color: ghostwhite;
+}

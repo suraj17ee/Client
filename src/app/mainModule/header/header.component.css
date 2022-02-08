@@ -1,5 +1,69 @@
-h5 {
-    margin-top: 5px;
+.nav-item {
     font-size: 20px;
+    font-family: sans-serif;
+}
+.nav-item a{
     color: white;
+}
+.navbar-brand{
+    padding: 0px 0px 0px 6px;
+    font-size: 25px;
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+.logo{
+    display: flex;
+    margin-left: 25px;
+}
+
+.logoImg{
+    /* border: 2px solid red; */
+    display: inline;
+}
+.logoText{
+    /* border: 2px solid red; */
+    display: inline;
+    padding-top: 10px;
+}
+
+.navbar{
+    height: 60px;
+    display: flex;
+    /* border: 5px solid yellow; */
+}
+.leftNav{
+    width: 40%;
+    /* border: 2px solid red; */
+}
+.rightNav{
+    width: 60%;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: end;
+}
+
+.logoText a{
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1012px) and (min-width:800px){
+    .navbar{
+        height: 100px;
+        flex-direction: column;
+    }
+    .leftNav{
+        width: 100%;
+        text-align: center;
+    }
+    .rightNav{
+        width: 100%;
+        text-align: center;
+    }
+    /* #logout{
+        display: none; 
+        border: 2px solid blue;
+    } */
 }
