@@ -1,34 +1,34 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { Router } from "@angular/router";
-import { Subject } from "rxjs";
-import { LoginModuleService } from "../login-module.service";
-import { NzNotificationService } from "ng-zorro-antd/notification";
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
+import { LoginModuleService } from '../login-module.service';
 
 @Component({
-  selector: "app-signin",
-  templateUrl: "./signin.component.html",
-  styleUrls: ["./signin.component.css"],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
-  message: String = "";
+  message: String = '';
   authListner: Subject<boolean> = new Subject();
 
   constructor(
     fb: FormBuilder,
     private loginModuleService: LoginModuleService,
     private router: Router,
-    private notification: NzNotificationService
+    private notificationService: NotificationService
   ) {
     this.signinForm = fb.group({
-      email: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 
@@ -42,20 +42,28 @@ export class SigninComponent implements OnInit {
 
   submitForm() {
     const userLoginData = {
-      email: this.signinForm.get("email")?.value,
-      password: this.signinForm.get("password")?.value,
+      email: this.signinForm.get('email')?.value,
+      password: this.signinForm.get('password')?.value,
     };
 
     this.loginModuleService.loginUser(userLoginData).subscribe(
       (response) => {
-        if (response.message == "Login Successful!") {
-          localStorage.setItem("userId", response.statusCode);
-          this.router.navigate(["/dashboard/home"]);
+        if (response.message == 'Login Successful') {
+          localStorage.setItem('userId', response.statusCode);
+          this.router.navigate(['/dashboard/home']);
           this.authListner.next(true);
-          this.createNotification("success", "Success", response.message);
-        } else {
-          this.createNotification("error", "Error", response.message);
-          this.router.navigate(["/login"]);
+          this.notificationService.createNotification(
+            'success',
+            'Success',
+            response.message
+          );
+        } else if (response.statusCode == 400) {
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            response.message
+          );
+          this.router.navigate(['/login']);
         }
       },
       (error: any) => {
@@ -66,13 +74,5 @@ export class SigninComponent implements OnInit {
 
   cancelForm() {
     this.signinForm.reset();
-  }
-
-  createNotification(type: string, title: string, message: string): void {
-    this.notification.create(type, title, message, {
-      nzStyle: {
-        marginTop: "50px",
-      },
-    });
   }
 }

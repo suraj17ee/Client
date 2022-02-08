@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { LoginModuleService } from "../login-module.service";
-import { CustomValidator } from "../../custom.validator";
-import { NzNotificationService } from "ng-zorro-antd/notification";
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginModuleService } from '../login-module.service';
+import { CustomValidator } from '../../custom.validator';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: "app-set-password",
-  templateUrl: "./set-password.component.html",
-  styleUrls: ["./set-password.component.css"],
+  selector: 'app-set-password',
+  templateUrl: './set-password.component.html',
+  styleUrls: ['./set-password.component.css'],
 })
 export class SetPasswordComponent implements OnInit {
   setPasswordForm: FormGroup;
@@ -23,15 +23,15 @@ export class SetPasswordComponent implements OnInit {
     private loginModuleService: LoginModuleService,
     private router: Router,
     private route: ActivatedRoute,
-    private notification: NzNotificationService
+    private notificationService: NotificationService
   ) {
     this.setPasswordForm = fb.group(
       {
-        newPassword: new FormControl("", [Validators.required]),
-        confirmPassword: new FormControl("", [Validators.required]),
+        newPassword: new FormControl('', [Validators.required]),
+        confirmPassword: new FormControl('', [Validators.required]),
       },
       {
-        validator: CustomValidator("newPassword", "confirmPassword"),
+        validator: CustomValidator('newPassword', 'confirmPassword'),
       }
     );
   }
@@ -43,30 +43,28 @@ export class SetPasswordComponent implements OnInit {
   ngOnInit() {}
 
   submitForm() {
-    const token = this.route.snapshot.paramMap.get("token");
+    const token = this.route.snapshot.paramMap.get('token');
     const setPasswordData = {
       token: token,
-      newPassword: this.setPasswordForm.get("newPassword")?.value,
+      newPassword: this.setPasswordForm.get('newPassword')?.value,
     };
 
     this.loginModuleService.resetPassword(setPasswordData).subscribe(
       (response) => {
         if (response.statusCode == 201) {
-          this.createNotification(
-            "success",
-            "Success",
-            response.message,
-            "topRight"
+          this.notificationService.createNotification(
+            'success',
+            'Success',
+            response.message
           );
-          this.router.navigate(["/login"]);
+          this.router.navigate(['/login']);
         } else if (response.statusCode == 400) {
-          this.createNotification(
-            "error",
-            "Error",
-            response.message,
-            "topRight"
+          this.notificationService.createNotification(
+            'error',
+            'Error',
+            response.message
           );
-          this.router.navigate(["/reset-password"]);
+          this.router.navigate(['/reset-password']);
         }
       },
       (error: any) => {
@@ -77,18 +75,5 @@ export class SetPasswordComponent implements OnInit {
 
   cancelForm() {
     this.setPasswordForm.reset();
-  }
-
-  createNotification(
-    type: string,
-    title: string,
-    message: string,
-    position: any
-  ) {
-    this.notification.create(type, title, message, {
-      nzStyle: {
-        marginTop: "50px",
-      },
-    });
   }
 }
