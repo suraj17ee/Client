@@ -7,7 +7,7 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./account-details.component.css'],
 })
 export class AccountDetailsComponent implements OnInit {
-  userid: number | undefined;
+  userId: number | undefined;
   accounts: any = [];
 
   columnDefs = [
@@ -17,6 +17,12 @@ export class AccountDetailsComponent implements OnInit {
     { headerName: 'Balance', field: 'balance' },
     { headerName: 'Account Creation Date', field: 'dateCreated' },
   ];
+
+  defaultColDef = {
+    sortable: true,
+    filter: true,
+  };
+
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
@@ -24,9 +30,9 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getData() {
-    var userID: number = Number(localStorage.getItem('userId'));
+    var userId: number = Number(localStorage.getItem('userId'));
 
-    this.accountService.getAccounts(userID).subscribe((res) => {
+    this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res;
     });
   }

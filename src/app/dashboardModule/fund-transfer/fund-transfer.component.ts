@@ -32,7 +32,7 @@ export class FundTransferComponent implements OnInit {
       toAccount: new FormControl('', Validators.required),
       description: new FormControl('', [Validators.required]),
       balance: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      otp: new FormControl('', [Validators.required]),
     });
   }
   get getaccountFormControls() {
@@ -44,14 +44,17 @@ export class FundTransferComponent implements OnInit {
   }
 
   submitForm() {
-    const accountData = {
+    var userId: number = Number(localStorage.getItem('userId'));
+
+    const transferData = {
+      userId: userId,
       toAccount: this.fundTransferForm.get('toAccount')?.value,
       amount: this.fundTransferForm.get('balance')?.value,
       description: this.fundTransferForm.get('description')?.value,
       fromAccount: this.fundTransferForm.get('fromAccount')?.value,
-      password: this.fundTransferForm.get('password')?.value,
+      otp: this.fundTransferForm.get('otp')?.value,
     };
-    this.fundtransferService.transfer(accountData).subscribe(
+    this.fundtransferService.transfer(transferData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
           this.notificationService.createNotification(
@@ -73,11 +76,30 @@ export class FundTransferComponent implements OnInit {
         console.log(error);
       }
     );
-    console.log(accountData);
   }
 
   cancelForm() {
     this.fundTransferForm.reset();
+  }
+
+  getOTP() {
+    var userId: number = Number(localStorage.getItem('userId'));
+
+    this.fundtransferService.getOTP(userId).subscribe((response) => {
+      if (response.statusCode == 201) {
+        this.notificationService.createNotification(
+          'success',
+          'Success',
+          response.message
+        );
+      } else if (response.statusCode == 400) {
+        this.notificationService.createNotification(
+          'error',
+          'Error',
+          response.message
+        );
+      }
+    });
   }
 
   getData() {
