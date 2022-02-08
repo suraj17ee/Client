@@ -1,41 +1,46 @@
 .sidenav {
-    width: 100%;
-    padding-top: 5px;
-    background-size: cover;  
+  width: 100%;
+  padding-top: 5px;
+  background-size: cover;
 }
-.dashboardContent{
-    border-radius: 0px 10px 10px 0px;
-    height:100%;
-    /* background-color: rgb(108, 108, 224); */
-    background-color:rgb(42, 125, 202);
-    background-image: linear-gradient(to right, rgb(42, 125, 202) , rgb(223, 210, 210));
-    /* width: 20%; */
+.dashboardContent {
+  border-radius: 0px 0px 0px 0px;
+  height: 100%;
+  /* background-color: rgb(108, 108, 224); */
+  background-color: rgb(42, 125, 202);
+  background-image: linear-gradient(
+    to right,
+    rgb(42, 125, 202),
+    rgb(223, 210, 210)
+  );
+  /* width: 20%; */
 }
 .sidenav a {
-    padding: 8px 6px 8px 6px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #fff6f6;
-    display: block;
+  padding: 8px 6px 8px 6px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff6f6;
+  display: block;
 }
-  
+
 .sidenav a:hover {
-    color: #743f3f;
+  color: #743f3f;
 }
-  
+
 .main {
-    margin-left: 200px; 
+  margin-left: 200px;
 }
-.sidenav svg{
+.sidenav svg {
   margin: 5px 0px 5px 5px;
 }
 
-.nav a{
-  /* display: none; */
+/* .nav a{
   visibility: hidden;
 }
 .dashboardContent:hover a{
-  /* display: none; */
   visibility: visible;
+} */
+
+.nav {
+  padding-left: 16px;
 }
- 

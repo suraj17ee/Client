@@ -44,7 +44,8 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profileService.getUserProfile().subscribe(
+    var userId: number = Number(localStorage.getItem('userId'));
+    this.profileService.getUserProfile(userId).subscribe(
       (response: any) => {
         this.user = response;
         this.setValues(this.user);
@@ -75,10 +76,10 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   submitForm() {
-    var userID: number = Number(localStorage.getItem('userId'));
+    var userId: number = Number(localStorage.getItem('userId'));
 
     const userProfileData = {
-      userid: userID,
+      userId: userId,
       firstname: this.updateProfileForm.get('firstname')?.value,
       lastname: this.updateProfileForm.get('lastname')?.value,
       mobile: this.updateProfileForm.get('mobile')?.value,

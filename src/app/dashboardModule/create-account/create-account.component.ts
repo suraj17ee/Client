@@ -38,12 +38,12 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
-    var userID: number = Number(localStorage.getItem('userId'));
+    var userId: number = Number(localStorage.getItem('userId'));
 
     const accountData = {
       accountType: this.createAccountForm.get('accountType')?.value,
       balance: this.createAccountForm.get('balance')?.value,
-      userId: userID,
+      userId: userId,
     };
     this.accountService.saveAccount(accountData).subscribe(
       (response: any) => {

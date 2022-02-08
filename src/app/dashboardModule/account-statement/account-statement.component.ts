@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { StatementService } from "src/app/services/statement.service";
-import { Router } from "@angular/router";
-import { AccountService } from "src/app/services/account.service";
+} from '@angular/forms';
+import { StatementService } from 'src/app/services/statement.service';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 @Component({
-  selector: "app-account-statement",
-  templateUrl: "./account-statement.component.html",
-  styleUrls: ["./account-statement.component.css"],
+  selector: 'app-account-statement',
+  templateUrl: './account-statement.component.html',
+  styleUrls: ['./account-statement.component.css'],
 })
 export class AccountStatementComponent implements OnInit {
   statementForm: FormGroup;
   iscreated: Boolean = false;
-  message: String = "";
+  message: String = '';
   accounts: any = [];
   statements: any = [];
   fromAccountId: number = 0;
@@ -27,7 +27,7 @@ export class AccountStatementComponent implements OnInit {
     private accountService: AccountService
   ) {
     this.statementForm = fb.group({
-      fromAccount: new FormControl("", [Validators.required]),
+      fromAccount: new FormControl('', [Validators.required]),
     });
   }
 
@@ -40,24 +40,24 @@ export class AccountStatementComponent implements OnInit {
   }
 
   submitForm() {
-    var userID: number = Number(localStorage.getItem("userId"));
+    var userID: number = Number(localStorage.getItem('userId'));
     userId: userID;
     // const statementData = {
     //   fromAccount: this.statementForm.get("fromAccount")?.value,
 
     // };
-    (this.fromAccountId = this.statementForm.get("fromAccount")?.value),
+    (this.fromAccountId = this.statementForm.get('fromAccount')?.value),
       this.statementService
         .getStatements(this.fromAccountId)
         .subscribe((response: any) => {
           this.statements = response;
-          console.log("statement data", this.statements);
+          console.log('statement data', this.statements);
         });
   }
   getData() {
-    var userID: number = Number(localStorage.getItem("userId"));
+    var userId: number = Number(localStorage.getItem('userId'));
 
-    this.accountService.getAccounts(userID).subscribe((res) => {
+    this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res;
     });
   }
