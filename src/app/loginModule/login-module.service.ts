@@ -25,8 +25,8 @@ export class LoginModuleService {
     return this.http.post('http://localhost:8080/reset-password', data);
   }
 
-  verifyEmail(token: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/verify/${token}`);
+  verifyEmail(data: any): Observable<any> {
+    return this.http.post('http://localhost:8080/server/verify/', data);
   }
 
   getAuthListner() {

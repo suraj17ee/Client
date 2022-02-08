@@ -23,24 +23,23 @@ export class VerifyEmailComponent implements OnInit {
   verifyEmail() {
     const token = this.route.snapshot.paramMap.get('token');
     const data = {
-      token: token,
+      emailVerificationCode: token,
     };
-    this.loginModuleService.verifyEmail(token).subscribe(
+    this.loginModuleService.verifyEmail(data).subscribe(
       (response) => {
+        console.log(response);
         if (response.statusCode == 201) {
           this.notificationService.createNotification(
             'success',
             'Success',
             response.message
           );
-          this.router.navigate(['/login']);
         } else if (response.statusCode == 400) {
           this.notificationService.createNotification(
             'error',
             'Error',
             response.message
           );
-          this.router.navigate(['/verify/' + token]);
         }
       },
       (error: any) => {

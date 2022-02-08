@@ -4,3 +4,10 @@ h3 {
 h4 {
   margin-right: 5%;
 }
+
+.col h2{
+  text-align: center;
+}
+#update{
+  text-align: center;
+}
