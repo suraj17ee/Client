@@ -52,7 +52,7 @@ export class FundTransferComponent implements OnInit {
       amount: this.fundTransferForm.get('balance')?.value,
       description: this.fundTransferForm.get('description')?.value,
       fromAccount: this.fundTransferForm.get('fromAccount')?.value,
-      otp: this.fundTransferForm.get('otp')?.value,
+      otp: Number(this.fundTransferForm.get('otp')?.value),
     };
     this.fundtransferService.transfer(transferData).subscribe(
       (response: any) => {
