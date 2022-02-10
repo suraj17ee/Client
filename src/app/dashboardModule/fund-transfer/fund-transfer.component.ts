@@ -20,7 +20,6 @@ export class FundTransferComponent implements OnInit {
   fundTransferForm: FormGroup;
   checkZeroAmount: Boolean = false;
   accounts: any = [];
-  checkZeroOTP: boolean = false;
 
   constructor(
     fb: FormBuilder,
@@ -46,6 +45,10 @@ export class FundTransferComponent implements OnInit {
     this.getData();
   }
 
+  changeFn(e: any) {
+    this.checkZeroAmount = false;
+  }
+
   submitForm() {
     var userId: number = Number(localStorage.getItem('userId'));
 
@@ -60,16 +63,12 @@ export class FundTransferComponent implements OnInit {
 
     if (this.fundTransferForm.get('amount')?.value == 0) {
       this.checkZeroAmount = true;
-    } else if (this.fundTransferForm.get('otp')?.value == 0) {
-      this.checkZeroOTP = true;
     } else {
+      this.SpinnerService.show();
       this.fundtransferService.transfer(transferData).subscribe(
         (response: any) => {
           if (response.statusCode == 201) {
-            this.SpinnerService.show();
-            setTimeout(() => {
-              this.SpinnerService.hide();
-            }, 10000);
+            this.SpinnerService.hide();
             this.notificationService.createNotification(
               'success',
               'Success',
@@ -77,11 +76,14 @@ export class FundTransferComponent implements OnInit {
             );
             this.router.navigate(['/dashboard/account-details']);
           } else if (response.statusCode == 400) {
-            this.notificationService.createNotification(
-              'error',
-              'Error',
-              response.message
-            );
+            setTimeout(() => {
+              this.SpinnerService.hide();
+              this.notificationService.createNotification(
+                'error',
+                'Error',
+                response.message
+              );
+            }, 3000);
             this.router.navigate(['/dashboard/fund-transfer']);
           }
         },

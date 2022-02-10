@@ -1,0 +1,12 @@
+#featured-3{
+    border: 2px solid green;
+    border-radius: 5px;
+    height:500px;
+    width: 600px;
+
+}
+input{
+    width: 150px;
+    height: 30px;
+
+}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FilecmpComponent } from './dashboardModule/profile/filecmp/filecmp.component';
+import { FilecmpComponent } from './dashboardModule/filecmp/filecmp.component';
 import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
 import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
 import { SigninComponent } from './loginModule/signin/signin.component';

@@ -1,20 +1,9 @@
-/* .col-md-3{
-    width:3%;
-    padding: 0px 0px 0px 0px;
-} */
 .col-md-3 {
   width: 19%;
   padding: 0px;
-  /* transition: all 0.4s ease; */
-}
-/* .col-md-3:hover{
-    width:17%;
-    transition: all 0.4s ease;
-} */
-#featured-3 {
-  padding: 0px 0px 0px 0px;
 }
 .col-md-9 {
-  width: 81%;
+  min-height: 500px;
+  width: 80.85%;
   padding: 0px 0px 0px 6px;
 }

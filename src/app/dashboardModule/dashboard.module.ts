@@ -13,6 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FilecmpComponent } from './filecmp/filecmp.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ProfileComponent,
     HomeComponent,
     UpdateProfileComponent,
-    FilecmpComponent,
+    FilecmpComponent
   ],
   imports: [
     FormsModule,

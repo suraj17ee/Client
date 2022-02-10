@@ -11,7 +11,7 @@
           <label>PAN Card :</label>
           <input type="file" file-model="file"
           class="form-control" accept="image/*"
-          (change)="enableUpload()" 
+          (change)="enableUpload()" multiple
           formControlName="file" placeholder="file"  />
           <button (click)="uploadFile(fileForm)" [disabled]="!filePresent"  class="btn btn-primary btn-small" style="margin-left: 85%">Upload</button>
         </div>
