@@ -19,6 +19,7 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   message: String = '';
   authListner: Subject<boolean> = new Subject();
+  inputType: String = 'password';
 
   constructor(
     fb: FormBuilder,
@@ -30,6 +31,12 @@ export class SigninComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
+  }
+
+  showPassword(event: any): void {
+    event.target.checked
+      ? (this.inputType = 'text')
+      : (this.inputType = 'password');
   }
 
   get getSigninFormControls() {

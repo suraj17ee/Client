@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoginModuleService } from '../login-module.service';
 
@@ -21,7 +22,8 @@ export class ForgetPasswordComponent implements OnInit {
     fb: FormBuilder,
     private loginModuleService: LoginModuleService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.forgetpassForm = fb.group({
       email: new FormControl('', [Validators.required]),
@@ -35,12 +37,14 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
+    this.SpinnerService.show();
     const data = {
       email: this.forgetpassForm.get('email')?.value,
     };
 
     this.loginModuleService.forgetPassword(data).subscribe(
       (response) => {
+        this.SpinnerService.hide();
         if (response.statusCode == 201) {
           this.notificationService.createNotification(
             'success',

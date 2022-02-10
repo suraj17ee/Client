@@ -1,18 +1,18 @@
-import { NgModule } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
-import { DashboardRouting } from "./dashboard.routing";
-import { AccountDetailsComponent } from "./account-details/account-details.component";
-import { CreateAccountComponent } from "./create-account/create-account.component";
-import { FundTransferComponent } from "./fund-transfer/fund-transfer.component";
-import { ProfileComponent } from "./profile/profile.component";
-import { HomeComponent } from "./home/home.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AccountStatementComponent } from "./account-statement/account-statement.component";
-import { UpdateProfileComponent } from "./update-profile/update-profile.component";
-import { MatSliderModule } from "@angular/material/slider";
-import { CommonModule } from "@angular/common";
-import { AgGridModule } from "ag-grid-angular";
-import { FilecmpComponent } from './profile/filecmp/filecmp.component';
+import { DashboardRouting } from './dashboard.routing';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountStatementComponent } from './account-statement/account-statement.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { CommonModule } from '@angular/common';
+import { AgGridModule } from 'ag-grid-angular';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,9 @@ import { FilecmpComponent } from './profile/filecmp/filecmp.component';
     MatSliderModule,
     CommonModule,
     AgGridModule.withComponents([]),
+    NgxSpinnerModule,
   ],
   providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class DashboardModule {}

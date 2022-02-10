@@ -59,6 +59,10 @@ export class UpdateProfileComponent implements OnInit {
     );
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
   setValues(user: any) {
     this.updateProfileForm.controls['firstname'].setValue(user.firstname);
     this.updateProfileForm.controls['lastname'].setValue(user.lastname);

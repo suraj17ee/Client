@@ -31,9 +31,9 @@
                   Email is required
                 </small>
               </div>
-              <div class="form-group row" id="password">
+              <div class="form-group" id="password">
                 <input
-                  type="password"
+                  [type]="inputType"
                   class="form-control"
                   formControlName="password"
                   [class.is-invalid]="
@@ -49,8 +49,14 @@
                     getSigninFormControls.password.touched
                   "
                 >
-                  Password is required
-                </small>
+                  Password is required </small
+                ><br />
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  (change)="showPassword($event)"
+                />
+                Show Password
               </div>
             </div>
 
