@@ -23,4 +23,16 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+  downloadFile(){
+    const userId: number = Number(localStorage.getItem('userId'));
+    this.profileService.getFile(5).subscribe(
+      (response) => {
+        this.user = response;
+        console.log(this.user);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
 }

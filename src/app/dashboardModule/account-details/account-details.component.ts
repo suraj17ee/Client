@@ -11,14 +11,18 @@ export class AccountDetailsComponent implements OnInit {
   accounts: any = [];
 
   columnDefs = [
-    { headerName: 'Account ID', field: 'accountId', sortable: true,filter: true },
-    { headerName: 'Account Status', field: 'accountStatus' , sortable: true,filter: true },
-    { headerName: 'Account Type', field: 'accountType', sortable: true,filter: true  },
-    { headerName: 'Balance', field: 'balance', sortable: true,filter: true  },
-    { headerName: 'Account Creation Date', field: 'dateCreated' ,sortable: true,filter: true  },
+    { headerName: 'Account ID', field: 'accountId' },
+    { headerName: 'Account Status', field: 'accountStatus'  },
+    { headerName: 'Account Type', field: 'accountType'},
+    { headerName: 'Balance', field: 'balance' },
+    { headerName: 'Account Creation Date', field: 'dateCreated'  },
   ];
 
- 
+  defaultColDef = {
+    sortable: true,
+    filter: true,
+  };
+
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {

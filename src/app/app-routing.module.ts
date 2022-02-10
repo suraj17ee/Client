@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FilecmpComponent } from './dashboardModule/profile/filecmp/filecmp.component';
 import { ForgetPasswordComponent } from './loginModule/forget-password/forget-password.component';
 import { SetPasswordComponent } from './loginModule/set-password/set-password.component';
 import { SigninComponent } from './loginModule/signin/signin.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'verify/:token', component: VerifyEmailComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: 'file-upload', component: FilecmpComponent },
   { path: 'reset-password/:token', component: SetPasswordComponent },
   {
     path: 'dashboard',

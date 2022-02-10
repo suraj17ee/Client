@@ -29,7 +29,6 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import en from '@angular/common/locales/en';
-import {AgGridModule} from 'ag-grid-angular';
 registerLocaleData(en);
 
 @NgModule({
@@ -63,7 +62,6 @@ registerLocaleData(en);
     NzAlertModule,
     NzNotificationModule,
     CommonModule,
-    AgGridModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

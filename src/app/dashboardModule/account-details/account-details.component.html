@@ -19,12 +19,12 @@
     <td>{{ item.dateCreated }}</td>
   </tr>
 </table> -->
-
 <ag-grid-angular
   style="width: 100%; height: 100%"
   class="ag-theme-balham"
   [columnDefs]="columnDefs"
   [rowData]="accounts"
+  [defaultColDef]="defaultColDef"
   [pagination]="true"
 >
 </ag-grid-angular>

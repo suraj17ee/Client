@@ -60,6 +60,15 @@
           </div>
         </div>
         <div class="row">
+          <div class="col">
+            <h3 for="name">Uploaded Document:</h3>
+          </div>
+          <div class="col">
+            <h4 name="name">{{ user.file }}</h4>
+            <button (click)="downloadFile()" >Download</button>
+          </div>
+        </div>
+        <div class="row">
           <div class="col" id="update">
             <button
               class="btn btn-primary"

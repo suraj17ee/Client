@@ -15,4 +15,11 @@ export class ProfileService {
   updateUserProfile(data: any): Observable<any> {
     return this.http.put('http://localhost:8080/server/profile/update', data);
   }
+  postFile(userId:any,data: any): Observable<any> {
+    return this.http.post("http://localhost:8080/server/uploadFile/6", data);
+  }
+
+  getFile(docId:any): Observable<any> {
+    return this.http.get(`http://localhost:8080/server/downloadFile/1`);
+  }
 }

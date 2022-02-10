@@ -12,6 +12,7 @@ import { UpdateProfileComponent } from "./update-profile/update-profile.componen
 import { MatSliderModule } from "@angular/material/slider";
 import { CommonModule } from "@angular/common";
 import { AgGridModule } from "ag-grid-angular";
+import { FilecmpComponent } from './profile/filecmp/filecmp.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AgGridModule } from "ag-grid-angular";
     ProfileComponent,
     HomeComponent,
     UpdateProfileComponent,
+    FilecmpComponent,
   ],
   imports: [
     FormsModule,
