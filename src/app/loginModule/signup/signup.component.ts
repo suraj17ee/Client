@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoginModuleService } from '../login-module.service';
 
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private loginModuleService: LoginModuleService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.signupForm = this.fb.group({
       firstname: new FormControl('', [Validators.required]),
@@ -63,6 +65,10 @@ export class SignupComponent implements OnInit {
     return value;
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
   // addInputControl() {
   //   (this.signupForm.controls['addresses'] as FormArray).push(new FormControl('', Validators.required));
   // }
@@ -72,6 +78,7 @@ export class SignupComponent implements OnInit {
   // }
 
   submitForm() {
+    this.SpinnerService.show();
     const userSaveData = {
       firstname: this.signupForm.get('firstname')?.value,
       lastname: this.signupForm.get('lastname')?.value,
@@ -88,6 +95,7 @@ export class SignupComponent implements OnInit {
 
     this.loginModuleService.saveUser(userSaveData).subscribe(
       (response) => {
+        this.SpinnerService.hide();
         if (response.statusCode == 201) {
           this.notificationService.createNotification(
             'success',

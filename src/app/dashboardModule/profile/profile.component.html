@@ -1,9 +1,21 @@
 <br />
 <div class="container" style="width: 60%">
-  <div class="card mb-3" style="padding: 5%">
+  <div
+    class="card mb-3"
+    style="
+      padding: 5%;
+      width: 100%;
+      margin-top: 20px;
+      border-color: cadetblue;
+      border-width: 3px;
+      background-color: ghostwhite;
+    "
+  >
     <div class="row">
       <div class="col">
-        <h2>Profile</h2>
+        <h2 class="text-primary text-center" style="font-size: 25px">
+          Profile
+        </h2>
         <div class="row">
           <div class="col">
             <h3 for="name">Firstname :</h3>
@@ -49,7 +61,7 @@
             <h3 for="name">Age :</h3>
           </div>
           <div class="col">
-            <h4 name="name">{{ user.age }}</h4>
+            <h4 name="name">{{ user.age }} years</h4>
           </div>
         </div>
         <div class="row">

@@ -27,7 +27,10 @@ export class SetPasswordComponent implements OnInit {
   ) {
     this.setPasswordForm = fb.group(
       {
-        newPassword: new FormControl('', [Validators.required]),
+        newPassword: new FormControl('', [
+          Validators.required,
+          Validators.minLength(8),
+        ]),
         confirmPassword: new FormControl('', [Validators.required]),
       },
       {

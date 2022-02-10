@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import en from '@angular/common/locales/en';
 import { LoanComponent } from './src/app/dashboardModule/loan/loan.component';
 
@@ -63,10 +64,11 @@ registerLocaleData(en);
     MatTableModule,
     NzNotificationModule,
     NzAlertModule,
-    NzNotificationModule,
+    NgxSpinnerModule,
     CommonModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -5,7 +5,7 @@
         class="card"
         style="
           width: 400px;
-          margin-top: 50px;
+          margin-top: 20px;
           border-color: cadetblue;
           border-width: 3px;
           background-color: ghostwhite;
@@ -15,10 +15,11 @@
           <form [formGroup]="statementForm" class="mt-5">
             <h2
               class="text-primary text-center"
-              style="font-size: 30px; margin-bottom: 10%"
+              style="font-size: 25px; margin-bottom: 5%"
             >
-              Statements
+              Account Statements
             </h2>
+            <br />
             <div class="form-group row">
               <div class="form-group">
                 <select
@@ -26,15 +27,15 @@
                   aria-label="Default select example"
                   formControlName="fromAccount"
                 >
-                  <!-- <option selected>Select Account Type</option> -->
-                  <option selected>Select Account to View Statements</option>
+                  <option disabled selected value="">
+                    Select Account to View Statements
+                  </option>
                   <option
                     *ngFor="let item of accounts; let i = index"
                     [value]="item.accountId"
                   >
                     {{ item.accountId }}
                   </option>
-                  <!-- <option value="saving">{{ accounts[0].accountId }}</option> -->
                 </select>
                 <small
                   class="text-danger"
@@ -48,8 +49,6 @@
                 </small>
               </div>
             </div>
-            <br />
-
             <br />
             <div class="form-group row">
               <div class="form-group" id="buttons">
