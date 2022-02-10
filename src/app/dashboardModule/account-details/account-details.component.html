@@ -1,11 +1,21 @@
 <br />
-<button
-  class="btn btn-primary"
-  style="float: right; margin-right: 10%"
-  routerLink="../create-account"
->
-  Add Account
-</button>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" routerLink="../create-account">
+      Add Account
+    </button>
+  </div>
+  <div class="col">
+    <button
+      *ngIf="accounts != null"
+      class="btn btn-success"
+      style="margin-left: 50%"
+      (click)="downloadPDF()"
+    >
+      Download
+    </button>
+  </div>
+</div>
 <br />
 <br />
 

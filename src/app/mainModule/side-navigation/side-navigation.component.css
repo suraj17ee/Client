@@ -6,14 +6,12 @@
 .dashboardContent {
   border-radius: 0px 0px 0px 0px;
   height: 100%;
-  /* background-color: rgb(108, 108, 224); */
   background-color: rgb(42, 125, 202);
   background-image: linear-gradient(
     to right,
-    rgb(42, 125, 202),
-    rgb(223, 210, 210)
+    rgb(9, 64, 247),
+    rgb(137, 207, 240)
   );
-  /* width: 20%; */
 }
 .sidenav a {
   padding: 8px 6px 8px 6px;
@@ -33,13 +31,6 @@
 .sidenav svg {
   margin: 5px 0px 5px 5px;
 }
-
-/* .nav a{
-  visibility: hidden;
-}
-.dashboardContent:hover a{
-  visibility: visible;
-} */
 
 .nav {
   padding-left: 16px;

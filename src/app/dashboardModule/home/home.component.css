@@ -1,13 +1,6 @@
-.card-header{
-    /* border: 2px solid red; */
-    background-color: rgb(62, 154, 240);
-
-
-
+.card-header {
+  background-color: rgb(62, 154, 240);
 }
-.card{
-    /* width: 350px; */
-    padding: 0px;
-    /* border: 5px soild red; */
-    /* margin: 0px 0px 0px 5px; */
+.card {
+  padding: 0px;
 }

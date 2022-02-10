@@ -1,10 +1,10 @@
 <div class="container-fluid">
-  <div class="row" style="margin-left: 35%; margin-bottom: 20px">
+  <div class="row" style="margin-left: 28%; margin-bottom: 20px">
     <div class="col-md-6">
       <div
         class="card"
         style="
-          width: 400px;
+          width: 500px;
           margin-top: 20px;
           border-color: cadetblue;
           border-width: 3px;
@@ -26,14 +26,12 @@
                   class="form-select"
                   aria-label="Default select example"
                   formControlName="fromAccount"
+                  style="width: 70%; margin-left: 13%"
                 >
                   <option disabled selected value="">
                     Select Account to View Statements
                   </option>
-                  <option
-                    *ngFor="let item of accounts; let i = index"
-                    [value]="item.accountId"
-                  >
+                  <option *ngFor="let item of accounts; let i = index">
                     {{ item.accountId }}
                   </option>
                 </select>
@@ -78,14 +76,14 @@
   </div>
 </div>
 
-<table class="table">
+<table class="table" *ngIf="fromAccountId != 0">
   <tr>
     <th>Transaction Id</th>
     <th>Sender Account</th>
     <th>Receiver Account</th>
     <th>Amount</th>
     <th>Transaction Status</th>
-    <th>Transaction Date</th>
+    <th>Transaction Date and Time</th>
     <th>Transaction Description</th>
   </tr>
   <tr *ngFor="let item of statements; let i = index">
@@ -98,3 +96,12 @@
     <td>{{ item.description }}</td>
   </tr>
 </table>
+
+<button
+  *ngIf="fromAccountId != 0"
+  class="btn btn-success"
+  style="margin-left: 47%"
+  (click)="downloadPDF()"
+>
+  Download
+</button>

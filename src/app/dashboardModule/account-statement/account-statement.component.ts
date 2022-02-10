@@ -20,6 +20,7 @@ export class AccountStatementComponent implements OnInit {
   accounts: any = [];
   statements: any = [];
   fromAccountId: number = 0;
+
   constructor(
     fb: FormBuilder,
     private statementService: StatementService,
@@ -40,12 +41,6 @@ export class AccountStatementComponent implements OnInit {
   }
 
   submitForm() {
-    var userID: number = Number(localStorage.getItem('userId'));
-    userId: userID;
-    // const statementData = {
-    //   fromAccount: this.statementForm.get("fromAccount")?.value,
-
-    // };
     (this.fromAccountId = this.statementForm.get('fromAccount')?.value),
       this.statementService
         .getStatements(this.fromAccountId)
@@ -63,5 +58,26 @@ export class AccountStatementComponent implements OnInit {
   }
   cancelForm() {
     this.statementForm.reset();
+  }
+
+  downloadPDF() {
+    this.accountService.getTransactionPDF(this.fromAccountId).subscribe(
+      (data: Blob) => {
+        var file = new Blob([data], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+
+        // if you want to open PDF in new tab
+        window.open(fileURL);
+        var a = document.createElement('a');
+        a.href = fileURL;
+        a.target = '_blank';
+        a.download = 'transactions.pdf';
+        document.body.appendChild(a);
+        a.click();
+      },
+      (error) => {
+        console.log('getPDF error: ', error);
+      }
+    );
   }
 }
