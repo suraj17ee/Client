@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
+import { LoanComponent } from '../src/app/dashboardModule/loan/loan.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountStatementComponent } from './account-statement/account-statement.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -44,6 +45,11 @@ const dashboardRoutes: Routes = [
       {
         path: 'account-statement',
         component: AccountStatementComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'loan',
+        component: LoanComponent,
         canActivate: [AuthGuard],
       },
     ],
