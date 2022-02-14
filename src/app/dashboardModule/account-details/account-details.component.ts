@@ -43,28 +43,27 @@ export class AccountDetailsComponent implements OnInit {
     this.getData();
   }
 
-  downloadPDF() {
-    var userId: number = Number(localStorage.getItem('userId'));
+  // downloadPDF() {
+  //   var userId: number = Number(localStorage.getItem('userId'));
 
-    this.accountService.getAccountPDF(userId).subscribe(
-      (data: Blob) => {
-        var file = new Blob([data], { type: 'application/pdf' });
-        var fileURL = URL.createObjectURL(file);
+  //   this.accountService.getAccountPDF(userId).subscribe(
+  //     (data: Blob) => {
+  //       var file = new Blob([data], { type: 'application/pdf' });
+  //       var fileURL = URL.createObjectURL(file);
 
-        // if you want to open PDF in new tab
-        window.open(fileURL);
-        var a = document.createElement('a');
-        a.href = fileURL;
-        a.target = '_blank';
-        a.download = 'accounts.pdf';
-        document.body.appendChild(a);
-        a.click();
-      },
-      (error) => {
-        console.log('getPDF error: ', error);
-      }
-    );
-  }
+  //       window.open(fileURL);
+  //       var a = document.createElement('a');
+  //       a.href = fileURL;
+  //       a.target = '_blank';
+  //       a.download = 'accounts.pdf';
+  //       document.body.appendChild(a);
+  //       a.click();
+  //     },
+  //     (error) => {
+  //       console.log('getPDF error: ', error);
+  //     }
+  //   );
+  // }
 
   getData() {
     var userId: number = Number(localStorage.getItem('userId'));
