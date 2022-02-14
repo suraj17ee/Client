@@ -1,19 +1,37 @@
 <br />
-<div class="row">
-  <div class="col">
-    <button class="btn btn-primary" routerLink="../create-account">
-      Add Account
-    </button>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" routerLink="../create-account">
+        Add Account
+      </button>
+    </div>
+    <div class="col">
+      <button
+        *ngIf="accounts != null"
+        class="btn btn-success"
+        style="margin-left: 50%"
+        (click)="downloadPDF()"
+      >
+        <i class="fa fa-download"></i>
+        Download
+      </button>
+    </div>
   </div>
-  <div class="col">
-    <button
-      *ngIf="accounts != null"
-      class="btn btn-success"
-      style="margin-left: 50%"
-      (click)="downloadPDF()"
+  <br />
+  <div class="row">
+    <h2 class="text-primary text-center" style="font-size: 25px">
+      Account Details
+    </h2>
+    <ag-grid-angular
+      style="width: 90%; height: 350px; margin-left: 5%"
+      class="ag-theme-balham"
+      [columnDefs]="columnDefs"
+      [rowData]="accounts"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
     >
-      Download
-    </button>
+    </ag-grid-angular>
   </div>
 </div>
 <br />
