@@ -20,15 +20,17 @@ export class AccountStatementComponent implements OnInit {
   accounts: any = [];
   statements: any = [];
   fromAccountId: number = 0;
-  columnDefs = [
-    { headerName: 'Transaction ID', field: 'transactionId' },
-    { headerName: 'Sender Account', field: 'fromAccount' },
-    { headerName: 'Reciever Account', field: 'toAccount' },
-    { headerName: 'Amount', field: 'amount' },
-    { headerName: 'Transaction Status', field: 'transactionStatus' },
-    { headerName: 'Transaction Date', field: 'transactionDate' },
-    { headerName: 'Transaction Description', field: 'description' },
-  ];
+  isShown: boolean = false;
+
+  // columnDefs = [
+  //   { headerName: 'Transaction ID', field: 'transactionId' },
+  //   { headerName: 'Sender Account', field: 'fromAccount' },
+  //   { headerName: 'Reciever Account', field: 'toAccount' },
+  //   { headerName: 'Amount', field: 'amount' },
+  //   { headerName: 'Transaction Status', field: 'transactionStatus' },
+  //   { headerName: 'Transaction Date', field: 'transactionDate' },
+  //   { headerName: 'Transaction Description', field: 'description' },
+  // ];
 
   constructor(
     fb: FormBuilder,
@@ -55,6 +57,7 @@ export class AccountStatementComponent implements OnInit {
         .getStatements(this.fromAccountId)
         .subscribe((response: any) => {
           this.statements = response;
+          this.isShown = true;
           console.log('statement data', this.statements);
         });
   }

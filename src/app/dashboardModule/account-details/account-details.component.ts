@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { StatementService } from 'src/app/services/statement.service';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-account-details',
@@ -13,23 +18,18 @@ export class AccountDetailsComponent implements OnInit {
   accounts: any = [];
   statements: any = [];
   isShown: boolean = false;
-
-  columnDefs = [
-    { headerName: 'Account Number', field: 'accountId' },
-    { headerName: 'Account Type', field: 'accountType' },
-    { headerName: 'Balance', field: 'balance' },
-    { headerName: 'Account Creation Date', field: 'dateCreated' },
-    { headerName: 'Account Status', field: 'accountStatus' },
-  ];
+  fromId: any;
+  accId: any;
 
   defaultColDef = {
     sortable: true,
     filter: true,
   };
-  fromId: any;
-  accId: any;
 
-  constructor(private accountService: AccountService, private stmtService: StatementService) {}
+  constructor(
+    private accountService: AccountService,
+    private stmtService: StatementService
+  ) {}
 
   ngOnInit(): void {
     this.getData();
@@ -64,15 +64,13 @@ export class AccountDetailsComponent implements OnInit {
     this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res;
     });
-
-    
   }
-  submitForm(accountId:any) {
+  submitForm(accountId: any) {
     this.isShown = false;
     this.stmtService.getStatements(accountId).subscribe((response: any) => {
       this.statements = response;
     });
     this.isShown = true;
-    this.accId=accountId;
+    this.accId = accountId;
   }
 }

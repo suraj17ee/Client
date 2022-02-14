@@ -1,23 +1,33 @@
 <div class="container-fluid">
   <div class="row" style="margin-left: 28%; margin-bottom: 20px">
     <div class="col-md-6">
-      <div class="card" style="
-                width: 500px;
-                margin-top: 20px;
-                border-color: cadetblue;
-                border-width: 3px;
-                background-color: ghostwhite;
-              ">
+      <div
+        class="card"
+        style="
+          width: 500px;
+          margin-top: 20px;
+          border-color: cadetblue;
+          border-width: 3px;
+          background-color: ghostwhite;
+        "
+      >
         <article class="card-body">
           <form [formGroup]="statementForm" class="mt-5">
-            <h2 class="text-primary text-center" style="font-size: 25px; margin-bottom: 5%">
+            <h2
+              class="text-primary text-center"
+              style="font-size: 25px; margin-bottom: 5%"
+            >
               Account Statements
             </h2>
             <br />
             <div class="form-group row">
               <div class="form-group">
-                <select class="form-select" aria-label="Default select example" formControlName="fromAccount"
-                  style="width: 70%; margin-left: 13%">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="fromAccount"
+                  style="width: 70%; margin-left: 13%"
+                >
                   <option disabled selected value="">
                     Select Account to View Statements
                   </option>
@@ -25,10 +35,14 @@
                     {{ item.accountId }}
                   </option>
                 </select>
-                <small class="text-danger" style="margin-left: 10%" *ngIf="
-                          getaccountFormControls.fromAccount.invalid &&
-                          getaccountFormControls.fromAccount.touched
-                        ">
+                <small
+                  class="text-danger"
+                  style="margin-left: 10%"
+                  *ngIf="
+                    getaccountFormControls.fromAccount.invalid &&
+                    getaccountFormControls.fromAccount.touched
+                  "
+                >
                   Account number is required
                 </small>
               </div>
@@ -36,11 +50,20 @@
             <br />
             <div class="form-group row">
               <div class="form-group" id="buttons">
-                <button type="submit" (click)="submitForm()" [disabled]="!statementForm.valid" class="btn btn-success">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="!statementForm.valid"
+                  class="btn btn-success"
+                >
                   Send
                 </button>
-      
-                <button type="submit" (click)="cancelForm()" class="btn btn-primary">
+
+                <button
+                  type="submit"
+                  (click)="cancelForm()"
+                  class="btn btn-primary"
+                >
                   Reset
                 </button>
               </div>
@@ -62,26 +85,48 @@
 >
 </ag-grid-angular> -->
 
-<table class="table" *ngIf="fromAccountId != 0">
-  <tr>
-    <th>Transaction Id</th>
-    <th>Sender Account</th>
-    <th>Receiver Account</th>
-    <th>Amount</th>
-    <th>Status</th>
-    <th>Date and Time</th>
-    <th>Description</th>
-  </tr>
-  <tr *ngFor="let item of statements; let i = index">
-    <td>{{ item.transactionId }}</td>
-    <td>{{ item.fromAccount }}</td>
-    <td>{{ item.toAccount }}</td>
-    <td>{{ item.amount }}</td>
-    <td>{{ item.transactionStatus }}</td>
-    <td>{{ item.transactionDate }}</td>
-    <td>{{ item.description }}</td>
-  </tr>
-</table>
+<div class="card my-5">
+  <p-table [value]="statements" responsiveLayout="scroll" *ngIf="isShown">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <span>Transaction Details of {{ fromAccountId }} </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Transaction Id</th>
+        <th>Sender Account</th>
+        <th>Receiver Account</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date and Time</th>
+        <th>Description</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-statement>
+      <tr>
+        <td>{{ statement.transactionId }}</td>
+        <td>{{ statement.fromAccount }}</td>
+        <td>{{ statement.toAccount }}</td>
+        <td>{{ statement.amount }}</td>
+        <td>
+          <span class="order-badge order-delivered">{{
+            statement.transactionStatus
+          }}</span>
+        </td>
+        <td>{{ statement.transactionDate }}</td>
+        <td>{{ statement.description }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="text-center text-danger" colspan="7">
+          There are no transactions yet.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 
 <button
   *ngIf="fromAccountId != 0"
