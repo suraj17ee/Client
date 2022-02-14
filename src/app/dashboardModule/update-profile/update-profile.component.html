@@ -201,7 +201,9 @@
                 <button
                   type="submit"
                   (click)="submitForm()"
-                  [disabled]="!updateProfileForm.valid"
+                  [disabled]="
+                    !(updateProfileForm.valid && updateProfileForm.dirty)
+                  "
                   class="btn btn-success"
                 >
                   Submit
