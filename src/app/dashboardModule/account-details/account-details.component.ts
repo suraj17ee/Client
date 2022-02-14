@@ -11,7 +11,7 @@ export class AccountDetailsComponent implements OnInit {
   accounts: any = [];
 
   columnDefs = [
-    { headerName: 'Account ID', field: 'accountId' },
+    { headerName: 'Account Number', field: 'accountId' },
     { headerName: 'Account Status', field: 'accountStatus' },
     { headerName: 'Account Type', field: 'accountType' },
     { headerName: 'Balance', field: 'balance' },
