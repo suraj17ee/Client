@@ -20,15 +20,7 @@ export class AccountStatementComponent implements OnInit {
   accounts: any = [];
   statements: any = [];
   fromAccountId: number = 0;
-  columnDefs = [
-    { headerName: 'Transaction ID', field: 'transactionId' },
-    { headerName: 'Sender Account', field: 'fromAccount' },
-    { headerName: 'Reciever Account', field: 'toAccount' },
-    { headerName: 'Amount', field: 'amount' },
-    { headerName: 'Transaction Status', field: 'transactionStatus' },
-    { headerName: 'Transaction Date', field: 'transactionDate' },
-    { headerName: 'Transaction Description', field: 'description' },
-  ];
+  isShown: boolean = false;
 
   constructor(
     fb: FormBuilder,
@@ -55,6 +47,7 @@ export class AccountStatementComponent implements OnInit {
         .getStatements(this.fromAccountId)
         .subscribe((response: any) => {
           this.statements = response;
+          this.isShown = true;
           console.log('statement data', this.statements);
         });
   }
@@ -69,24 +62,23 @@ export class AccountStatementComponent implements OnInit {
     this.statementForm.reset();
   }
 
-  downloadPDF() {
-    this.accountService.getTransactionPDF(this.fromAccountId).subscribe(
-      (data: Blob) => {
-        var file = new Blob([data], { type: 'application/pdf' });
-        var fileURL = URL.createObjectURL(file);
+  // downloadPDF() {
+  //   this.accountService.getTransactionPDF(this.fromAccountId).subscribe(
+  //     (data: Blob) => {
+  //       var file = new Blob([data], { type: 'application/pdf' });
+  //       var fileURL = URL.createObjectURL(file);
 
-        // if you want to open PDF in new tab
-        window.open(fileURL);
-        var a = document.createElement('a');
-        a.href = fileURL;
-        a.target = '_blank';
-        a.download = 'transactions.pdf';
-        document.body.appendChild(a);
-        a.click();
-      },
-      (error) => {
-        console.log('getPDF error: ', error);
-      }
-    );
-  }
+  //       window.open(fileURL);
+  //       var a = document.createElement('a');
+  //       a.href = fileURL;
+  //       a.target = '_blank';
+  //       a.download = 'transactions.pdf';
+  //       document.body.appendChild(a);
+  //       a.click();
+  //     },
+  //     (error) => {
+  //       console.log('getPDF error: ', error);
+  //     }
+  //   );
+  // }
 }

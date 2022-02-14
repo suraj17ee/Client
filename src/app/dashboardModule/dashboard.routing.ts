@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
-import { LoanComponent } from '../src/app/dashboardModule/loan/loan.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountStatementComponent } from './account-statement/account-statement.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { CreateLoanComponent } from './create-loan/create-loan.component';
 import { DashboardComponent } from './dashboard.component';
 import { FundTransferComponent } from './fund-transfer/fund-transfer.component';
 import { HomeComponent } from './home/home.component';
+import { LoanDetailsComponent } from './loan-details/loan-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
@@ -48,8 +49,13 @@ const dashboardRoutes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'loan',
-        component: LoanComponent,
+        path: 'create-loan',
+        component: CreateLoanComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'loan-details',
+        component: LoanDetailsComponent,
         canActivate: [AuthGuard],
       },
     ],

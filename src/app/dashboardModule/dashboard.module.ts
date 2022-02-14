@@ -13,6 +13,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { TableModule } from 'primeng/table';
+import { CreateLoanComponent } from './create-loan/create-loan.component';
+import { LoanDetailsComponent } from './loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ProfileComponent,
     HomeComponent,
     UpdateProfileComponent,
+    CreateLoanComponent,
+    LoanDetailsComponent,
   ],
   imports: [
     FormsModule,
@@ -32,6 +37,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CommonModule,
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
+    TableModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
