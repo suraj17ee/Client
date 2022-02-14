@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FilecmpComponent } from './filecmp/filecmp.component';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FilecmpComponent } from './filecmp/filecmp.component';
     CommonModule,
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
+    TableModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

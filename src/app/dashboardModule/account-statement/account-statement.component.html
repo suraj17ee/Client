@@ -85,26 +85,48 @@
 >
 </ag-grid-angular> -->
 
-<table class="table" *ngIf="fromAccountId != 0">
-  <tr>
-    <th>Transaction Id</th>
-    <th>Sender Account</th>
-    <th>Receiver Account</th>
-    <th>Amount</th>
-    <th>Transaction Status</th>
-    <th>Transaction Date and Time</th>
-    <th>Transaction Description</th>
-  </tr>
-  <tr *ngFor="let item of statements; let i = index">
-    <td>{{ item.transactionId }}</td>
-    <td>{{ item.fromAccount }}</td>
-    <td>{{ item.toAccount }}</td>
-    <td>{{ item.amount }}</td>
-    <td>{{ item.transactionStatus }}</td>
-    <td>{{ item.transactionDate }}</td>
-    <td>{{ item.description }}</td>
-  </tr>
-</table>
+<div class="card my-5">
+  <p-table [value]="statements" responsiveLayout="scroll" *ngIf="isShown">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <span>Transaction Details of {{ fromAccountId }} </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Transaction Id</th>
+        <th>Sender Account</th>
+        <th>Receiver Account</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Date and Time</th>
+        <th>Description</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-statement>
+      <tr>
+        <td>{{ statement.transactionId }}</td>
+        <td>{{ statement.fromAccount }}</td>
+        <td>{{ statement.toAccount }}</td>
+        <td>{{ statement.amount }}</td>
+        <td>
+          <span class="order-badge order-delivered">{{
+            statement.transactionStatus
+          }}</span>
+        </td>
+        <td>{{ statement.transactionDate }}</td>
+        <td>{{ statement.description }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td class="text-center text-danger" colspan="7">
+          There are no transactions yet.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
 
 <button
   *ngIf="fromAccountId != 0"
@@ -112,5 +134,6 @@
   style="margin-left: 47%"
   (click)="downloadPDF()"
 >
+  <i class="fa fa-download"></i>
   Download
 </button>
