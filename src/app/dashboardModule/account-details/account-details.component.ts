@@ -12,10 +12,10 @@ export class AccountDetailsComponent implements OnInit {
 
   columnDefs = [
     { headerName: 'Account Number', field: 'accountId' },
-    { headerName: 'Account Status', field: 'accountStatus' },
     { headerName: 'Account Type', field: 'accountType' },
     { headerName: 'Balance', field: 'balance' },
     { headerName: 'Account Creation Date', field: 'dateCreated' },
+    { headerName: 'Account Status', field: 'accountStatus' },
   ];
 
   defaultColDef = {
