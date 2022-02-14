@@ -127,7 +127,7 @@ export class UpdateProfileComponent implements OnInit {
     var userId: number = Number(localStorage.getItem('userId'));
     const fileData =this.updateProfileForm.get('file')?.value;
     console.log(userId);
-    this.profileService.postFile(userId,fileData).subscribe(
+    this.profileService.upload(this.updateProfileForm.get('file')?.value).subscribe(
       (response) => {
         console.log(response);
         if (response != null) {

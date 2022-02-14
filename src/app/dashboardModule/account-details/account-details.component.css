@@ -17,3 +17,22 @@ select {
   margin-bottom: 10px;
   padding: 10px;
 }
+.ag-header-group-cell{
+  background: aquamarine;
+} 
+.ag-header-cell{
+  font:900;
+  font-weight: bold;
+  background: aquamarine;
+}
+.ag-header-group-cell-label, .ag-header-cell-label{
+  background: aqua;
+  font-weight: bold;
+}
+.ag-root.ag-layout-normal {
+  height: 50%;
+}
+.ag-center-cols-viewport {
+  width: 50%;
+  overflow-x: auto;
+}

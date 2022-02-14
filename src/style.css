@@ -1,4 +1,7 @@
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-balham.css";
+
 html,
 body {
   height: 100%;
@@ -8,6 +11,26 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-@import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-balham.css";
+.ag-header-group-cell{
+  background: aquamarine;
+} 
+.ag-header-cell{
+  background: aquamarine;
+  font-weight: bold;
+}
+.ag-header-group-cell-label, .ag-header-cell-label{
+  background: aquamarine;
+  font-weight: bold;
+}
+.ag-root.ag-layout-normal {
+  max-height: 50%;
+}
+.ag-center-cols-viewport {
+  width: 50%;
+  overflow-x: auto;
+}
+.ag-theme-balham .ag-root-wrapper {
+  border: solid 1px;
+  border-color: #bdc3c7;
+  border-color: var(--ag-border-color, #bdc3c7);
+}

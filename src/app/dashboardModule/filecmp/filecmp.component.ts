@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -44,40 +45,45 @@ export class FilecmpComponent implements OnInit {
     this.userId = Number(localStorage.getItem('userId'));
   }
   uploadFile(fileForm:any){
-    var userId: number = Number(localStorage.getItem('userId'));
-    const formData = new FormData();
-    formData.append('userId', JSON.stringify( this.userId) );
-    formData.append('file', this.file );
-
-    
-    const fileData = {
-      file : this.fileForm.get('file')?.value
-    }
-
-    console.log(fileData);
-    this.profileService.postFile(userId,formData).subscribe(
-      (response) => {
-        console.log(response);
-        // if (response != null) {
-        //   this.notificationService.createNotification(
-        //     'success',
-        //     'Success',
-        //     'Profile Updated Successfully'
-        //   );
-        //  this.router.navigate(['/dashboard/profile']);
-        // } else if (response == null) {
-        //   this.notificationService.createNotification(
-        //     'error',
-        //     'Error',
-        //     'Profile Update Unsuccessful'
-        //   );
-        //  this.router.navigate(['/dashboard/update-profile']);
-        // }
-      },
-      (error: any) => {
-        console.log(error);
+    //this.file = this.fileForm.get('file')?.value
+  this.profileService.upload(this.file).subscribe(
+    event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        console.log("Yes");
+      } else if (event instanceof HttpResponse) {
+       console.log("No")
+        //this.fileInfos = this.uploadService.getFiles();
       }
-    );
+    },
+    err => {
+      console.log(err);
+    });
+  
+
+    // console.log(fileData);
+    // this.profileService.upload(this.fileForm.get('file')?.value).subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //     if (response != null) {
+    //       this.notificationService.createNotification(
+    //         'success',
+    //         'Success',
+    //         'Profile Updated Successfully'
+    //       );
+    //      this.router.navigate(['/dashboard/profile']);
+    //     } else if (response == null) {
+    //       this.notificationService.createNotification(
+    //         'error',
+    //         'Error',
+    //         'Profile Update Unsuccessful'
+    //       );
+    //      this.router.navigate(['/dashboard/update-profile']);
+    //     }
+    //   },
+    //   (error: any) => {
+    //     console.log(error);
+    //   }
+    // );
     alert(this.file );
   }
 
