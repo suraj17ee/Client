@@ -1,33 +1,23 @@
 <div class="container-fluid">
   <div class="row" style="margin-left: 28%; margin-bottom: 20px">
     <div class="col-md-6">
-      <div
-        class="card"
-        style="
-          width: 500px;
-          margin-top: 20px;
-          border-color: cadetblue;
-          border-width: 3px;
-          background-color: ghostwhite;
-        "
-      >
+      <div class="card" style="
+                width: 500px;
+                margin-top: 20px;
+                border-color: cadetblue;
+                border-width: 3px;
+                background-color: ghostwhite;
+              ">
         <article class="card-body">
           <form [formGroup]="statementForm" class="mt-5">
-            <h2
-              class="text-primary text-center"
-              style="font-size: 25px; margin-bottom: 5%"
-            >
+            <h2 class="text-primary text-center" style="font-size: 25px; margin-bottom: 5%">
               Account Statements
             </h2>
             <br />
             <div class="form-group row">
               <div class="form-group">
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  formControlName="fromAccount"
-                  style="width: 70%; margin-left: 13%"
-                >
+                <select class="form-select" aria-label="Default select example" formControlName="fromAccount"
+                  style="width: 70%; margin-left: 13%">
                   <option disabled selected value="">
                     Select Account to View Statements
                   </option>
@@ -35,14 +25,10 @@
                     {{ item.accountId }}
                   </option>
                 </select>
-                <small
-                  class="text-danger"
-                  style="margin-left: 10%"
-                  *ngIf="
-                    getaccountFormControls.fromAccount.invalid &&
-                    getaccountFormControls.fromAccount.touched
-                  "
-                >
+                <small class="text-danger" style="margin-left: 10%" *ngIf="
+                          getaccountFormControls.fromAccount.invalid &&
+                          getaccountFormControls.fromAccount.touched
+                        ">
                   Account number is required
                 </small>
               </div>
@@ -50,20 +36,11 @@
             <br />
             <div class="form-group row">
               <div class="form-group" id="buttons">
-                <button
-                  type="submit"
-                  (click)="submitForm()"
-                  [disabled]="!statementForm.valid"
-                  class="btn btn-success"
-                >
+                <button type="submit" (click)="submitForm()" [disabled]="!statementForm.valid" class="btn btn-success">
                   Send
                 </button>
-
-                <button
-                  type="submit"
-                  (click)="cancelForm()"
-                  class="btn btn-primary"
-                >
+      
+                <button type="submit" (click)="cancelForm()" class="btn btn-primary">
                   Reset
                 </button>
               </div>

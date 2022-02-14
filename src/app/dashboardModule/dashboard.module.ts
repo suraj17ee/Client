@@ -13,6 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CommonModule,
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
+    TableModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

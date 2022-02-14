@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
+import { StatementService } from 'src/app/services/statement.service';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-account-details',
@@ -9,6 +11,8 @@ import { AccountService } from 'src/app/services/account.service';
 export class AccountDetailsComponent implements OnInit {
   userId: number | undefined;
   accounts: any = [];
+  statements: any = [];
+  isShown: boolean = false;
 
   columnDefs = [
     { headerName: 'Account Number', field: 'accountId' },
@@ -22,8 +26,10 @@ export class AccountDetailsComponent implements OnInit {
     sortable: true,
     filter: true,
   };
+  fromId: any;
+  accId: any;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private stmtService: StatementService) {}
 
   ngOnInit(): void {
     this.getData();
@@ -58,5 +64,15 @@ export class AccountDetailsComponent implements OnInit {
     this.accountService.getAccounts(userId).subscribe((res) => {
       this.accounts = res;
     });
+
+    
+  }
+  submitForm(accountId:any) {
+    this.isShown = false;
+    this.stmtService.getStatements(accountId).subscribe((response: any) => {
+      this.statements = response;
+    });
+    this.isShown = true;
+    this.accId=accountId;
   }
 }
