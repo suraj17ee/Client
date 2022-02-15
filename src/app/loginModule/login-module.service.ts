@@ -9,7 +9,7 @@ export class LoginModuleService {
   constructor(private http: HttpClient) {}
   authListner = new Subject<boolean>();
 
-  url = "http://localhost:8081/server"
+  url = "http://localhost:8080/server"
 
   saveUser(user: any): Observable<any> {
     return this.http.post(this.url+'/save', user);

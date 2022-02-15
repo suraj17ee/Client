@@ -38,10 +38,6 @@ import { LoanDetailsComponent } from './loan-details/loan-details.component';
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
     TableModule,
-<<<<<<< HEAD
-    DialogModule
-=======
->>>>>>> 11fa93dd8d7dcddf43aa98682a4efc7d2a422b37
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
