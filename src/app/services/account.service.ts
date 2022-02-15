@@ -8,16 +8,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AccountService {
   constructor(private http: HttpClient) {}
 
+  url = "http://localhost:8080/server"
+
   saveAccount(data: any): Observable<any> {
-    return this.http.post('http://localhost:8080/server/account/', data);
+    return this.http.post(this.url+'/account/', data);
   }
 
   getAccounts(userId: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/server/all-accounts/${userId}`);
+    return this.http.get(this.url+`/all-accounts/${userId}`);
   }
 
   getAccountPDF(userId: number): Observable<any> {
-    var url = 'http://localhost:8080/server/account/exportPdf/' + userId;
+    var url = this.url+'/account/exportPdf/' + userId;
     var authorization = 'Bearer ' + sessionStorage.getItem('access_token');
 
     const headers = new HttpHeaders({
@@ -33,7 +35,7 @@ export class AccountService {
   }
 
   getTransactionPDF(accountId: number): Observable<any> {
-    var url = 'http://localhost:8080/server/transaction/exportPdf/' + accountId;
+    var url = this.url+'/transaction/exportPdf/' + accountId;
     var authorization = 'Bearer ' + sessionStorage.getItem('access_token');
 
     const headers = new HttpHeaders({
