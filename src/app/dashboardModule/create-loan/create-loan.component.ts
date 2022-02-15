@@ -99,7 +99,7 @@ export class CreateLoanComponent implements OnInit {
       monthlyEMI: this.monthlyEMI,
     };
 
-    this.loanService.createLoanAccount(loanData).subscribe(
+    this.loanService.createLoan(loanData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
           this.notificationService.createNotification(

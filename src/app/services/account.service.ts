@@ -11,7 +11,7 @@ export class AccountService {
   url = 'http://localhost:8080/server';
 
   saveAccount(data: any): Observable<any> {
-    return this.http.post(this.url + '/account/', data);
+    return this.http.post(this.url + '/create-account/', data);
   }
 
   getAccounts(userId: any): Observable<any> {
