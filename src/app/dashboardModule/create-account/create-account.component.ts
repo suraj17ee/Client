@@ -60,7 +60,6 @@ export class CreateAccountComponent implements OnInit {
             'Error',
             response.message
           );
-          this.router.navigate(['/create-account']);
         }
       },
       (error: any) => {

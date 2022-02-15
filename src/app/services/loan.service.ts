@@ -9,10 +9,10 @@ export class LoanService {
 
   url = 'http://localhost:8080/server';
 
-  createLoanAccount(data: any): Observable<any> {
+  createLoan(data: any): Observable<any> {
     return this.http.post(this.url + '/loan-account', data);
   }
-  getAllLoanAccounts(userId: any): Observable<any> {
-    return this.http.get(this.url + `/loan-details/${userId}`);
+  getAllLoans(userId: any): Observable<any> {
+    return this.http.get(this.url + `/all-loans/${userId}`);
   }
 }

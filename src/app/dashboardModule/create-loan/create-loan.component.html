@@ -2,14 +2,17 @@
 <div class="container">
   <div class="row" style="margin-left: 20%">
     <div class="col-md-6">
-      <div class="card" style="
+      <div
+        class="card"
+        style="
           width: 600px;
           margin-bottom: 20px;
           border-color: cadetblue;
           border-width: 3px;
           background-color: ghostwhite;
-        ">
-        <article class="card-body">
+        "
+      >
+        <article class="card-body" style="width: 60%; margin-left: 20%">
           <form [formGroup]="createLoanForm" class="mt-5">
             <h2 class="mb-3 text-primary">
               <p class="text-center" style="font-size: 30px; margin-bottom: 5%">
@@ -17,38 +20,72 @@
               </p>
             </h2>
             <div class="form-group row">
-              <label>Amount : </label>
-              <input type="number" class="form-control" formControlName="amount" placeholder="Amount" />
+              <input
+                type="number"
+                class="form-control"
+                formControlName="loanAmount"
+                placeholder="Amount"
+                (change)="updateInterestRate(); calculateEMI()"
+              />
             </div>
             <br />
             <div class="form-group row">
-            <select class="form-select form-select-lg mb-3"
-            aria-label=".form-select-lg example" [(ngModel)]="loanPurpose" (change)="updateInterestRate();calculateEMI()" formControlName="purpose">
-              <option *ngFor="let item of purposes" [ngValue]="item">{{item.name}}</option>
-            </select>
-          </div>
-          <div class="form-group row">
-            <select class="form-select form-select-lg mb-3"
-            aria-label=".form-select-lg example" [(ngModel)]="tenure" (change)="updateInterest() ;calculateEMI()" formControlName="tenure">
-              <option *ngFor="let item of tenures" [ngValue]="item">{{item.name}}</option>
-            </select>
-          </div>
-          <div class="form-group row">
-            <input type="number"  class="form-control" formControlName="account" placeholder="Account Number for EMI">
-          </div>
+              <select
+                class="form-select form-select-lg mb-3"
+                aria-label=".form-select-lg example"
+                [(ngModel)]="purpose"
+                (change)="updateInterestRate(); calculateEMI()"
+                formControlName="loanPurpose"
+              >
+                <option *ngFor="let item of purposes" [ngValue]="item">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
             <div class="form-group row">
-              Interest Rate:{{interestRate}} %
-              <br/>
-              Monthly EMI: {{monthlyEMI}}
+              <select
+                class="form-select form-select-lg mb-3"
+                aria-label=".form-select-lg example"
+                [(ngModel)]="tenure"
+                (change)="updateInterest(); calculateEMI()"
+                formControlName="tenureInMonths"
+              >
+                <option *ngFor="let item of tenures" [ngValue]="item">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group row">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="accountId"
+                placeholder="Account Number for EMI"
+              />
+            </div>
+            <div class="form-group row">
+              Interest Rate:{{ interestRate }} %
+              <br />
+              Monthly EMI: {{ monthlyEMI }} Rs.
+              <br />
+              Principal Amount: {{ amount + interestRate * tenure }} Rs.
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
               <div class="form-group col-md-6" id="buttons">
-                <button type="submit" class="btn btn-success"
-                (click)="createLoan()"
-                >Submit</button>
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  (click)="createLoan()"
+                >
+                  Submit
+                </button>
 
-                <button type="submit" class="btn btn-primary" style="margin-left: 10%">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="margin-left: 10%"
+                >
                   Reset
                 </button>
               </div>

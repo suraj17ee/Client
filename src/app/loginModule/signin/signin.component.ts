@@ -70,7 +70,6 @@ export class SigninComponent implements OnInit {
             'Error',
             response.message
           );
-          this.router.navigate(['/login']);
         }
       },
       (error: any) => {
