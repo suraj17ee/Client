@@ -10,7 +10,6 @@ export class ProfileComponent implements OnInit {
   user: any = {};
 
   constructor(private profileService: ProfileService) {}
-
   ngOnInit(): void {
     const userId: number = Number(localStorage.getItem('userId'));
     this.profileService.getUserProfile(userId).subscribe(
