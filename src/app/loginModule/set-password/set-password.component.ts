@@ -67,7 +67,6 @@ export class SetPasswordComponent implements OnInit {
             'Error',
             response.message
           );
-          this.router.navigate(['/reset-password']);
         }
       },
       (error: any) => {

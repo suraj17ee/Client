@@ -112,7 +112,6 @@ export class UpdateProfileComponent implements OnInit {
             'Error',
             'Profile Update Unsuccessful'
           );
-          this.router.navigate(['/dashboard/update-profile']);
         }
       },
       (error: any) => {

@@ -58,7 +58,6 @@ export class ForgetPasswordComponent implements OnInit {
             'Error',
             response.message
           );
-          this.router.navigate(['/forget-password']);
         }
       },
       (error: any) => {
