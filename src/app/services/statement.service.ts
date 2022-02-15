@@ -7,8 +7,8 @@ import { HttpClient } from "@angular/common/http";
 export class StatementService {
 
   constructor(private http: HttpClient) { }
-
+  url = "http://localhost:8080/server"
   getStatements(fromAccountId: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/server/history/${fromAccountId}`);
+    return this.http.get(this.url+`/history/${fromAccountId}`);
   }
 }

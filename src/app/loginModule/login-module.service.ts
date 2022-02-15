@@ -9,24 +9,26 @@ export class LoginModuleService {
   constructor(private http: HttpClient) {}
   authListner = new Subject<boolean>();
 
+  url = "http://localhost:8081/server"
+
   saveUser(user: any): Observable<any> {
-    return this.http.post('http://localhost:8080/server/save', user);
+    return this.http.post(this.url+'/save', user);
   }
 
   loginUser(user: any): Observable<any> {
-    return this.http.post('http://localhost:8080/server/login/', user);
+    return this.http.post(this.url+'/login/', user);
   }
 
   forgetPassword(data: any): Observable<any> {
-    return this.http.post('http://localhost:8080/forgot-password', data);
+    return this.http.post(this.url+'/forgot-password', data);
   }
 
   resetPassword(data: any): Observable<any> {
-    return this.http.post('http://localhost:8080/reset-password', data);
+    return this.http.post(this.url+'/reset-password', data);
   }
 
   verifyEmail(data: any): Observable<any> {
-    return this.http.post('http://localhost:8080/server/verify/', data);
+    return this.http.post(this.url+'/verify/', data);
   }
 
   getAuthListner() {
