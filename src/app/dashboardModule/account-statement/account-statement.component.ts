@@ -85,24 +85,4 @@ export class AccountStatementComponent implements OnInit {
   cancelForm() {
     this.statementForm.reset();
   }
-
-  // downloadPDF() {
-  //   this.accountService.getTransactionPDF(this.fromAccountId).subscribe(
-  //     (data: Blob) => {
-  //       var file = new Blob([data], { type: 'application/pdf' });
-  //       var fileURL = URL.createObjectURL(file);
-
-  //       window.open(fileURL);
-  //       var a = document.createElement('a');
-  //       a.href = fileURL;
-  //       a.target = '_blank';
-  //       a.download = 'transactions.pdf';
-  //       document.body.appendChild(a);
-  //       a.click();
-  //     },
-  //     (error) => {
-  //       console.log('getPDF error: ', error);
-  //     }
-  //   );
-  // }
 }

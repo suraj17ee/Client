@@ -37,7 +37,6 @@ export class UpdateProfileComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
 
       dateofbirth: new FormControl('', [Validators.required]),
-      file: new FormControl('', [Validators.required]),
     });
   }
 
@@ -72,7 +71,6 @@ export class UpdateProfileComponent implements OnInit {
     this.updateProfileForm.controls['email'].setValue(user.email);
     this.updateProfileForm.controls['password'].setValue(user.password);
     this.updateProfileForm.controls['dateofbirth'].setValue(user.dateofbirth);
-    this.updateProfileForm.controls['file'].setValue(user.file);
   }
 
   formatLabel(value: number) {
@@ -95,7 +93,6 @@ export class UpdateProfileComponent implements OnInit {
       email: this.updateProfileForm.get('email')?.value,
       password: this.updateProfileForm.get('password')?.value,
       dateofbirth: this.updateProfileForm.get('dateofbirth')?.value,
-      file:this.updateProfileForm.get('file')?.value,
     };
 
     console.log(userProfileData);
@@ -123,35 +120,7 @@ export class UpdateProfileComponent implements OnInit {
       }
     );
   }
-  uploadFile(){
-    var userId: number = Number(localStorage.getItem('userId'));
-    const fileData =this.updateProfileForm.get('file')?.value;
-    console.log(userId);
-    this.profileService.upload(this.updateProfileForm.get('file')?.value).subscribe(
-      (response) => {
-        console.log(response);
-        if (response != null) {
-          this.notificationService.createNotification(
-            'success',
-            'Success',
-            'Profile Updated Successfully'
-          );
-         // this.router.navigate(['/dashboard/profile']);
-        // } else if (response == null) {
-        //   this.notificationService.createNotification(
-        //     'error',
-        //     'Error',
-        //     'Profile Update Unsuccessful'
-        //   );
-         // this.router.navigate(['/dashboard/update-profile']);
-        }
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-    alert("File name:" );
-  }
+
   cancelForm() {
     this.updateProfileForm.reset();
   }
