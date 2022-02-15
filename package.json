@@ -27,6 +27,7 @@
     "ng-zorro-antd": "^12.1.1",
     "ngx-show-hide-password": "^2.4.0",
     "ngx-spinner": "^7.0.0",
+    "primeicons": "^5.0.0",
     "primeng": "^13.1.1",
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
