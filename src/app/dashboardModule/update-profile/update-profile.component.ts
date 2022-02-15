@@ -35,6 +35,7 @@ export class UpdateProfileComponent implements OnInit {
       gender: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+
       dateofbirth: new FormControl('', [Validators.required]),
     });
   }

@@ -30,7 +30,6 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import en from '@angular/common/locales/en';
-import { LoanComponent } from './src/app/dashboardModule/loan/loan.component';
 
 registerLocaleData(en);
 
@@ -45,8 +44,7 @@ registerLocaleData(en);
     ForgetPasswordComponent,
     SetPasswordComponent,
     SideNavigationComponent,
-    VerifyEmailComponent,
-    LoanComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,
