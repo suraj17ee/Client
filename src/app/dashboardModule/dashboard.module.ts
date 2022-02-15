@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {TableModule} from 'primeng/table';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {TableModule} from 'primeng/table';
     CommonModule,
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
-    TableModule
+    TableModule,
+    DialogModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

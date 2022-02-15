@@ -20,8 +20,6 @@ export class AccountStatementComponent implements OnInit {
   accounts: any = [];
   statements: any = [];
   fromAccountId: number = 0;
-  isShown: boolean = false;
-  accId: any;
   columnDefs = [
     { headerName: 'Transaction ID', field: 'transactionId' },
     { headerName: 'Sender Account', field: 'fromAccount' },
