@@ -15,6 +15,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FilecmpComponent } from './filecmp/filecmp.component';
 import {TableModule} from 'primeng/table';
+import { CreateLoanComponent } from './create-loan/create-loan.component';
+import { LoanDetailsComponent } from './loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,12 @@ import {TableModule} from 'primeng/table';
     ProfileComponent,
     HomeComponent,
     UpdateProfileComponent,
+<<<<<<< HEAD
     FilecmpComponent
+=======
+    CreateLoanComponent,
+    LoanDetailsComponent,
+>>>>>>> 4b71938bb50dc00b94965946ae2c2fa72d1a7bce
   ],
   imports: [
     FormsModule,
@@ -35,7 +42,7 @@ import {TableModule} from 'primeng/table';
     CommonModule,
     AgGridModule.withComponents([]),
     NgxSpinnerModule,
-    TableModule
+    TableModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

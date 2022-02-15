@@ -21,6 +21,7 @@ export class AccountStatementComponent implements OnInit {
   statements: any = [];
   fromAccountId: number = 0;
   isShown: boolean = false;
+  loading: boolean=false;
 
   constructor(
     fb: FormBuilder,
@@ -47,6 +48,7 @@ export class AccountStatementComponent implements OnInit {
         .getStatements(this.fromAccountId)
         .subscribe((response: any) => {
           this.statements = response;
+          this.loading = false;
           this.isShown = true;
           console.log('statement data', this.statements);
         });

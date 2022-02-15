@@ -135,8 +135,14 @@
             <br />
             <div class="form-group row" style="margin-left: 35%">
               <div class="form-group col-md-6" id="buttons">
-                <button type="submit" (click)="submitForm()" [disabled]="!updateProfileForm.valid"
-                  class="btn btn-success">
+                <button
+                  type="submit"
+                  (click)="submitForm()"
+                  [disabled]="
+                    !(updateProfileForm.valid && updateProfileForm.dirty)
+                  "
+                  class="btn btn-success"
+                >
                   Submit
                 </button>
 
