@@ -76,49 +76,6 @@
   </div>
 </div>
 
-<!-- <div class="card my-5">
-  <p-table [value]="statements" responsiveLayout="scroll" *ngIf="isShown">
-    <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between">
-        <span>Transaction Details of Account Number {{ fromAccountId }} </span>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Transaction Id</th>
-        <th>Sender Account</th>
-        <th>Receiver Account</th>
-        <th>Amount</th>
-        <th>Status</th>
-        <th>Date and Time</th>
-        <th>Description</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-statement>
-      <tr>
-        <td>{{ statement.transactionId }}</td>
-        <td>{{ statement.fromAccount }}</td>
-        <td>{{ statement.toAccount }}</td>
-        <td>{{ statement.amount }}</td>
-        <td>
-          <span class="order-badge order-delivered">{{
-            statement.transactionStatus
-          }}</span>
-        </td>
-        <td>{{ statement.transactionDate }}</td>
-        <td>{{ statement.description }}</td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td class="text-center text-danger" colspan="7">
-          There are no transactions yet.
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div> -->
-
 <div class="card my-5" *ngIf="isShown">
   <p-table
     #dt1
@@ -139,14 +96,14 @@
       'transactionDate'
     ]"
   >
-    <!-- <ng-template pTemplate="caption">
-		<div class="p-d-flex">
-			<span class="p-input-icon-left p-ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
-            </span>
-		</div>
-	</ng-template> -->
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex">
+        <span class="p-input-icon-left p-ml-auto">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" placeholder="Search keyword" />
+        </span>
+      </div>
+    </ng-template>
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <span>Transaction Details of Account Number {{ fromAccountId }} </span>
