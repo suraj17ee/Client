@@ -30,10 +30,11 @@
         <ng-template pTemplate="header">
           <tr>
             <th>Account Id</th>
-            <th>Account Status</th>
-            <th>Account Type</th>
+            <th>Status</th>
+            <th>Type</th>
             <th>Balance</th>
-            <th>Account Creation Date</th>
+            <th>Creation Date</th>
+            <th>Creation Time</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-account>
@@ -50,6 +51,7 @@
             <td>{{ account.accountType }}</td>
             <td>{{ account.balance }}</td>
             <td>{{ account.dateCreated }}</td>
+            <td>{{ account.timeCreated }}</td>
           </tr>
         </ng-template>
       </p-table>
