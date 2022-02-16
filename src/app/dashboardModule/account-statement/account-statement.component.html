@@ -76,9 +76,11 @@
   </div>
 </div>
 
-<div class="card my-5" *ngIf="isShown">
+<div class="card my-5"  *ngIf="isShown">
+  <p>*Use metakey to add a column to the sort selection.</p>
   <p-table
     #dt1
+    sortMode="multiple"
     [value]="statements"
     dataKey="id"
     [rows]="10"
@@ -96,14 +98,15 @@
       'transactionDate'
     ]"
   >
-    <ng-template pTemplate="caption">
-      <div class="p-d-flex">
-        <span class="p-input-icon-left p-ml-auto">
-          <i class="pi pi-search"></i>
-          <input pInputText type="text" placeholder="Search keyword" />
-        </span>
+    <!-- <ng-template pTemplate="caption">
+      <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+          </span>
       </div>
-    </ng-template>
+    </ng-template> -->
+    
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <span>Transaction Details of Account Number {{ fromAccountId }} </span>
@@ -111,7 +114,7 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>
+        <th pSortableColumn="transactionId">
           <div class="p-d-flex p-jc-between p-ai-center">
             Transaction Id
             <p-columnFilter
@@ -120,8 +123,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="transactionId"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="fromAccount">
           <div class="p-d-flex p-jc-between p-ai-center">
             Sender Account
             <p-columnFilter
@@ -130,8 +134,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="fromAccount"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="toAccount">
           <div class="p-d-flex p-jc-between p-ai-center">
             Receiver Account
             <p-columnFilter
@@ -140,8 +145,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="toAccount"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="transactionDate">
           <div class="p-d-flex p-jc-between p-ai-center">
             Date
             <p-columnFilter
@@ -150,8 +156,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="transactionDate"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="transactionTime">
           <div class="p-d-flex p-jc-between p-ai-center">
             Time
             <p-columnFilter
@@ -160,8 +167,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="transactionTime"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="amount">
           <div class="p-d-flex p-jc-between p-ai-center">
             Amount
             <p-columnFilter
@@ -171,8 +179,9 @@
               currency="INR"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="amount"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="transactionStatus">
           <div class="p-d-flex p-jc-between p-ai-center">
             Status
             <p-columnFilter
@@ -182,8 +191,9 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="transactionStatus"></p-sortIcon>
         </th>
-        <th>
+        <th pSortableColumn="description">
           <div class="p-d-flex p-jc-between p-ai-center">
             Description
             <p-columnFilter
@@ -193,6 +203,7 @@
               display="menu"
             ></p-columnFilter>
           </div>
+          <p-sortIcon field="description"></p-sortIcon>
         </th>
       </tr>
     </ng-template>
@@ -233,3 +244,4 @@
     </ng-template>
   </p-table>
 </div>
+

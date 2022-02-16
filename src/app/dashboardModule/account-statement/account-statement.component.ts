@@ -73,6 +73,7 @@ export class AccountStatementComponent implements OnInit {
           this.statements = response;
           this.loading = false;
           this.isShown = true;
+          this.statements.forEach( (i: { date: string | number | Date; }) => (i.date = new Date(i.date)));
           console.log('statement data', this.statements);
         });
   }
