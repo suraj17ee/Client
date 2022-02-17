@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoanService } from 'src/app/services/loan.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-loan',
@@ -31,7 +32,8 @@ export class CreateLoanComponent implements OnInit {
   constructor(
     private loanService: LoanService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.createLoanForm = new FormGroup({
       loanAmount: new FormControl('', [Validators.required]),
@@ -98,10 +100,11 @@ export class CreateLoanComponent implements OnInit {
       tenureInMonths: this.tenure,
       monthlyEMI: this.monthlyEMI,
     };
-
+    this.SpinnerService.show();
     this.loanService.createLoan(loanData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
+          this.SpinnerService.hide();
           this.notificationService.createNotification(
             'success',
             'Success',

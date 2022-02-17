@@ -8,6 +8,7 @@ import {
 import { AccountService } from 'src/app/services/account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-account',
@@ -23,7 +24,8 @@ export class CreateAccountComponent implements OnInit {
     fb: FormBuilder,
     private accountService: AccountService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.createAccountForm = fb.group({
       accountType: new FormControl('', [Validators.required]),
@@ -45,9 +47,11 @@ export class CreateAccountComponent implements OnInit {
       balance: this.createAccountForm.get('balance')?.value,
       userId: userId,
     };
+    this.SpinnerService.show();
     this.accountService.saveAccount(accountData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
+          this.SpinnerService.hide();
           this.notificationService.createNotification(
             'success',
             'Success',
