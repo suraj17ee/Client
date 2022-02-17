@@ -57,6 +57,10 @@ export class CreateLoanComponent implements OnInit {
     this.getData();
   }
 
+  get getLoanFormControls() {
+    return this.createLoanForm.controls;
+  }
+
   updateInterestRate() {
     if (this.createLoanForm.get('loanPurpose')?.value == 'Personal') {
       this.interestRate = 12;

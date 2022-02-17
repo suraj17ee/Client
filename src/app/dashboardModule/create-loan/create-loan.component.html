@@ -33,6 +33,15 @@
                     calculateInterestAmount()
                   "
                 />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getLoanFormControls.loanAmount.invalid &&
+                    getLoanFormControls.loanAmount.touched
+                  "
+                >
+                  Amount is required
+                </small>
               </div>
             </div>
             <br />
@@ -76,6 +85,15 @@
                   placeholder="Tenure in Months"
                   maxlength="1000"
                 />
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    getLoanFormControls.tenureInMonths.invalid &&
+                    getLoanFormControls.tenureInMonths.touched
+                  "
+                >
+                  Tenure in Months is required
+                </small>
                 <br />
               </div>
             </div>
@@ -98,28 +116,37 @@
                 </select>
               </div>
             </div>
-            <br />
+            <hr />
             <div class="form-group row">
-              <div class="col-md-6">
-                <div class="row">
-                  <div>
-                    Principal Amount: {{ amount | currency: "INR":"symbol" }}
+              <div class="col-md-7">
+                <div class="row" id="data">
+                  <div class="rates">
+                    <label>Principal Amount: </label>
+                    <p>{{ amount | currency: "INR":"symbol" }}</p>
                   </div>
-                  <div>Interest Rate: {{ interestRate }} %</div>
-                  <div>
-                    Monthly EMI: {{ monthlyEMI | currency: "INR":"symbol" }}
+                  <div class="rates">
+                    <label> Interest Rate: </label>
+                    <p>{{ interestRate }} %</p>
                   </div>
-                  <div>
-                    Interest Amount:
-                    {{ interestAmount | currency: "INR":"symbol" }}
+                  <div class="rates">
+                    <label>Monthly EMI: </label>
+                    <p>{{ monthlyEMI | currency: "INR":"symbol" }}</p>
                   </div>
-                  <div>
-                    Total Amount:
-                    {{ amount + interestAmount | currency: "INR":"symbol" }}
+                  <div class="rates">
+                    <label> Interest Amount:</label>
+                    <p>{{ interestAmount | currency: "INR":"symbol" }}</p>
+                  </div>
+                  <div class="rates">
+                    <label> Total Amount: </label>
+                    <p>
+                      {{ amount + interestAmount | currency: "INR":"symbol" }}
+                    </p>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6"></div>
+              <div class="col-md-5">
+                <!-- chart -->
+              </div>
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
