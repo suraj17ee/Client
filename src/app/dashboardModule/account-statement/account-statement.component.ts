@@ -45,25 +45,6 @@ export class AccountStatementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-    // this.cols = [
-    //   {
-    //     field: 'transactionId',
-    //     header: 'TransactionId',
-    //     customExportHeader: 'Transaction Details',
-    //   },
-    //   { field: 'fromAccount', header: 'Sender Account No.' },
-    //   { field: 'toAccount', header: 'Receiver Account No.' },
-    //   { field: 'amount', header: 'Amount' },
-    //   { field: 'transactionStatus', header: 'Status' },
-    //   { field: 'transactionDate', header: 'Date' },
-    //   { field: 'transactionTime', header: 'TIme' },
-    //   { field: 'description', header: 'Description' },
-    // ];
-
-    // this.exportColumns = this.cols.map((col) => ({
-    //   title: col.header,
-    //   dataKey: col.field,
-    // }));
   }
 
  
