@@ -47,7 +47,7 @@
                 class="form-select form-select-lg mb-3"
                 aria-label=".form-select-lg example"
                 [(ngModel)]="tenure"
-                (change)="updateInterest(); calculateEMI()"
+                (change)="updateInterest(); calculateEMI(); calculateInterestAmount();"
                 formControlName="tenureInMonths"
               >
                 <option *ngFor="let item of tenures" [ngValue]="item">
@@ -64,11 +64,15 @@
               />
             </div>
             <div class="form-group row">
+              Principal Amount: {{ amount }} Rs.
+              <br/>
               Interest Rate:{{ interestRate }} %
               <br />
               Monthly EMI: {{ monthlyEMI }} Rs.
               <br />
-              Principal Amount: {{ amount + interestRate * tenure }} Rs.
+              interest Amount: {{interestAmount}} Rs.
+              <br/>
+              
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
