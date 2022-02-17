@@ -22,3 +22,8 @@ label {
 .rates p {
   margin-top: 10px;
 }
+
+p {
+  margin-top: 7%;
+  font-size: 15px;
+}

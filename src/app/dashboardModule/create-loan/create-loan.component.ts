@@ -18,7 +18,6 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class CreateLoanComponent implements OnInit {
   createLoanForm: FormGroup;
-  //purpose: string | undefined;
   interestRate: number = 0;
   tenure: number = 0;
   amount: number = 0;
@@ -43,15 +42,11 @@ export class CreateLoanComponent implements OnInit {
     });
   }
 
-  get getaccountFormControls() {
-    return this.createLoanForm.controls;
-  }
-
   ngOnInit(): void {
-    this.createLoanForm.controls['loanAmount'].setValue(1000000);
-    this.createLoanForm.controls['loanPurpose'].setValue('Home');
     this.interestRate = 7;
-    this.createLoanForm.controls['tenureInMonths'].setValue(24);
+    this.createLoanForm.controls['loanPurpose'].setValue('Home');
+    this.createLoanForm.controls['loanAmount'].setValue(1000000);
+    this.createLoanForm.controls['tenureInMonths'].setValue(240);
     this.calculateEMI();
     this.calculateInterestAmount();
     this.getData();
@@ -59,6 +54,20 @@ export class CreateLoanComponent implements OnInit {
 
   get getLoanFormControls() {
     return this.createLoanForm.controls;
+  }
+
+  formatAmount(value: number) {
+    if (value >= 1) {
+      return value / 100000;
+    }
+    return value;
+  }
+
+  formatTenure(value: number) {
+    if (value >= 1) {
+      return value;
+    }
+    return value;
   }
 
   updateInterestRate() {
@@ -70,27 +79,23 @@ export class CreateLoanComponent implements OnInit {
       this.interestRate = 9;
     }
   }
+
   calculateEMI() {
     this.amount = this.createLoanForm.get('loanAmount')?.value;
     this.tenure = this.createLoanForm.get('tenureInMonths')?.value;
+    console.log(this.tenure);
     let intr = this.interestRate / 12 / 100;
     let n = Math.pow(intr + 1, this.tenure);
-    if (this.amount >= 1000) {
-      this.monthlyEMI = (this.amount * intr * n) / (n - 1);
-      this.totalAmount = this.monthlyEMI * this.tenure;
-      this.monthlyEMI =
-        Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
-      console.log(this.monthlyEMI);
-    }
+    this.monthlyEMI = (this.amount * intr * n) / (n - 1);
+    this.totalAmount = this.monthlyEMI * this.tenure;
+    this.monthlyEMI =
+      Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
   }
 
   calculateInterestAmount() {
-    this.amount = this.createLoanForm.get('loanAmount')?.value;
-    if (this.amount >= 1000) {
-      this.interestAmount = this.totalAmount - this.amount;
-      this.interestAmount =
-        Math.round((this.interestAmount + Number.EPSILON) * 100) / 100;
-    }
+    this.interestAmount = this.totalAmount - this.amount;
+    this.interestAmount =
+      Math.round((this.interestAmount + Number.EPSILON) * 100) / 100;
   }
 
   createLoan() {
@@ -108,6 +113,7 @@ export class CreateLoanComponent implements OnInit {
       tenureInMonths: this.tenure,
       monthlyEMI: this.monthlyEMI,
     };
+
     this.SpinnerService.show();
     this.loanService.createLoan(loanData).subscribe(
       (response: any) => {
