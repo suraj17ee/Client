@@ -20,6 +20,7 @@ export class CreateLoanComponent implements OnInit {
   createLoanForm!: FormGroup;
   loanPurpose!: string;
   interestRate!: number;
+  purpose: string | undefined;
   tenure!: number;
   monthlyEMI: number = 0;
   amount: number = 0;

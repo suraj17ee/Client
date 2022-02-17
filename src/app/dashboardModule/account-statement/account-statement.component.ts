@@ -47,7 +47,6 @@ export class AccountStatementComponent implements OnInit {
     this.getData();
   }
 
- 
   submitForm() {
     (this.fromAccountId = this.statementForm.get('fromAccount')?.value),
       this.statementService
@@ -56,32 +55,31 @@ export class AccountStatementComponent implements OnInit {
           this.statements = response;
           this.loading = false;
           this.isShown = true;
-          this.statements.forEach( (i: { transactionDate: string | number | Date; })=> {i.transactionDate = new Date(i.transactionDate)});
+          this.statements.forEach(
+            (i: { transactionDate: string | number | Date }) => {
+              i.transactionDate = new Date(i.transactionDate);
+            }
+          );
           console.log('statement data', this.statements);
         });
   }
-  customSort(event: { data: any[]; field: string | number; order: number; }) {
+  customSort(event: { data: any[]; field: string | number; order: number }) {
     event.data?.sort((data1, data2) => {
-        let value1 = data1[event.field];
-        let value2 = data2[event.field];
-        let result = null;
+      let value1 = data1[event.field];
+      let value2 = data2[event.field];
+      let result = null;
 
-        if (value1 == null && value2 != null)
-            result = -1;
-        else if (value1 != null && value2 == null)
-            result = 1;
-        else if (value1 == null && value2 == null)
-            result = 0;
-        else if (typeof value1 === 'string' && typeof value2 === 'string')
-            result = value1.localeCompare(value2);
-        else
-            result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+      if (value1 == null && value2 != null) result = -1;
+      else if (value1 != null && value2 == null) result = 1;
+      else if (value1 == null && value2 == null) result = 0;
+      else if (typeof value1 === 'string' && typeof value2 === 'string')
+        result = value1.localeCompare(value2);
+      else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
 
-        return (event.order * result);
+      return event.order * result;
     });
-}
+  }
 
-  
   getData() {
     var userId: number = Number(localStorage.getItem('userId'));
 

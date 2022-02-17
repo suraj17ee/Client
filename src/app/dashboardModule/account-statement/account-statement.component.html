@@ -76,10 +76,11 @@
   </div>
 </div>
 
-<div class="card my-5"  *ngIf="isShown">
+<div class="card my-5" *ngIf="isShown">
   <p-table
     #dt1
-    (sortFunction)="customSort($event)" [customSort]="true"
+    (sortFunction)="customSort($event)"
+    [customSort]="true"
     [value]="statements"
     dataKey="id"
     [rows]="10"
@@ -99,13 +100,18 @@
   >
     <ng-template pTemplate="caption">
       <div class="flex">
-          <span class="p-input-icon-left ml-auto">
-              <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 'contains')" placeholder="Search keyword" />
-          </span>
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filterGlobal($event.target, 'contains')"
+            placeholder="Search keyword"
+          />
+        </span>
       </div>
     </ng-template>
-    
+
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <span>Transaction Details of Account Number {{ fromAccountId }} </span>
@@ -231,7 +237,7 @@
         <td>
           {{ statement.transactionTime }}
         </td>
-        
+
         <td>
           {{ statement.description }}
         </td>
