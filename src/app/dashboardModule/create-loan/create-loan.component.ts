@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoanService } from 'src/app/services/loan.service';
@@ -23,6 +28,7 @@ export class CreateLoanComponent implements OnInit {
   accounts: any = [];
 
   constructor(
+    fb: FormBuilder,
     private loanService: LoanService,
     private router: Router,
     private accountService: AccountService,
@@ -30,10 +36,10 @@ export class CreateLoanComponent implements OnInit {
     private SpinnerService: NgxSpinnerService
   ) {
     this.createLoanForm = new FormGroup({
-      loanAmount: new FormControl('', [Validators.required]),
-      loanPurpose: new FormControl('', [Validators.required]),
-      tenureInMonths: new FormControl('', [Validators.required]),
-      accountId: new FormControl('', [Validators.required]),
+      purpose: new FormControl('', [Validators.required]),
+      amount: new FormControl('', [Validators.required]),
+      tenure: new FormControl('', [Validators.required]),
+      account: new FormControl('', [Validators.required]),
     });
   }
 
@@ -60,7 +66,6 @@ export class CreateLoanComponent implements OnInit {
       this.interestRate = 9;
     }
   }
-
   calculateEMI() {
     this.amount = this.createLoanForm.get('loanAmount')?.value;
     this.tenure = this.createLoanForm.get('tenureInMonths')?.value;
@@ -71,6 +76,7 @@ export class CreateLoanComponent implements OnInit {
       this.totalAmount = this.monthlyEMI * this.tenure;
       this.monthlyEMI =
         Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
+      console.log(this.monthlyEMI);
     }
   }
 
@@ -115,6 +121,7 @@ export class CreateLoanComponent implements OnInit {
             'Error',
             response.message
           );
+          this.router.navigate(['/create-loan']);
         }
       },
       (error: any) => {

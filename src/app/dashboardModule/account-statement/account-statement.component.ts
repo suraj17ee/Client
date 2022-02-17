@@ -80,14 +80,6 @@ export class AccountStatementComponent implements OnInit {
     });
   }
 
-  columns = [
-    { title: 'Brands', dataKey: 'brand' },
-    { title: 'Last Year Sale', dataKey: 'lastYearSale' },
-    { title: 'This Year Sale', dataKey: 'thisYearSale' },
-    { title: 'Last Year Profit', dataKey: 'lastYearProfit' },
-    { title: 'This Year Profit', dataKey: 'thisYearProfit' },
-  ];
-
   getData() {
     var userId: number = Number(localStorage.getItem('userId'));
 
