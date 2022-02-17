@@ -79,7 +79,7 @@
 <div class="card my-5"  *ngIf="isShown">
   <p-table
     #dt1
-    sortMode="multiple"
+    (sortFunction)="customSort($event)" [customSort]="true"
     [value]="statements"
     dataKey="id"
     [rows]="10"
@@ -97,14 +97,14 @@
       'transactionDate'
     ]"
   >
-    <!-- <ng-template pTemplate="caption">
+    <ng-template pTemplate="caption">
       <div class="flex">
           <span class="p-input-icon-left ml-auto">
               <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+              <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 'contains')" placeholder="Search keyword" />
           </span>
       </div>
-    </ng-template> -->
+    </ng-template>
     
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
@@ -245,6 +245,7 @@
   </p-table>
 </div>
 
+<!-- 
 <div class="card" *ngIf="isShown">
   <h5>Custom Sort</h5>
   <p-table [value]="statements" (sortFunction)="customSort($event)" [customSort]="true">
@@ -275,4 +276,4 @@
       </ng-template>
   </p-table>
 </div>
-
+ -->

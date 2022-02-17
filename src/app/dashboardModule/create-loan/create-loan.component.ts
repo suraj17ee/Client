@@ -8,6 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoanService } from 'src/app/services/loan.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-create-loan',
@@ -20,6 +22,10 @@ export class CreateLoanComponent implements OnInit {
   interestRate!: number;
   tenure!: number;
   monthlyEMI: number = 0;
+  interestAmount: number = 0;
+  totalAmount: number = 0;
+  accounts: any = [];
+
   purposes: Array<any> = [
     { id: 0, name: 'Personal' },
     { id: 1, name: 'Home' },
@@ -35,7 +41,9 @@ export class CreateLoanComponent implements OnInit {
     fb: FormBuilder,
     private loanService: LoanService,
     private router: Router,
-    private notificationService: NotificationService
+    private accountService: AccountService,
+    private notificationService: NotificationService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.createLoanForm = new FormGroup({
       purpose: new FormControl('', [Validators.required]),
@@ -49,7 +57,17 @@ export class CreateLoanComponent implements OnInit {
     return this.createLoanForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createLoanForm.controls['loanAmount'].setValue(1000000);
+    this.createLoanForm.controls['purpose'].setValue(1);
+    this.interestRate = 9;
+    this.createLoanForm.controls['tenureInMonths'].setValue(24);
+    this.updateInterest();
+    this.calculateEMI();
+    this.calculateInterestAmount();
+    this.getData();
+  }
+
   updateInterestRate() {
     let purpose = this.createLoanForm.get('purpose')?.value;
     if (purpose.id == 0) {
@@ -65,15 +83,7 @@ export class CreateLoanComponent implements OnInit {
     console.log(this.interestRate);
   }
   updateInterest() {
-    let tenure = this.createLoanForm.get('tenure')?.value;
-    if (tenure.id == 0) {
-      this.tenure = 3;
-    } else if (tenure.id == 1) {
-      this.tenure = 9;
-    } else {
-      this.tenure = 12;
-    }
-    console.log(this.tenure);
+    this.tenure = this.createLoanForm.get('tenureInMonths')?.value;
   }
   calculateEMI() {
     var amount = this.createLoanForm.get('amount')?.value;
@@ -97,10 +107,11 @@ export class CreateLoanComponent implements OnInit {
       tenure: this.tenure,
       monthlyEMI: this.monthlyEMI,
     };
-
+    this.SpinnerService.show();
     this.loanService.createLoan(loanData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
+          this.SpinnerService.hide();
           this.notificationService.createNotification(
             'success',
             'Success',
@@ -120,5 +131,13 @@ export class CreateLoanComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getData() {
+    var userID: number = Number(localStorage.getItem('userId'));
+
+    this.accountService.getAccounts(userID).subscribe((res) => {
+      this.accounts = res;
+    });
   }
 }
