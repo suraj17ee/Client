@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoanService } from 'src/app/services/loan.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-create-loan',
@@ -19,6 +20,7 @@ export class CreateLoanComponent implements OnInit {
   monthlyEMI: number = 0;
   interestAmount: number = 0;
   totalAmount: number = 0;
+  accounts: any = [];
 
   purposes: Array<any> = [
     { id: 0, name: 'Personal' },
@@ -34,6 +36,7 @@ export class CreateLoanComponent implements OnInit {
   constructor(
     private loanService: LoanService,
     private router: Router,
+    private accountService: AccountService,
     private notificationService: NotificationService,
     private SpinnerService: NgxSpinnerService
   ) {
@@ -49,7 +52,16 @@ export class CreateLoanComponent implements OnInit {
     return this.createLoanForm.controls;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createLoanForm.controls['loanAmount'].setValue(1000000);
+    this.createLoanForm.controls['purpose'].setValue(1);
+    this.interestRate = 9;
+    this.createLoanForm.controls['tenureInMonths'].setValue(24);
+    this.updateInterest();
+    this.calculateEMI();
+    this.calculateInterestAmount();
+    this.getData();
+  }
 
   updateInterestRate() {
     if (this.createLoanForm.get('loanPurpose')?.value.id == 0) {
@@ -66,14 +78,7 @@ export class CreateLoanComponent implements OnInit {
   }
 
   updateInterest() {
-    if (this.createLoanForm.get('tenureInMonths')?.value.id == 0) {
-      this.tenure = 3;
-    } else if (this.createLoanForm.get('tenureInMonths')?.value.id == 1) {
-      this.tenure = 6;
-    } else {
-      this.tenure = 12;
-    }
-    console.log(this.tenure);
+    this.tenure = this.createLoanForm.get('tenureInMonths')?.value;
   }
 
   calculateEMI() {
@@ -137,5 +142,13 @@ export class CreateLoanComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getData() {
+    var userID: number = Number(localStorage.getItem('userId'));
+
+    this.accountService.getAccounts(userID).subscribe((res) => {
+      this.accounts = res;
+    });
   }
 }

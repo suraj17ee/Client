@@ -20,59 +20,96 @@
               </p>
             </h2>
             <div class="form-group row">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="loanAmount"
-                placeholder="Amount"
-                (change)="updateInterestRate(); calculateEMI()"
-              />
+              <div class="col-md-4">
+                <label>Amount : </label>
+              </div>
+              <div class="col-md-8">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="loanAmount"
+                  placeholder="Amount"
+                  (change)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
+                  "
+                />
+              </div>
             </div>
             <br />
             <div class="form-group row">
-              <select
-                class="form-select form-select-lg mb-3"
-                aria-label=".form-select-lg example"
-                [(ngModel)]="purpose"
-                (change)="updateInterestRate(); calculateEMI()"
-                formControlName="loanPurpose"
-              >
-                <option *ngFor="let item of purposes" [ngValue]="item">
-                  {{ item.name }}
-                </option>
-              </select>
+              <div class="col-md-4">
+                <label>Loan Purpose : </label>
+              </div>
+              <div class="col-md-8">
+                <select
+                  class="form-select form-select-lg mb-3"
+                  aria-label=".form-select-lg example"
+                  [(ngModel)]="purpose"
+                  (change)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
+                  "
+                  formControlName="loanPurpose"
+                >
+                  <option *ngFor="let item of purposes" [ngValue]="item">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
             </div>
             <div class="form-group row">
-              <select
-                class="form-select form-select-lg mb-3"
-                aria-label=".form-select-lg example"
-                [(ngModel)]="tenure"
-                (change)="updateInterest(); calculateEMI(); calculateInterestAmount();"
-                formControlName="tenureInMonths"
-              >
-                <option *ngFor="let item of tenures" [ngValue]="item">
-                  {{ item.name }}
-                </option>
-              </select>
+              <div class="col-md-4">
+                <label>Tenure in Months : </label>
+              </div>
+              <div class="col-md-8">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="tenure"
+                  (change)="
+                    updateInterest(); calculateEMI(); calculateInterestAmount()
+                  "
+                  formControlName="tenureInMonths"
+                />
+                <br />
+              </div>
             </div>
             <div class="form-group row">
-              <input
-                type="number"
-                class="form-control"
-                formControlName="accountId"
-                placeholder="Account Number for EMI"
-              />
+              <div class="col-md-4">
+                <label>Account No. : </label>
+              </div>
+              <div class="col-md-8">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  formControlName="accountId"
+                >
+                  <option disabled selected value="">
+                    Select Your Account
+                  </option>
+                  <option *ngFor="let item of accounts; let i = index">
+                    {{ item.accountId }}
+                  </option>
+                </select>
+              </div>
             </div>
+            <br />
             <div class="form-group row">
-              Principal Amount: {{ amount }} Rs.
-              <br/>
-              Interest Rate:{{ interestRate }} %
+              Principal Amount: {{ amount | currency: "INR":"symbol" }}
               <br />
-              Monthly EMI: {{ monthlyEMI }} Rs.
+              Interest Rate: {{ interestRate }} %
               <br />
-              interest Amount: {{interestAmount}} Rs.
-              <br/>
-              
+              Monthly EMI: {{ monthlyEMI | currency: "INR":"symbol" }}
+              <br />
+              Interest Amount:
+              {{ interestAmount | currency: "INR":"symbol" }}
+              <br />
+              Total Amount:
+              {{ amount + interestAmount | currency: "INR":"symbol" }}
+              <br />
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
