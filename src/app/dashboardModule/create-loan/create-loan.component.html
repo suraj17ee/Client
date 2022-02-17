@@ -73,13 +73,15 @@
                     calculateInterestAmount()
                   "
                   formControlName="tenureInMonths"
+                  placeholder="Tenure in Months"
+                  maxlength="1000"
                 />
                 <br />
               </div>
             </div>
             <div class="form-group row">
               <div class="col-md-4">
-                <label>Account No. : </label>
+                <label>Account Number : </label>
               </div>
               <div class="col-md-8">
                 <select
@@ -88,7 +90,7 @@
                   formControlName="accountId"
                 >
                   <option disabled selected value="">
-                    Select Your Account
+                    Select Your Account Number
                   </option>
                   <option *ngFor="let item of accounts; let i = index">
                     {{ item.accountId }}

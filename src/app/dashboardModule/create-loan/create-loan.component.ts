@@ -36,10 +36,10 @@ export class CreateLoanComponent implements OnInit {
     private SpinnerService: NgxSpinnerService
   ) {
     this.createLoanForm = new FormGroup({
-      purpose: new FormControl('', [Validators.required]),
-      amount: new FormControl('', [Validators.required]),
-      tenure: new FormControl('', [Validators.required]),
-      account: new FormControl('', [Validators.required]),
+      loanPurpose: new FormControl('', [Validators.required]),
+      loanAmount: new FormControl('', [Validators.required]),
+      tenureInMonths: new FormControl('', [Validators.required]),
+      accountId: new FormControl('', [Validators.required]),
     });
   }
 
