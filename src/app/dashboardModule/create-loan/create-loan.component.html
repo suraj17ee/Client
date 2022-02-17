@@ -20,12 +20,12 @@
               </p>
             </h2>
             <div class="form-group row">
+              <label>Amount : </label>
               <input
                 type="number"
                 class="form-control"
-                formControlName="loanAmount"
+                formControlName="amount"
                 placeholder="Amount"
-                (change)="updateInterestRate(); calculateEMI()"
               />
             </div>
             <br />
@@ -33,9 +33,9 @@
               <select
                 class="form-select form-select-lg mb-3"
                 aria-label=".form-select-lg example"
-                [(ngModel)]="purpose"
+                [(ngModel)]="loanPurpose"
                 (change)="updateInterestRate(); calculateEMI()"
-                formControlName="loanPurpose"
+                formControlName="purpose"
               >
                 <option *ngFor="let item of purposes" [ngValue]="item">
                   {{ item.name }}
@@ -47,8 +47,8 @@
                 class="form-select form-select-lg mb-3"
                 aria-label=".form-select-lg example"
                 [(ngModel)]="tenure"
-                (change)="updateInterest(); calculateEMI(); calculateInterestAmount();"
-                formControlName="tenureInMonths"
+                (change)="updateInterest(); calculateEMI()"
+                formControlName="tenure"
               >
                 <option *ngFor="let item of tenures" [ngValue]="item">
                   {{ item.name }}
@@ -59,20 +59,14 @@
               <input
                 type="number"
                 class="form-control"
-                formControlName="accountId"
+                formControlName="account"
                 placeholder="Account Number for EMI"
               />
             </div>
             <div class="form-group row">
-              Principal Amount: {{ amount }} Rs.
-              <br/>
               Interest Rate:{{ interestRate }} %
               <br />
-              Monthly EMI: {{ monthlyEMI }} Rs.
-              <br />
-              interest Amount: {{interestAmount}} Rs.
-              <br/>
-              
+              Monthly EMI: {{ monthlyEMI }}
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">

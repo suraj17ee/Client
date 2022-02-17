@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoanService } from 'src/app/services/loan.service';
@@ -10,15 +15,11 @@ import { LoanService } from 'src/app/services/loan.service';
   styleUrls: ['./create-loan.component.css'],
 })
 export class CreateLoanComponent implements OnInit {
-  createLoanForm: FormGroup;
-  purpose: string | undefined;
-  interestRate: number = 0;
-  tenure: number = 0;
-  amount: number = 0;
+  createLoanForm!: FormGroup;
+  loanPurpose!: string;
+  interestRate!: number;
+  tenure!: number;
   monthlyEMI: number = 0;
-  interestAmount: number = 0;
-  totalAmount: number = 0;
-
   purposes: Array<any> = [
     { id: 0, name: 'Personal' },
     { id: 1, name: 'Home' },
@@ -31,15 +32,16 @@ export class CreateLoanComponent implements OnInit {
   ];
 
   constructor(
+    fb: FormBuilder,
     private loanService: LoanService,
     private router: Router,
     private notificationService: NotificationService
   ) {
     this.createLoanForm = new FormGroup({
-      loanAmount: new FormControl('', [Validators.required]),
-      loanPurpose: new FormControl('', [Validators.required]),
-      tenureInMonths: new FormControl('', [Validators.required]),
-      accountId: new FormControl('', [Validators.required]),
+      purpose: new FormControl('', [Validators.required]),
+      amount: new FormControl('', [Validators.required]),
+      tenure: new FormControl('', [Validators.required]),
+      account: new FormControl('', [Validators.required]),
     });
   }
 
@@ -48,68 +50,51 @@ export class CreateLoanComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
   updateInterestRate() {
-    if (this.createLoanForm.get('loanPurpose')?.value.id == 0) {
+    let purpose = this.createLoanForm.get('purpose')?.value;
+    if (purpose.id == 0) {
       this.interestRate = 7;
-      this.purpose = 'Personal';
-    } else if (this.createLoanForm.get('loanPurpose')?.value.id == 1) {
+      this.loanPurpose = 'Personal';
+    } else if (purpose.id == 1) {
       this.interestRate = 9;
-      this.purpose = 'Home';
+      this.loanPurpose = 'Home';
     } else {
       this.interestRate = 12;
-      this.purpose = 'Vehicle';
+      this.loanPurpose = 'Vehicle';
     }
     console.log(this.interestRate);
   }
-
   updateInterest() {
-    if (this.createLoanForm.get('tenureInMonths')?.value.id == 0) {
+    let tenure = this.createLoanForm.get('tenure')?.value;
+    if (tenure.id == 0) {
       this.tenure = 3;
-    } else if (this.createLoanForm.get('tenureInMonths')?.value.id == 1) {
-      this.tenure = 6;
+    } else if (tenure.id == 1) {
+      this.tenure = 9;
     } else {
       this.tenure = 12;
     }
     console.log(this.tenure);
   }
-
   calculateEMI() {
-    this.amount = this.createLoanForm.get('loanAmount')?.value;
-    let intr = this.interestRate / 12 / 100;
-    let n = Math.pow(intr + 1, this.tenure);
-    if (this.amount >= 1000) {
-      this.monthlyEMI = (this.amount * intr * n) / (n - 1);
-      this.totalAmount = this.monthlyEMI * this.tenure;
+    var amount = this.createLoanForm.get('amount')?.value;
+    if (amount >= 1000) {
+      this.monthlyEMI =
+        (amount + (amount * this.interestRate) / 100) / this.tenure;
       this.monthlyEMI =
         Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
+      console.log(this.monthlyEMI);
     }
     console.log(this.monthlyEMI);
   }
-
-  calculateInterestAmount() {
-    this.amount = this.createLoanForm.get('loanAmount')?.value;
-    if (this.amount >= 1000) {
-      this.interestAmount = this.totalAmount - this.amount;
-      this.interestAmount =
-        Math.round((this.interestAmount + Number.EPSILON) * 100) / 100;
-    }
-    console.log(this.interestAmount);
-  }
-
   createLoan() {
     var userId: number = Number(localStorage.getItem('userId'));
 
     const loanData = {
       userId: userId,
-      accountId: this.createLoanForm.get('accountId')?.value,
-      loanAmount: this.createLoanForm.get('loanAmount')?.value,
-      remainingAmount:
-        this.createLoanForm.get('loanAmount')?.value +
-        this.interestRate * this.tenure,
-      loanPurpose: this.purpose,
-      interest: this.interestRate,
-      tenureInMonths: this.tenure,
+      accountId: this.createLoanForm.get('account')?.value,
+      balance: this.createLoanForm.get('amount')?.value,
+      loanType: this.loanPurpose,
+      tenure: this.tenure,
       monthlyEMI: this.monthlyEMI,
     };
 
@@ -128,6 +113,7 @@ export class CreateLoanComponent implements OnInit {
             'Error',
             response.message
           );
+          this.router.navigate(['/create-loan']);
         }
       },
       (error: any) => {
