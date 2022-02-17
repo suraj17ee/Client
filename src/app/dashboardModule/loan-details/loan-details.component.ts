@@ -20,6 +20,7 @@ export class LoanDetailsComponent implements OnInit {
 
     this.loanService.getAllLoans(userId).subscribe((res) => {
       this.loans = res;
+      console.log(this.loans);
     });
   }
 }

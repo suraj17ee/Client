@@ -13,12 +13,10 @@
         "
       >
         <article class="card-body">
-          <form [formGroup]="createLoanForm" class="mt-5">
-            <h2 class="mb-3 text-primary">
-              <p class="text-center" style="font-size: 30px; margin-bottom: 5%">
-                Loan
-              </p>
-            </h2>
+          <h2 class="text-primary text-center" style="font-size: 25px">
+            Apply For Loan
+          </h2>
+          <form [formGroup]="createLoanForm">
             <div class="form-group row">
               <div class="col-md-4">
                 <label>Amount : </label>
@@ -29,7 +27,7 @@
                   class="form-control"
                   formControlName="loanAmount"
                   placeholder="Amount"
-                  (change)="
+                  (input)="
                     updateInterestRate();
                     calculateEMI();
                     calculateInterestAmount()
@@ -44,9 +42,9 @@
               </div>
               <div class="col-md-8">
                 <select
+                  style="height: 42px"
                   class="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
-                  [(ngModel)]="purpose"
                   (change)="
                     updateInterestRate();
                     calculateEMI();
@@ -54,9 +52,9 @@
                   "
                   formControlName="loanPurpose"
                 >
-                  <option *ngFor="let item of purposes" [ngValue]="item">
-                    {{ item.name }}
-                  </option>
+                  <option value="Personal">Personal Loan</option>
+                  <option selected value="Home">Home Loan</option>
+                  <option value="Vehicle">Vehicle Loan</option>
                 </select>
               </div>
             </div>
@@ -69,8 +67,10 @@
                   type="number"
                   class="form-control"
                   [(ngModel)]="tenure"
-                  (change)="
-                    updateInterest(); calculateEMI(); calculateInterestAmount()
+                  (input)="
+                    updateInterestRate();
+                    calculateEMI();
+                    calculateInterestAmount()
                   "
                   formControlName="tenureInMonths"
                 />
@@ -98,24 +98,33 @@
             </div>
             <br />
             <div class="form-group row">
-              Principal Amount: {{ amount | currency: "INR":"symbol" }}
-              <br />
-              Interest Rate: {{ interestRate }} %
-              <br />
-              Monthly EMI: {{ monthlyEMI | currency: "INR":"symbol" }}
-              <br />
-              Interest Amount:
-              {{ interestAmount | currency: "INR":"symbol" }}
-              <br />
-              Total Amount:
-              {{ amount + interestAmount | currency: "INR":"symbol" }}
-              <br />
+              <div class="col-md-6">
+                <div class="row">
+                  <div>
+                    Principal Amount: {{ amount | currency: "INR":"symbol" }}
+                  </div>
+                  <div>Interest Rate: {{ interestRate }} %</div>
+                  <div>
+                    Monthly EMI: {{ monthlyEMI | currency: "INR":"symbol" }}
+                  </div>
+                  <div>
+                    Interest Amount:
+                    {{ interestAmount | currency: "INR":"symbol" }}
+                  </div>
+                  <div>
+                    Total Amount:
+                    {{ amount + interestAmount | currency: "INR":"symbol" }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
             </div>
             <br />
             <div class="form-group row" style="margin-left: 35%">
               <div class="form-group col-md-6" id="buttons">
                 <button
                   type="submit"
+                  [disabled]="!createLoanForm.valid"
                   class="btn btn-success"
                   (click)="createLoan()"
                 >
