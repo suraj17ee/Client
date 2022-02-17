@@ -22,6 +22,7 @@ export class CreateLoanComponent implements OnInit {
   interestRate!: number;
   tenure!: number;
   monthlyEMI: number = 0;
+  amount: number = 0;
   interestAmount: number = 0;
   totalAmount: number = 0;
   accounts: any = [];
@@ -139,5 +140,15 @@ export class CreateLoanComponent implements OnInit {
     this.accountService.getAccounts(userID).subscribe((res) => {
       this.accounts = res;
     });
+  }
+
+  calculateInterestAmount() {
+    this.amount = this.createLoanForm.get('loanAmount')?.value;
+    if (this.amount >= 1000) {
+      this.interestAmount = this.totalAmount - this.amount;
+      this.interestAmount =
+        Math.round((this.interestAmount + Number.EPSILON) * 100) / 100;
+    }
+    console.log(this.interestAmount);
   }
 }
