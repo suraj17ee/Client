@@ -8,6 +8,7 @@ import {
 import { StatementService } from 'src/app/services/statement.service';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { SortEvent } from 'primeng/api';
 @Component({
   selector: 'app-account-statement',
   templateUrl: './account-statement.component.html',
@@ -24,6 +25,7 @@ export class AccountStatementComponent implements OnInit {
   loading: boolean = false;
   cols: any[] | undefined;
   exportColumns: any[] | undefined;
+  products1: any[] | undefined;
 
   constructor(
     fb: FormBuilder,
@@ -43,7 +45,6 @@ export class AccountStatementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
-
     // this.cols = [
     //   {
     //     field: 'transactionId',
@@ -65,6 +66,7 @@ export class AccountStatementComponent implements OnInit {
     // }));
   }
 
+ 
   submitForm() {
     (this.fromAccountId = this.statementForm.get('fromAccount')?.value),
       this.statementService
@@ -73,10 +75,30 @@ export class AccountStatementComponent implements OnInit {
           this.statements = response;
           this.loading = false;
           this.isShown = true;
-          this.statements.forEach( (i: { date: string | number | Date; }) => (i.date = new Date(i.date)));
+          this.statements.forEach( (i: { transactionDate: string | number | Date; })=> {i.transactionDate = new Date(i.transactionDate)});
           console.log('statement data', this.statements);
         });
   }
+  customSort(event: { data: any[]; field: string | number; order: number; }) {
+    event.data?.sort((data1, data2) => {
+        let value1 = data1[event.field];
+        let value2 = data2[event.field];
+        let result = null;
+
+        if (value1 == null && value2 != null)
+            result = -1;
+        else if (value1 != null && value2 == null)
+            result = 1;
+        else if (value1 == null && value2 == null)
+            result = 0;
+        else if (typeof value1 === 'string' && typeof value2 === 'string')
+            result = value1.localeCompare(value2);
+        else
+            result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
+
+        return (event.order * result);
+    });
+}
 
   
   getData() {

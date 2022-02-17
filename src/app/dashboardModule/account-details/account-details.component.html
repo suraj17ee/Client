@@ -49,7 +49,7 @@
             </td>
             <td>{{ account.accountStatus }}</td>
             <td>{{ account.accountType }}</td>
-            <td>{{ account.balance }}</td>
+            <td>{{ account.balance | currency: "INR":"symbol" }}</td>
             <td>{{ account.dateCreated }}</td>
             <td>{{ account.timeCreated }}</td>
           </tr>
