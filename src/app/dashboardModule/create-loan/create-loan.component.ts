@@ -16,20 +16,20 @@ import { LoanService } from 'src/app/services/loan.service';
 })
 export class CreateLoanComponent implements OnInit {
   createLoanForm!: FormGroup;
-  loanPurpose!:string;
-  interestRate!:number;
-  tenure!:number;
-  monthlyEMI:number=0;
-  purposes:Array<any> = [
-    {id: 0, name: "Personal"},
-    {id: 1, name: "Home"},
-    {id: 2, name: "Vehicle"}
-];
-tenures:Array<any> = [
-  {id: 0, name: "3 Months"},
-  {id: 1, name: "6 Months"},
-  {id: 2, name: "12 Months"}
-];
+  loanPurpose!: string;
+  interestRate!: number;
+  tenure!: number;
+  monthlyEMI: number = 0;
+  purposes: Array<any> = [
+    { id: 0, name: 'Personal' },
+    { id: 1, name: 'Home' },
+    { id: 2, name: 'Vehicle' },
+  ];
+  tenures: Array<any> = [
+    { id: 0, name: '3 Months' },
+    { id: 1, name: '6 Months' },
+    { id: 2, name: '12 Months' },
+  ];
 
   constructor(
     fb: FormBuilder,
@@ -38,8 +38,8 @@ tenures:Array<any> = [
     private notificationService: NotificationService
   ) {
     this.createLoanForm = new FormGroup({
-      purpose:new FormControl('', [Validators.required]),
-      amount:new FormControl('', [Validators.required]),
+      purpose: new FormControl('', [Validators.required]),
+      amount: new FormControl('', [Validators.required]),
       tenure: new FormControl('', [Validators.required]),
       account: new FormControl('', [Validators.required]),
     });
@@ -50,53 +50,54 @@ tenures:Array<any> = [
   }
 
   ngOnInit(): void {}
-  updateInterestRate(){
-      let purpose = this.createLoanForm.get('purpose')?.value;
-      if(purpose.id ==0 ){
-        this.interestRate=7;
-        this.loanPurpose="Personal";
-      }else if(purpose.id ==1){
-        this.interestRate=9;
-        this.loanPurpose="Home";
-      }else{
-        this.interestRate=12;
-        this.loanPurpose="Vehicle";
-      }
-      console.log(this.interestRate);
+  updateInterestRate() {
+    let purpose = this.createLoanForm.get('purpose')?.value;
+    if (purpose.id == 0) {
+      this.interestRate = 7;
+      this.loanPurpose = 'Personal';
+    } else if (purpose.id == 1) {
+      this.interestRate = 9;
+      this.loanPurpose = 'Home';
+    } else {
+      this.interestRate = 12;
+      this.loanPurpose = 'Vehicle';
+    }
+    console.log(this.interestRate);
   }
-  updateInterest(){
+  updateInterest() {
     let tenure = this.createLoanForm.get('tenure')?.value;
-      if(tenure.id ==0 ){
-        this.tenure=3;
-      }else if(tenure.id ==1){
-        this.tenure=9;
-      }else{
-        this.tenure=12;
-      }
-      console.log(this.tenure);
+    if (tenure.id == 0) {
+      this.tenure = 3;
+    } else if (tenure.id == 1) {
+      this.tenure = 9;
+    } else {
+      this.tenure = 12;
+    }
+    console.log(this.tenure);
   }
-  calculateEMI(){
-    var amount= this.createLoanForm.get('amount')?.value;
-    if(amount>=1000){
-      this.monthlyEMI = (amount+(amount *this.interestRate/100 ))/this.tenure;
-      this.monthlyEMI = Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100
+  calculateEMI() {
+    var amount = this.createLoanForm.get('amount')?.value;
+    if (amount >= 1000) {
+      this.monthlyEMI =
+        (amount + (amount * this.interestRate) / 100) / this.tenure;
+      this.monthlyEMI =
+        Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
       console.log(this.monthlyEMI);
     }
-    console.log(this.monthlyEMI)
+    console.log(this.monthlyEMI);
   }
-  createLoan(){
+  createLoan() {
     var userId: number = Number(localStorage.getItem('userId'));
 
     const loanData = {
-      userId:userId,
+      userId: userId,
       accountId: this.createLoanForm.get('account')?.value,
-      balance:this.createLoanForm.get('amount')?.value,
-      loanType:this.loanPurpose,
+      balance: this.createLoanForm.get('amount')?.value,
+      loanType: this.loanPurpose,
       tenure: this.tenure,
-      monthlyEMI :this.monthlyEMI
+      monthlyEMI: this.monthlyEMI,
     };
 
-   
     this.loanService.createLoan(loanData).subscribe(
       (response: any) => {
         if (response.statusCode == 201) {
@@ -119,5 +120,5 @@ tenures:Array<any> = [
         console.log(error);
       }
     );
-   }
+  }
 }
