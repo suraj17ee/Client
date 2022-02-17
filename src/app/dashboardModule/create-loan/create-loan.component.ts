@@ -16,6 +16,8 @@ export class CreateLoanComponent implements OnInit {
   tenure: number = 0;
   amount: number = 0;
   monthlyEMI: number = 0;
+  interestAmount: number = 0;
+  totalAmount: number = 0;
 
   purposes: Array<any> = [
     { id: 0, name: 'Personal' },
@@ -74,13 +76,25 @@ export class CreateLoanComponent implements OnInit {
 
   calculateEMI() {
     this.amount = this.createLoanForm.get('loanAmount')?.value;
+    let intr = this.interestRate / 12 / 100;
+    let n = Math.pow(intr + 1, this.tenure);
     if (this.amount >= 1000) {
-      this.monthlyEMI =
-        (this.amount + (this.amount * this.interestRate) / 100) / this.tenure;
+      this.monthlyEMI = (this.amount * intr * n) / (n - 1);
+      this.totalAmount = this.monthlyEMI * this.tenure;
       this.monthlyEMI =
         Math.round((this.monthlyEMI + Number.EPSILON) * 100) / 100;
     }
     console.log(this.monthlyEMI);
+  }
+
+  calculateInterestAmount() {
+    this.amount = this.createLoanForm.get('loanAmount')?.value;
+    if (this.amount >= 1000) {
+      this.interestAmount = this.totalAmount - this.amount;
+      this.interestAmount =
+        Math.round((this.interestAmount + Number.EPSILON) * 100) / 100;
+    }
+    console.log(this.interestAmount);
   }
 
   createLoan() {
