@@ -16,14 +16,6 @@ import {
 export class AccountDetailsComponent implements OnInit {
   userId: number | undefined;
   accounts: any = [];
-
-  columnDefs = [
-    { headerName: 'Account ID', field: 'accountId' },
-    { headerName: 'Account Status', field: 'accountStatus'  },
-    { headerName: 'Account Type', field: 'accountType'},
-    { headerName: 'Balance', field: 'balance' },
-    { headerName: 'Account Creation Date', field: 'dateCreated'  },
-  ];
   statements: any = [];
   isShown: boolean = false;
   fromId: any;
