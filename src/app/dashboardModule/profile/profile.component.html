@@ -80,5 +80,31 @@
         </div>
       </div>
     </div>
+    <br />
+    <!-- --------------------------------------------- -->
+    <div class="container row">
+      <div class="col-md-6">
+        <input type="file" (change)="onFileChanged($event)" />
+      </div>
+      <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload" />
+      </div>
+    </div>
+    <hr />
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf="message">{{ message }}</div>
+      </div>
+    </div>
+    <div class="container row">
+      <input type="button" (click)="getImage()" value="Get Image" />
+    </div>
+    <div class="container row">
+      <div class="col-md-12">
+        <div *ngIf="retrievedImage">
+          <img [src]="retrievedImage" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>

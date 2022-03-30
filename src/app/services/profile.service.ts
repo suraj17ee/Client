@@ -17,4 +17,8 @@ export class ProfileService {
   updateUserProfile(data: any): Observable<any> {
     return this.http.put(this.url + '/profile/update', data);
   }
+
+  getUserFile(userId: any): Observable<any> {
+    return this.http.get(this.url + `/downloadFile/${userId}`);
+  }
 }

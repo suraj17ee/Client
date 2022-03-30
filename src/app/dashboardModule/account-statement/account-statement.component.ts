@@ -6,9 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { StatementService } from 'src/app/services/statement.service';
-import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
-import { SortEvent } from 'primeng/api';
+
 @Component({
   selector: 'app-account-statement',
   templateUrl: './account-statement.component.html',
@@ -30,9 +29,7 @@ export class AccountStatementComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private statementService: StatementService,
-    private router: Router,
-    private accountService: AccountService,
-    private stmtService: StatementService
+    private accountService: AccountService
   ) {
     this.statementForm = fb.group({
       fromAccount: new FormControl('', [Validators.required]),
@@ -63,6 +60,18 @@ export class AccountStatementComponent implements OnInit {
           console.log('statement data', this.statements);
         });
   }
+
+  columns = [
+    { title: 'Transaction Id', dataKey: 'transactionId' },
+    { title: 'Sender Account', dataKey: 'fromAccount' },
+    { title: 'Receiver Account', dataKey: 'toAccount' },
+    { title: 'Amount', dataKey: 'amount' },
+    { title: 'Status', dataKey: 'transactionStatus' },
+    { title: 'Date', dataKey: 'transactionDate' },
+    { title: 'Time', dataKey: 'transactionTime' },
+    { title: 'Description', dataKey: 'description' },
+  ];
+
   customSort(event: { data: any[]; field: string | number; order: number }) {
     event.data?.sort((data1, data2) => {
       let value1 = data1[event.field];

@@ -15,4 +15,8 @@ export class LoanService {
   getAllLoans(userId: any): Observable<any> {
     return this.http.get(this.url + `/all-loans/${userId}`);
   }
+
+  checkAccountNo(userId: any, accountId: any): Observable<any> {
+    return this.http.get(this.url + `/check-account-no/${userId}/${accountId}`);
+  }
 }

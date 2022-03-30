@@ -43,13 +43,13 @@ export class CreateLoanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
     this.interestRate = 7;
     this.createLoanForm.controls['loanPurpose'].setValue('Home');
     this.createLoanForm.controls['loanAmount'].setValue(1000000);
     this.createLoanForm.controls['tenureInMonths'].setValue(240);
     this.calculateEMI();
     this.calculateInterestAmount();
-    this.getData();
   }
 
   get getLoanFormControls() {
@@ -115,29 +115,47 @@ export class CreateLoanComponent implements OnInit {
     };
 
     this.SpinnerService.show();
-    this.loanService.createLoan(loanData).subscribe(
-      (response: any) => {
-        if (response.statusCode == 201) {
-          this.SpinnerService.hide();
-          this.notificationService.createNotification(
-            'success',
-            'Success',
-            response.message
-          );
-          this.router.navigate(['/dashboard/loan-details']);
-        } else if (response.statusCode == 400) {
-          this.notificationService.createNotification(
-            'error',
-            'Error',
-            response.message
-          );
-          this.router.navigate(['/create-loan']);
+
+    this.loanService
+      .checkAccountNo(userId, this.createLoanForm.get('accountId')?.value)
+      .subscribe(
+        (response: any) => {
+          if (response.statusCode == 201) {
+            this.loanService.createLoan(loanData).subscribe(
+              (response: any) => {
+                if (response.statusCode == 201) {
+                  this.SpinnerService.hide();
+                  this.notificationService.createNotification(
+                    'success',
+                    'Success',
+                    response.message
+                  );
+                  this.router.navigate(['/dashboard/loan-details']);
+                } else if (response.statusCode == 400) {
+                  this.notificationService.createNotification(
+                    'error',
+                    'Error',
+                    response.message
+                  );
+                  this.router.navigate(['/create-loan']);
+                }
+              },
+              (error: any) => {
+                console.log(error);
+              }
+            );
+          } else if (response.statusCode == 400) {
+            this.notificationService.createNotification(
+              'error',
+              'Error',
+              response.message
+            );
+          }
+        },
+        (error: any) => {
+          console.log(error);
         }
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+      );
   }
 
   getData() {

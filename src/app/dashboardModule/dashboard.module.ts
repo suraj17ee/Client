@@ -13,7 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { CreateLoanComponent } from './create-loan/create-loan.component';
 import { LoanDetailsComponent } from './loan-details/loan-details.component';
 
