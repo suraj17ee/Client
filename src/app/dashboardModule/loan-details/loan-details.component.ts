@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
 import { LoanService } from 'src/app/services/loan.service';
 
 @Component({
@@ -7,9 +8,12 @@ import { LoanService } from 'src/app/services/loan.service';
   styleUrls: ['./loan-details.component.css'],
 })
 export class LoanDetailsComponent implements OnInit {
-  loans: any = [];
+  accounts: any = [];
 
-  constructor(private loanService: LoanService) {}
+  constructor(
+    private loanService: LoanService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
     this.getData();
@@ -18,9 +22,8 @@ export class LoanDetailsComponent implements OnInit {
   getData() {
     var userId: number = Number(localStorage.getItem('userId'));
 
-    this.loanService.getAllLoans(userId).subscribe((res) => {
-      this.loans = res;
-      console.log(this.loans);
+    this.accountService.getAccounts(userId).subscribe((res) => {
+      this.accounts = res;
     });
   }
 }

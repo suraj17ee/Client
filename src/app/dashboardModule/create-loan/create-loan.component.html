@@ -87,6 +87,7 @@
                   [displayWith]="formatTenure"
                   formControlName="tenureInMonths"
                   aria-label="units"
+                  [(ngModel)]="tenure"
                   (input)="
                     updateInterestRate();
                     calculateEMI();
